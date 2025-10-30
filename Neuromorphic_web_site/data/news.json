@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "_id": "news1",
+      "image": "./img/news/news1.jpg",
+      "title": "Neuromorphic Lab Announces New Chip",
+      "date": "2025-10-01T00:00:00.000Z",
+      "brief": "Our lab developed a low-power spiking chip that improves energy efficiency for edge devices."
+    },
+    {
+      "_id": "news2",
+      "image": "./img/news/news2.jpg",
+      "title": "Grant Awarded for Neuromorphic Research",
+      "date": "2025-08-15T00:00:00.000Z",
+      "brief": "A multi-year grant will support research into biologically-inspired learning rules."
+    },
+    {
+      "_id": "news3",
+      "image": "./img/news/news3.jpg",
+      "title": "Conference Paper Accepted",
+      "date": "2025-06-05T00:00:00.000Z",
+      "brief": "Our team presented a paper on robust spiking networks at a top conference."
+    }
+  ]
+}

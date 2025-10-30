@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/hero.css" rel="stylesheet" />
+    <link href="css/general.css" rel="stylesheet" />
+    <link href="css/query.css" rel="stylesheet" />
+    <title>peramorphiq-People</title>
+  </head>
+  <body>
+    <header class="subSection-header">
+      <div class="container">
+        <a href="./index.html#supervisors" class="back-link">← Back to People Section</a>
+      </div>
+    </header>
+
+    <main>
+      
+      <section class="section-supervisors" id="supervisors" style="background-color:#fff">
+        <div class="container">
+          <h2 class="subheading">
+            People
+          </h2>
+        </div>
+
+        <!---team members-->
+        <section class="contributors-group team-member-card">
+          <div class="container">
+            <h3 class="inherheader">Contributors as team members</h3>
+
+            <div class="main-contributors grid grid--5--cols" id="team-container">
+              <!-- Team members will be loaded dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!--supervisors-->
+        <section class="contributors-group">
+          <div class="container">
+            <h3 class="inherheader">Contributors as project supervisors</h3>
+            <div class="main-contributors grid grid--5--cols" id="supervisors-container">
+                   <!-- Superviors will be loaded dynamically -->
+            </div>
+          </div>
+        </section>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="subSection-footer">
+      <div class="container">
+        <p>&copy; 2025 Neuromorphic Research Center | All Rights Reserved</p>
+      </div>
+    </footer>
+
+
+    <script src="./js/sub-api.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        try {
+          window.NEURO_API.loadPeoples('#team-container','#supervisors-container')
+        } catch (e) {
+          console.error('Failed to initialize API loaders', e);
+        }
+      });
+    </script>
+
+  </body>
+</html>
