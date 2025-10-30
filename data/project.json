@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "_id": "proj1",
+      "image": "./img/projects/hero1.avif",
+      "title": "Edge Spiking Project",
+      "tags": ["neuromorphic", "edge"],
+      "details": "An edge-optimised spiking network demonstrator for low-power sensing.",
+      "projectContributors": [
+        { "image": "./img/customers/user1.jpg", "name": "Alice Johnson" },
+        { "image": "./img/customers/user2.jpg", "name": "Bob Lee" }
+      ]
+    }
+  ]
+}

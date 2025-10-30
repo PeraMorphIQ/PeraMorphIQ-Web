@@ -1,0 +1,172 @@
+/* ===============================
+      RESPONSIVE DESIGN
+=============================== */
+
+/* ----------- Desktop (≤1300px) ----------- */
+@media (max-width: 1300px) {
+  .project-container-text {
+    width: 75%;
+  }
+
+  .grid-of-project {
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+  }
+
+  .project-header-name {
+    font-size: 4rem;
+  }
+
+  .project-header-details {
+    font-size: 1.8rem;
+  }
+}
+
+/* ----------- Large Tablets (≤1000px) ----------- */
+@media (max-width: 1000px) {
+
+  .project-header {
+    height: 45vh;
+    padding: 4rem 2rem;
+  }
+
+  .project-container-text {
+    width: 90%;
+    text-align: center;
+  }
+
+  .project-header-name {
+    font-size: 3.6rem;
+  }
+
+  .project-header-details {
+    font-size: 1.7rem;
+  }
+
+  .grid-of-project {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3.2rem;
+  }
+
+  .project-decs,
+  .project-list li {
+    font-size: 1.6rem;
+  }
+
+  .git-repo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* ----------- Tablets (≤768px) ----------- */
+@media (max-width: 768px) {
+  /* PROJECT */
+  .project-header {
+    height: 50vh;
+    text-align: center;
+    padding: 3rem 1.6rem;
+  }
+
+  h1#project-title {
+        line-height: 1.3;
+  }
+
+  .project-container-text {
+    width: 100%;
+  }
+
+  .project-header-name {
+    font-size: 3.2rem;
+  }
+
+  .project-header-details {
+    font-size: 1.6rem;
+  }
+
+  .grid-of-project {
+    grid-template-columns: 1fr;
+  }
+
+  .sub-details {
+    margin-top: 3rem;
+  }
+
+  .git-repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .github-img {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .repo-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-subtopics {
+    font-size: 2.4rem;
+  }
+
+  .project-decs,
+  .project-list li {
+    font-size: 1.5rem;
+  }
+
+}
+
+/* ----------- Mobiles (≤540px) ----------- */
+@media (max-width: 540px) {
+  /* HERO / HEADER */
+  .project-header {
+    height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .project-header-name {
+    font-size: 2.8rem;
+  }
+
+  .project-header-details {
+    font-size: 1.4rem;
+  }
+
+  /* CONTENT */
+  .project-decs,
+  .project-list li {
+    font-size: 1.4rem;
+  }
+
+  .project-subtopics {
+    font-size: 2.2rem;
+  }
+
+  .grid--5--cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .git-repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ----------- Small Mobiles (≤400px) ----------- */
+@media (max-width: 400px) {
+  .project-header-name {
+    font-size: 2.4rem;
+  }
+
+  .project-header-details {
+    font-size: 1.3rem;
+  }
+
+  .project-subtopics {
+    font-size: 2rem;
+  }
+
+
+}

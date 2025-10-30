@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "name": "Dr. Sarah Smith",
+      "image": "./img/people/smith.jpg",
+      "position": "Lecture"
+    },
+    {
+      "name": "Student One",
+      "image": "./img/people/student1.jpg",
+      "position": "Student"
+    },
+    {
+      "name": "Student Two",
+      "image": "./img/people/student2.jpg",
+      "position": "Student"
+    }
+  ]
+}

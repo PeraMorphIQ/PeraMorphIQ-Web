@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/hero.css" rel="stylesheet" />
+    <link href="css/general.css" rel="stylesheet" />
+    <link href="css/query.css" rel="stylesheet" />
+    <title>peramorphiq</title>
+  </head>
+  <body>
+    <div class="landing-page">
+      <header class="header">
+        <a href="#">
+          <img src="./img/logo.png" alt="" class="escal" />
+        </a>
+        <button class="btn-mobile-nav" aria-label="Toggle menu">
+          <span class="hamburger-line line1"></span>
+          <span class="hamburger-line line2"></span>
+          <span class="hamburger-line line3"></span>
+        </button>
+
+        <nav class="main-nav">
+          <ul class="main-nav-list">
+            <li>
+              <a class="main-nav-link" href="#about">ABOUT</a>
+            </li>
+            <li>
+              <a class="main-nav-link" href="#news">NEWS</a>
+            </li>
+            <li>
+              <a class="main-nav-link" href="#publications">PUBLICATIONS</a>
+            </li>
+            <li>
+              <a class="main-nav-link" href="#blogs">BLOGS</a>
+            </li>
+            <li>
+              <a class="main-nav-link nav-cta" href="#projects">PROJECTS</a>
+            </li>
+            <li>
+              <a class="main-nav-link nav-cta" href="#supervisors">PEOPLE</a>
+            </li>
+          </ul>
+          <span class="nav-indicator"></span>
+        </nav>
+      </header>
+
+      <!-- Section of Hero -->
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero-text-box">
+            <h1 class="hero-main--header">
+              Exploring the Future of Neuromorphic Computing
+            </h1>
+
+            <p class="hero-description">
+              Our researchers push the limits of computation by building systems
+              that think like the human brain. From hardware design to cognitive
+              algorithms, we’re crafting the future of intelligent machines —
+              one neuron at a time.
+            </p>
+
+            <div class="hero-btn">
+              <a href="#about" class="hero-learn-btn btn--scroll-to"
+                ><span>Exploring more</span
+                ><img
+                  src="./img/icons/arrow_icon.svg"
+                  class="explore-more-icon"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <main>
+      <!-- section of About -->
+      <section class="section-about page" id="about">
+        <div class="container about-text-box">
+          <h2 class="subheading">About the Neuromorphic Research Center</h2>
+
+          <p class="about-description">
+            The Neuromorphic Research Center at the University of Peradeniya is
+            dedicated to advancing the science and engineering of brain-inspired
+            computing. Our team of researchers, engineers, and students explores
+            the intersection of neuroscience, artificial intelligence, and
+            hardware design to create systems that emulate the efficiency and
+            adaptability of the human brain.
+          </p>
+
+          <div class="about-stats grid grid--4--cols">
+            <div class="stat">
+              <img src="img/icons/brain.svg" class="about-icon" />
+              <p class="about-stats-number">25+</p>
+              <p class="icon-desc">Active Projects</p>
+            </div>
+
+            <div class="stat">
+              <img src="img/icons/people.svg" class="about-icon" />
+              <p class="about-stats-number">25+</p>
+              <p class="icon-desc">students</p>
+            </div>
+
+            <div class="stat">
+              <img src="img/icons/publish.svg" class="about-icon" />
+              <p class="about-stats-number">15+</p>
+              <p class="icon-desc">Publications</p>
+            </div>
+
+            <div class="stat">
+              <img src="img/icons/handshake.svg" class="about-icon" />
+              <p class="about-stats-number">5+</p>
+              <p class="icon-desc">Collaborations</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section of News -->
+      <section class="section-news page" id="news">
+        <div class="container">
+          <h2 class="subheading">
+            News
+            <a href="./news.html" class="link-tags"
+              ><img src="./img/icons/link.svg" class="link-icons"
+            /></a>
+          </h2>
+        </div>
+
+        <div class="container main-news" id="news-container">
+          <!-- News will be loaded dynamically -->
+        </div>
+
+        <div class="view-more-news">
+          <a href="./news.html" class="view-more-btn" target="_blank"
+            >View on news <span>&rarr;</span></a
+          >
+        </div>
+      </section>
+
+      <!-- Section Of publications -->
+      <section class="section-publications page" id="publications">
+        <div class="container">
+          <h2 class="subheading">
+            Publications
+            <a href="./publication.html" class="link-tags"
+              ><img src="./img/icons/link.svg" class="link-icons"
+            /></a>
+          </h2>
+        </div>
+
+        <div class="container main-publications" id="publication-container">
+          <!-- Publication will be loaded dynamically  -->
+        </div>
+      </section>
+
+      <!-- Section of Blogs -->
+      <section class="section-blogs page" id="blogs">
+        <div class="container">
+          <h2 class="subheading">
+            Blogs
+            <a href="./blogs.html" class="link-tags"
+              ><img src="./img/icons/link.svg" class="link-icons"
+            /></a>
+          </h2>
+        </div>
+
+        <div class="container blog-grid" id="blog-container">
+          <!-- Blogs will be loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- Section of Projects -->
+      <section class="section-projects page" id="projects">
+        <div class="container">
+          <h2 class="subheading">
+            Research Projects
+            <a href="./project.html" class="link-tags"
+              ><img src="./img/icons/link.svg" class="link-icons"
+            /></a>
+          </h2>
+        </div>
+
+        <div class="container grid grid grid--3--cols" id="project-container">
+          <!-- Projects will be loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- Section of People -->
+      <section class="section-supervisors page" id="supervisors">
+        <div class="container">
+          <h2 class="subheading">
+            People
+            <a href="./people.html" class="link-tags"
+              ><img src="./img/icons/link.svg" class="link-icons"
+            /></a>
+          </h2>
+        </div>
+
+        <!---team members-->
+        <section class="contributors-group team-member-card">
+          <div class="container">
+            <h3 class="inherheader">Contributors as team members</h3>
+
+            <div
+              class="main-contributors grid grid--5--cols"
+              id="team-container"
+            >
+              <!-- Team members will be loaded dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!--supervisors-->
+        <section class="contributors-group">
+          <div class="container">
+            <h3 class="inherheader">Contributors as project supervisors</h3>
+            <div
+              class="main-contributors grid grid--5--cols"
+              id="supervisors-container"
+            >
+              <!-- Superviors will be loaded dynamically -->
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Section of footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-1">
+          <a href="#" class="footer-logo">
+            <img
+              src="./img/logo-3.png"
+              alt=""
+              class="escal"
+              style="height: 3.8rem"
+            />
+          </a>
+
+          <p class="footer-desc">
+            Advancing the frontiers of neural interface technology through
+            innovative research and collaboration
+          </p>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading">Contact us</p>
+          <address class="contacts">
+            <p class="address">peradeniya,university of peradeniya</p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">1234567</a><br />
+              <a class="footer-link" href="mailto:hello@omnifood.com"
+                >nero@d.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Quick Links</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#news">News</a></li>
+            <li><a class="footer-link" href="#publications">Publication</a></li>
+            <li><a class="footer-link" href="#blogs">Blog</a></li>
+            <li><a class="footer-link" href="#projects">Projects</a></li>
+            <li><a class="footer-link" href="#supervisors">People</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Other Websites</p>
+          <ul class="footer-nav">
+            <li>
+              <a
+                class="footer-link"
+                href="https://2yp-project-full-stack-web-site.vercel.app"
+                target="_blank"
+                >Admin Panel</a
+              >
+            </li>
+            <li>
+              <a
+                class="footer-link"
+                href="https://escal.ce.pdn.ac.lk"
+                target="_blank"
+                >ESCAL</a
+              >
+            </li>
+            <li>
+              <a
+                class="footer-link"
+                href="https://www.ce.pdn.ac.lk"
+                target="_blank"
+                >Peracom</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Rearch Area</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Neural Interfaces</a></li>
+            <li>
+              <a class="footer-link" href="#">Brain-Computer Interfaces</a>
+            </li>
+            <li>
+              <a class="footer-link" href="#">Neural Signal Processing</a>
+            </li>
+            <li><a class="footer-link" href="#">Neuroplasticity</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-line">
+        <p class="copyright">
+          Copyright &copy; 2027 by pera com, Inc. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/api.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        try {
+          window.NEURO_API.loadNews("#news-container");
+          window.NEURO_API.loadPublications("#publication-container");
+          window.NEURO_API.loadBlogs("#blog-container");
+          window.NEURO_API.loadProjects("#project-container");
+          window.NEURO_API.loadPeoples(
+            "#team-container",
+            "#supervisors-container"
+          );
+        } catch (e) {
+          console.error("Failed to initialize API loaders", e);
+        }
+      });
+    </script>
+  </body>
+</html>
