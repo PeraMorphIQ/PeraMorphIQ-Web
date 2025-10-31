@@ -78,7 +78,6 @@
                     <p class="pub-authors"><strong>Authors:</strong> ${n.authors.map(a => a.name).join(', ')}</p>
                     <p class="pub-year"><strong>Journal:</strong> ${n.journal} (${n.year})</p>
                     <p class="pub-doi"><strong>DOI:</strong> <a href="https://doi.org/${n.doi}" target="_blank">${n.doi}</a></p>
-                    <p class="pub-desc">${n.description}</p>
                     <a href="${n.link}" class="pub-link" target="_blank">View Paper<span>&rarr;</span></a>
                   </div>
                 </div>
