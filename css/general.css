@@ -66,6 +66,7 @@ Medium: 12px
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+   height: 100%;
 }
 
 * {
@@ -79,6 +80,15 @@ body {
   line-height: 1;
   font-weight: 400;
   color: rgba(48, 66, 92, 0.91);
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 
@@ -217,29 +227,6 @@ body {
 }
 
 
-/* **********************************
-         mobile navigation 
-*********************************** */
-
-/* .btn-mobile-nav{
-  border:none;
-  cursor:pointer;
-  background:none;
-
-  display:none;
-  z-index: 10002; 
-}
-
-.icon-mobile-nav{
-  height:3.6rem;
-  width:3.6rem;
-}
-
-.icon-mobile-nav[name="close"]{
-  display:none;
-} */
-
-
 
 
 
@@ -354,8 +341,9 @@ body {
   color: rgba(31, 47, 69, 0.91);
   text-align: center;
   padding: 2rem 0;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   border-top: 3px solid #1e234fff;
+  flex-shrink: 0;
 }
 
 

@@ -46,46 +46,7 @@
     </footer>
 
 
-    <script>
-      // Load news details from local /data/news.json and locate the item by id
-      function getNewsIdFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('id');
-      }
-
-      async function loadNewsDetails() {
-        const id = getNewsIdFromURL();
-        if (!id) return;
-
-        try {
-          const res = await fetch('./data/news.json');
-          if (!res.ok) throw new Error(`Failed to load /data/news.json: ${res.status}`);
-          const json = await res.json();
-          const news = Array.isArray(json.data) ? json.data.find(n => n._id === id) : null;
-          if (!news) throw new Error('News item not found');
-
-          document.querySelector('.news-title').textContent = news.title || '';
-          document.querySelector('.news-meta li:nth-child(1)').textContent = `Author: ${news.author || ''}`;
-          document.querySelector('.news-meta li:nth-child(3)').textContent = `Publish: ${news.date ? new Date(news.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }) : ''}`;
-          document.querySelector('.news-image').src = news.image || '';
-          document.querySelector('.news-image').alt = news.title || '';
-          const paragraphs = (news.fullContent || news.brief || '').split('\n');
-          document.querySelector('.news-content').innerHTML = paragraphs.map(p=>`<p>${p}</p>`).join(''); 
-
-        } catch(e) {
-          console.log(e);
-          document.querySelector('.news-main').innerHTML = '<p class="text-center">Failed to load news details.</p>';
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', loadNewsDetails);
-    </script>
-
-
+    <script src="./news.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   </body>
 </html>

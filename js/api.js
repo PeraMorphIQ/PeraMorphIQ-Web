@@ -1,26 +1,28 @@
 (function () {
+
+
   async function fetchJSON(path) {
+
     const localMap = {
-      news: './data/news.json',
-      publications: './data/publication.json',
-      blogs: './data/blogs.json',
-      projects: './data/project.json',
-      contributors: './data/people.json'
+      news: '../_data/news.json',
+      publications: '../_data/publication.json',
+      blogs: '../_data/blogs.json',
+      projects: '../_data/project.json',
+      contributors: '../_data/people.json'
     };
 
     const file = localMap[path];
     if (!file) throw new Error(`No local data mapping for path: ${path}`);
-
-    const response = await fetch(file, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-    if (!response.ok) throw new Error(`Failed to load local data ${file}: ${response.status}`);
+    
+    // fetch the data
+    const response = await fetch(file);
     return response.json();
   }
 
-  // News section
+
+
+
+  // ----------------------------------- News section ---------------------------------------------------------
   async function loadNews(selector){
     const container=document.querySelector(selector);
 
@@ -57,7 +59,10 @@
     }
   }
 
-  // Publication Section
+
+
+
+  // ----------------------- Publication Section -----------------------------------------------------------
   async function loadPublications(selector){
     const container=document.querySelector(selector);
 
@@ -91,7 +96,9 @@
   }
 
 
-  // Blogs Section 
+
+
+  // ------------------------------- Blogs Section  ---------------------------------
   async function loadBlogs(selector){
     const container=document.querySelector(selector);
 
@@ -160,7 +167,9 @@
     }
   }
 
-  // Projects
+
+
+  // -------------------------------------Projects------------------------------------------
   async function loadProjects(selector){
     const container=document.querySelector(selector);
 
@@ -214,144 +223,141 @@
   }
 
 
-  async function loadPeoples(teamSelector,supervisorSelector){
-    const teamContainer=document.querySelector(teamSelector);
-    const supContainer=document.querySelector(supervisorSelector);
+
+
+  async function loadPeoples(teamSelector, supervisorSelector){
+    const teamContainer = document.querySelector(teamSelector);
+    const supContainer = document.querySelector(supervisorSelector);
+    
     try{
-        // Prefer aggregating contributors from projects (so people section shows project contributors)
-        let items = [];
-        try{
-          const pres = await fetchJSON('projects');
-          const projects = Array.isArray(pres.data) ? pres.data : [];
-          const map = new Map();
-          projects.forEach(p=>{
-            (p.projectContributors || []).forEach(c=>{
-              // support multiple contributor shapes:
-              // - { eNumber: 'E/21/302' }
-              // - { email: 'asithab@eng.pdn.ac.lk', position: 'Lecture' }
-              // - { image: '...', name: '...' }
-              if(c.eNumber){
-                if(!map.has(c.eNumber)) map.set(c.eNumber, { eNumber: c.eNumber });
-              } else if(c.email){
-                if(!map.has(c.email)) map.set(c.email, { email: c.email, position: c.position || 'Lecture' });
-              } else if(c.image || c.name){
-                const key = `${c.name || ''}::${c.image || ''}`;
-                if(!map.has(key)) map.set(key, { image: c.image, name: c.name, position: c.position });
-              }
-            })
-          });
-          items = Array.from(map.values());
-
-          // If no contributors found in projects, fall back to a dedicated contributors file
-          if(items.length === 0){
-            try{
-              const cres = await fetchJSON('contributors');
-              items = Array.isArray(cres.data) ? cres.data : [];
-            }catch(e){
-              console.warn('No contributors file found either', e);
-            }
-          }
-        }catch(err){
-          console.warn('Failed to load projects for contributors aggregation, trying contributors file', err);
-          try{
-            const cres = await fetchJSON('contributors');
-            items = Array.isArray(cres.data) ? cres.data : [];
-          }catch(e){
-            console.warn('No contributors file found', e);
-            items = [];
-          }
-        }
-
-        if(!Array.isArray(items) || items.length===0){
-          teamContainer.innerHTML= '<p class="text-center">No team members available.</p>';
-          supContainer.innerHTML= '<p class="text-center">No supervisors available.</p>';
-          return;
-        }
-
-        // Resolve any eNumber entries by fetching CE people API (parallel, unique)
-        const eNumbers = Array.from(new Set(items.filter(i=>i.eNumber).map(i=>i.eNumber)));
-        const profileByEN = {};
-        // Also resolve any staff entries provided as emails (e.g. asithab@eng.pdn.ac.lk)
-        const emails = Array.from(new Set(items.filter(i=>i.email).map(i=>i.email)));
-        const profileByEmail = {};
-
-        await Promise.all(emails.map(async (emailAddr)=>{
-          try{
-            const tag = String(emailAddr).split('@')[0];
-            const url = `https://api.ce.pdn.ac.lk/people/v1/staff/${tag}/`;
-            const r = await fetch(url);
-            if(!r.ok) throw new Error(`CE staff API ${r.status}`);
-            const json = await r.json();
-            profileByEmail[emailAddr] = {
-              image: json.profile_image || json.photo || json.image || '',
-              name: json.full_name || json.name || tag,
-              position: json.designation || json.title || 'Lecture'
-            };
-          }catch(e){
-            console.warn('Failed CE staff lookup for', emailAddr, e);
-            profileByEmail[emailAddr] = { image:'', name: emailAddr, position: 'Lecture' };
-          }
-        }));
-
-        await Promise.all(eNumbers.map(async (eNum)=>{
-          try{
-            const m = String(eNum).match(/^([A-Za-z])\/(\d{2})\/(\d+)$/);
-            if(!m) throw new Error('Invalid eNumber');
-            const batch = m[1]+m[2];
-            const id = m[3];
-            const url = `https://api.ce.pdn.ac.lk/people/v1/students/${batch}/${id}`;
-            const r = await fetch(url);
-            if(!r.ok) throw new Error(`CE API ${r.status}`);
-            const json = await r.json();
-            profileByEN[eNum] = {
-              image: json.profile_image || '',
-              name: json.full_name || json.name_with_initials || eNum,
-              position: 'Student'
-            };
-          }catch(e){
-            console.warn('Failed CE lookup for', eNum, e);
-            profileByEN[eNum] = { image: '', name: eNum, position: '' };
-          }
-        }));
-
-        // Build final contributor list: resolved profiles + others
-        const finalContribs = items.map(i=> {
-          if(i.eNumber) return profileByEN[i.eNumber] || { image:'', name: i.eNumber, position: '' };
-          if(i.email) return profileByEmail[i.email] || { image:'', name: i.email, position: 'Lecture' };
-          return { image: i.image || '', name: i.name || '', position: i.position || '' };
+        // Load projects to get teamMembers and supervisors
+        const pres = await fetchJSON('projects');
+        const projects = Array.isArray(pres.data) ? pres.data : [];
+        
+        let allTeamMembers = [];
+        let allSupervisors = [];
+        
+        // Collect unique team members and supervisors from all projects
+        const teamMemberMap = new Map();
+        const supervisorMap = new Map();
+        
+        projects.forEach(project => {
+            // Process team members (eNumber based)
+            (project.teamMembers || []).forEach(member => {
+                if(member.eNumber && !teamMemberMap.has(member.eNumber)) {
+                    teamMemberMap.set(member.eNumber, {
+                        eNumber: member.eNumber,
+                        name: member.name || ''
+                    });
+                }
+            });
+            
+            // Process supervisors (email based)
+            (project.supervisors || []).forEach(supervisor => {
+                if(supervisor.email && !supervisorMap.has(supervisor.email)) {
+                    supervisorMap.set(supervisor.email, {
+                        name: supervisor.name || '',
+                        email: supervisor.email
+                    });
+                }
+            });
         });
+        
+        allTeamMembers = Array.from(teamMemberMap.values());
+        allSupervisors = Array.from(supervisorMap.values());
 
-        // Render all contributors into the team container (per request)
-        teamContainer.innerHTML = finalContribs.map(n=>`
-          <div class="contributor">
-              <img src="${n.image || './img/default.jpg'}" alt="${n.name}" class="contributor-img" />
-              <div class="contributor-text">
-                <p class="contributor-name">${n.name}</p>
-                <p class="contributor-batch">${n.position || ''}</p>
-              </div>
-          </div>
-        `).join('');
+        // Resolve team members (students) via CE API
+        const resolvedTeamMembers = await Promise.all(allTeamMembers.map(async (member) => {
+            try {
+                const m = String(member.eNumber).match(/^([A-Za-z])\/(\d{2})\/(\d+)$/);
+                if(!m) throw new Error('Invalid eNumber format');
+                
+                const batch = m[1] + m[2];
+                const id = m[3];
+                const url = `https://api.ce.pdn.ac.lk/people/v1/students/${batch}/${id}`;
+                
+                const response = await fetch(url);
+                if(!response.ok) throw new Error(`CE API ${response.status}`);
+                
+                const json = await response.json();
+                return {
+                    image: json.profile_image || '',
+                    name: json.full_name || json.name_with_initials || member.name || member.eNumber,
+                    position: 'Student',
+                    eNumber: member.eNumber
+                };
+            } catch(e) {
+                console.warn('Failed CE lookup for', member.eNumber, e);
+                return {
+                    image: '',
+                    name: member.name || member.eNumber,
+                    position: 'Student',
+                    eNumber: member.eNumber
+                };
+            }
+        }));
 
-        // Supervisors: try to show those explicitly marked as lecture/lecturer
-        const supervisors = finalContribs.filter(c=> (c.position || '').toString().toLowerCase().includes('lect'));
-        if(supervisors.length){
-          supContainer.innerHTML = supervisors.map(n=>`
-            <div class="contributor">
-                <img src="${n.image || './img/default.jpg'}" alt="${n.name}" class="contributor-img" />
-                <div class="contributor-text">
-                  <p class="contributor-name">${n.name}</p>
-                  <p class="contributor-batch">${n.position || ''}</p>
+        // Resolve supervisors (staff) via CE API
+        const resolvedSupervisors = await Promise.all(allSupervisors.map(async (supervisor) => {
+            try {
+                const tag = supervisor.email.split('@')[0];
+                const url = `https://api.ce.pdn.ac.lk/people/v1/staff/${tag}/`;
+                
+                const response = await fetch(url);
+                if(!response.ok) throw new Error(`CE staff API ${response.status}`);
+                
+                const json = await response.json();
+                return {
+                    image: json.profile_image || json.photo || json.image || '',
+                    name: json.full_name || json.name || supervisor.name || tag,
+                    position: json.designation || json.title || 'Lecturer',
+                    email: supervisor.email
+                };
+            } catch(e) {
+                console.warn('Failed CE staff lookup for', supervisor.email, e);
+                return {
+                    image: '',
+                    name: supervisor.name || supervisor.email,
+                    position: 'Lecturer',
+                    email: supervisor.email
+                };
+            }
+        }));
+
+        // Render team members
+        if(resolvedTeamMembers.length > 0) {
+            teamContainer.innerHTML = resolvedTeamMembers.map(member => `
+                <div class="contributor">
+                    <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
+                    <div class="contributor-text">
+                        <p class="contributor-name">${member.name}</p>
+                        <p class="contributor-batch">${member.position}</p>
+                    </div>
                 </div>
-            </div>
-          `).join('');
+            `).join('');
         } else {
-          supContainer.innerHTML = '<p class="text-center">No supervisors available.</p>';
+            teamContainer.innerHTML = '<p class="text-center">No team members available.</p>';
         }
 
-    }catch(e){
-        console.log(e);
-        teamContainer.innerHTML= '<p class="text-center">Failed to load team members.</p>';
-        supContainer.innerHTML= '<p class="text-center">Failed to load supervisors.</p>';
+        // Render supervisors
+        if(resolvedSupervisors.length > 0) {
+            supContainer.innerHTML = resolvedSupervisors.map(supervisor => `
+                <div class="contributor">
+                    <img src="${supervisor.image || './img/default.jpg'}" alt="${supervisor.name}" class="contributor-img" />
+                    <div class="contributor-text">
+                        <p class="contributor-name">${supervisor.name}</p>
+                        <p class="contributor-batch">${supervisor.position}</p>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            supContainer.innerHTML = '<p class="text-center">No supervisors available.</p>';
+        }
+
+    } catch(e) {
+        console.error('Failed to load people:', e);
+        teamContainer.innerHTML = '<p class="text-center">Failed to load team members.</p>';
+        supContainer.innerHTML = '<p class="text-center">Failed to load supervisors.</p>';
     }
   }
 

@@ -1,3 +1,26 @@
+/* -----------------------------
+   STICKY FOOTER LAYOUT
+   Ensure the footer stays at the bottom of the viewport for short pages
+------------------------------ */
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.news-main {
+  /* Let the main content take remaining space so footer is pushed to bottom */
+  flex: 1 0 auto;
+}
+
+.news-footer {
+  /* Prevent footer from shrinking when space is tight */
+  flex-shrink: 0;
+}
+
+
 
 /* -----------------------------
    HEADER SECTION
@@ -102,6 +125,5 @@
   font-size: 1.6rem;
   border-top: 3px solid #1e234fff;
 }
-
 
 

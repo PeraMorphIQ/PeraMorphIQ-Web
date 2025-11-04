@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "_id": "news1",
+      "image": "./img/news/news1.jpg",
+      "title": "Neuromorphic Lab Announces New Chip",
+      "date": "2023-02-25",
+      "brief": "Our lab developed a low-power spiking chip that improves energy efficiency for edge devices.",
+      "Author" : "E/21/087",
+      "fullContent": "Researchers at the Neuromorphic Research Center have launched an exciting new initiative called the Pera Swarm project, focusing on distributed robotics and swarm intelligence algorithms.\n The Pera Swarm project represents a significant advancement in the field of autonomous robotics, where multiple robots work together as a collective intelligence to solve complex problems. \n Drawing inspiration from natural swarms like bee colonies and ant communities, this research explores how simple local interactions between individual agents can lead to sophisticated emergent behaviors.Dr. Isuru Perera, the project's principal investigator, emphasized the potential applications: 'Our goal is to develop scalable coordination algorithms that can manage hundreds of autonomous agents simultaneously. This technology has immediate applications in search and rescue operations, environmental monitoring, and industrial automation.The project has already demonstrated promising results with a test swarm of 25 robots successfully coordinating to map an unknown environment and locate specific targets with 95% accuracy. The next phase will scale up to 100+ robots and test real-world scenarios."
+
+    },
+    {
+      "_id": "news2",
+      "image": "./img/news/news2.jpg",
+      "title": "Grant Awarded for Neuromorphic Research",
+      "date": "2025-08-15",
+      "brief": "A multi-year grant will support research into biologically-inspired learning rules.",
+      "Author" : "E/21/087",
+      "fullContent": "Researchers at the Neuromorphic Research Center have launched an exciting new initiative called the Pera Swarm project, focusing on distributed robotics and swarm intelligence algorithms.\n The Pera Swarm project represents a significant advancement in the field of autonomous robotics, where multiple robots work together as a collective intelligence to solve complex problems. \n Drawing inspiration from natural swarms like bee colonies and ant communities, this research explores how simple local interactions between individual agents can lead to sophisticated emergent behaviors.Dr. Isuru Perera, the project's principal investigator, emphasized the potential applications: 'Our goal is to develop scalable coordination algorithms that can manage hundreds of autonomous agents simultaneously. This technology has immediate applications in search and rescue operations, environmental monitoring, and industrial automation.The project has already demonstrated promising results with a test swarm of 25 robots successfully coordinating to map an unknown environment and locate specific targets with 95% accuracy. The next phase will scale up to 100+ robots and test real-world scenarios."
+    },
+    {
+      "_id": "news3",
+      "image": "./img/news/news3.jpg",
+      "title": "Conference Paper Accepted",
+      "date": "2025-06-05",
+      "brief": "Our team presented a paper on robust spiking networks at a top conference.",
+      "Author" : "E/21/087",
+      "fullContent": "Researchers at the Neuromorphic Research Center have launched an exciting new initiative called the Pera Swarm project, focusing on distributed robotics and swarm intelligence algorithms.\n The Pera Swarm project represents a significant advancement in the field of autonomous robotics, where multiple robots work together as a collective intelligence to solve complex problems. \n Drawing inspiration from natural swarms like bee colonies and ant communities, this research explores how simple local interactions between individual agents can lead to sophisticated emergent behaviors.Dr. Isuru Perera, the project's principal investigator, emphasized the potential applications: 'Our goal is to develop scalable coordination algorithms that can manage hundreds of autonomous agents simultaneously. This technology has immediate applications in search and rescue operations, environmental monitoring, and industrial automation.The project has already demonstrated promising results with a test swarm of 25 robots successfully coordinating to map an unknown environment and locate specific targets with 95% accuracy. The next phase will scale up to 100+ robots and test real-world scenarios."
+    }
+  ]
+}

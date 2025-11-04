@@ -6,12 +6,13 @@
       "title": "Edge Spiking Project",
       "tags": ["neuromorphic", "edge"],
       "details": "An edge-optimised spiking network demonstrator for low-power sensing.",
-      "projectContributors": [
-        { "eNumber": "E/19/008"} ,
-        { "eNumber": "E/19/129"} ,
-        { "eNumber": "E/19/275"} ,
-        {  "email" : "asithab@eng.pdn.ac.lk"}
-
+      "teamMembers": [
+        { "eNumber": "E/19/008", "name": "" },
+        { "eNumber": "E/19/129", "name": "" },
+        { "eNumber": "E/19/275", "name": "" }
+      ],
+      "supervisors": [
+        { "name": "", "email": "asithab@eng.pdn.ac.lk" }
       ]
     }
   ]
