@@ -8,8 +8,8 @@ async function loadNewsDetails() {
 const id = getNewsIdFromURL();
 if (!id) return;
 try {
-    const res = await fetch('../_data/news.json');
-    if (!res.ok) throw new Error(`Failed to load ./_data/news.json: ${res.status}`);
+    const res = await fetch('../data/news.json');
+    if (!res.ok) throw new Error(`Failed to load ./data/news.json: ${res.status}`);
 
     const json = await res.json();
 

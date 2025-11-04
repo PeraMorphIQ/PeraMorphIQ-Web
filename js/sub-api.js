@@ -2,11 +2,11 @@
   // Use local JSON files under /data/ instead of remote API
   async function fetchJSON(path) {
     const localMap = {
-      news: '/_data/news.json',
-      publications: '/_data/publication.json',
-      blogs: '/_data/blogs.json',
-      projects: '/_data/project.json',
-      contributors: '/_data/people.json'
+      news: '/data/news.json',
+      publications: '/data/publication.json',
+      blogs: '/data/blogs.json',
+      projects: '/data/project.json',
+      contributors: '/data/people.json'
     };
 
     const file = localMap[path];
