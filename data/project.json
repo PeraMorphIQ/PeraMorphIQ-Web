@@ -7,8 +7,11 @@
       "tags": ["neuromorphic", "edge"],
       "details": "An edge-optimised spiking network demonstrator for low-power sensing.",
       "projectContributors": [
-        { "image": "./img/customers/user1.jpg", "name": "Alice Johnson" },
-        { "image": "./img/customers/user2.jpg", "name": "Bob Lee" }
+        { "eNumber": "E/19/008"} ,
+        { "eNumber": "E/19/129"} ,
+        { "eNumber": "E/19/275"} ,
+        {  "email" : "asithab@eng.pdn.ac.lk"}
+
       ]
     }
   ]

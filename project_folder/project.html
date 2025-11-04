@@ -273,15 +273,51 @@
 
         // Contributors
         const contribContainer = document.querySelector("#project-contributors");
-        contribContainer.innerHTML = (project.projectContributors || []).map((c) => `
+
+        async function fetchContributorDetails(eNumber) {
+          // expect format like E/21/302 or E/21/087
+          const m = String(eNumber).match(/^([A-Za-z])\/(\d{2})\/(\d+)$/);
+          if (!m) return null;
+          const batch = m[1] + m[2]; // E21
+          const id = m[3]; // 302
+          const url = `https://api.ce.pdn.ac.lk/people/v1/students/${batch}/${id}`;
+          try {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`CE API ${res.status}`);
+            const json = await res.json();
+            return {
+              image: json.profile_image || '',
+              name: json.full_name || json.name_with_initials || eNumber,
+              position: json.batch || ''
+            };
+          } catch (e) {
+            console.warn('Failed to load CE profile for', eNumber, e);
+            return { image: '', name: eNumber, position: '' };
+          }
+        }
+
+        async function renderContributors(list) {
+          const resolved = await Promise.all((list || []).map(async (c) => {
+            if (c.eNumber) {
+              const details = await fetchContributorDetails(c.eNumber);
+              return details;
+            }
+            // legacy shape
+            return { image: c.image || '', name: c.name || c.displayName || '', position: c.position || '' };
+          }));
+
+          contribContainer.innerHTML = resolved.map((r) => `
               <div class="contributor">
-                <img src="${c.image}" class="contributor-img" />
+                <img src="${r.image || './img/default.jpg'}" class="contributor-img" />
                 <div class="contributor-text">
-                  <p class="contributor-name">${c.name}</p>
-                  <p class="contributor-batch">${c.position || ''}</p>
+                  <p class="contributor-name">${r.name}</p>
+                  <p class="contributor-batch">${r.position || ''}</p>
                 </div>
               </div>
-            `).join("");
+            `).join('');
+        }
+
+        renderContributors(project.projectContributors || []);
 
         // GitHub
         const githubContainer = document.querySelector("#project-github");
