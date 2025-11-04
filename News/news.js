@@ -1,4 +1,4 @@
-// Load news details from local ../_data/news.json and locate the item by id
+// Load news details from local ../data/news.json and locate the item by id
 function getNewsIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
