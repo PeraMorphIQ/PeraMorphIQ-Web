@@ -4,11 +4,11 @@
   async function fetchJSON(path) {
 
     const localMap = {
-      news: '../data/news.json',
-      publications: '../data/publication.json',
-      blogs: '../data/blogs.json',
-      projects: '../data/project.json',
-      contributors: '../data/people.json'
+      news: './data/news.json',
+      publications: './data/publication.json',
+      blogs: './data/blogs.json',
+      projects: './data/project.json',
+      contributors: './data/people.json'
     };
 
     const file = localMap[path];
