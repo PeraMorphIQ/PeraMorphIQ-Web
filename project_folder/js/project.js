@@ -4,9 +4,9 @@
     if (!projectId) return;
 
     async function fetchProjectById(id) {
-    // Load project data from site-root /data/project.json so this works when page is in a subfolder
-    const res = await fetch('/data/project.json');
-    if (!res.ok) throw new Error(`Failed to load /data/project.json: ${res.status}`);
+    // Load project data from site-root ./data/project.json using relative path
+    const res = await fetch('../data/project.json');
+    if (!res.ok) throw new Error(`Failed to load ../data/project.json: ${res.status}`);
     const json = await res.json();
     const project = Array.isArray(json.data) ? json.data.find(p => p._id === id) : null;
     if (!project) throw new Error('Project not found');
