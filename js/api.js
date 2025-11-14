@@ -176,38 +176,41 @@
     if(!container) return;
 
     try{
-        const res=await fetchJSON('projects');
-        const items=res.data.slice(0,6);
+        // Fetch repositories from GitHub API
+        const response = await fetch('https://api.github.com/orgs/PeraMorphIQ/repos');
+        if(!response.ok) throw new Error(`GitHub API ${response.status}`);
+        
+        const repos = await response.json();
+        const items = repos.slice(0, 6);
 
         if(!Array.isArray(items) || items.length===0){
           container.innerHTML='<p class="text-center">No Projects available.</p>';
+          return;
         }
+        
         container.innerHTML=items.map(n=>
             `
             <div class="project-box">
-              <img src="${n.image}" alt="" class="project-img" />
+              <img src="${n.owner.avatar_url}" alt="${n.name}" class="project-img" />
               <div class="project-card-text-box">
-                <h4 class="project-topics">${n.title}</h4>
+                <h4 class="project-topics">${n.name}</h4>
 
                 <div class="project-tags">
-                  ${n.tags.map(tag=>`<span class="tag">${tag}</span>`).join('')}
+                  ${n.topics && n.topics.length > 0 ? n.topics.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}
                 </div>
 
-                <p class="project-detials">${n.details}</p>
+                <p class="project-detials">${n.description || 'No description available'}</p>
 
                 <div class="project-card-footer">
                   <div class="project-card-contributors">
-                    
-                    ${n.projectContributors.map(c=>`
-                        <img
-                          src="${c.image}"
-                          alt="${c.name}"
-                          class="project-card-member"
-                        />
-                    `).join('')} 
+                    <img
+                      src="${n.owner.avatar_url}"
+                      alt="${n.owner.login}"
+                      class="project-card-member"
+                    />
                   </div>
 
-                  <a href="./project_folder/project.html?id=${n._id}" class="more-details"
+                  <a href="${n.html_url}" target="_blank" class="more-details"
                     >More details <span>&rarr;</span></a
                   >
                 </div>
