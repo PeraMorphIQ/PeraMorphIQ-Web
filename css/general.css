@@ -494,6 +494,10 @@ main {
 .link-icons{
   height:3.6rem;
   width: 3.6rem;
+  display: inline-block;
+  /* Improve rendering quality for SVG/raster icons */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 

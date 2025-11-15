@@ -37,6 +37,9 @@
   .link-icons{
     height:3.2rem;
     width: 3.2rem;
+    display: inline-block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
 
@@ -135,6 +138,9 @@
   .link-icons{
     height:2rem;
     width: 2rem;
+    display: inline-block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
 
@@ -606,6 +612,9 @@
   .link-icons{
     height:1.6rem;
     width: 1.6rem;
+    display: inline-block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
 

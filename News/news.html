@@ -30,6 +30,7 @@
     <main class="news-main container" style="background-color:#fff">
       <div class="news-image-container">
         <img src="" alt="news image" class="news-image" />
+        <div class="news-thumbnails"></div>
       </div>
 
       <div class="news-content">
@@ -48,5 +49,17 @@
 
     <script src="./news.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+    <!-- Lightbox overlay -->
+    <div class="lightbox" aria-hidden="true" id="lightbox">
+      <button class="lightbox-close" aria-label="Close (Esc)">&times;</button>
+      <button class="lightbox-prev" aria-label="Previous (Left)">&#10094;</button>
+      <div class="lightbox-stage">
+        <img src="" alt="" class="lightbox-image" />
+        <p class="lightbox-caption"></p>
+      </div>
+      <button class="lightbox-next" aria-label="Next (Right)">&#10095;</button>
+    </div>
+    
   </body>
 </html>

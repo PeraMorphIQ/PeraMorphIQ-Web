@@ -1,29 +1,26 @@
-/* -----------------------------
-   STICKY FOOTER LAYOUT
-   Ensure the footer stays at the bottom of the viewport for short pages
------------------------------- */
+
 html, body {
   height: 100%;
 }
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 .news-main {
-  /* Let the main content take remaining space so footer is pushed to bottom */
   flex: 1 0 auto;
 }
 
 .news-footer {
-  /* Prevent footer from shrinking when space is tight */
   flex-shrink: 0;
 }
 
 
 
 /* -----------------------------
-   HEADER SECTION
+        HEADER SECTION
 ------------------------------ */
 .news-header{
   padding:4.8rem 0;
@@ -84,7 +81,7 @@ body {
 
 
 /* -----------------------------
-   MAIN CONTENT
+        MAIN CONTENT
 ------------------------------ */
 .news-main {
   margin: 6.4rem auto 9.6rem;
@@ -104,18 +101,104 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+
 .news-content {
-  font-size: 2.5rem;
-  color: rgba(48, 66, 92, 0.91);
+  font-size: 1.9rem;
+  color: rgba(34, 49, 73, 0.95);
+  line-height: 1.75;
+  margin: 0 auto; 
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  hyphens: auto;
 }
 
 .news-content p {
-  margin-bottom: 3.2rem;
+  margin-bottom: 1.8rem;
+  word-break: break-word;
 }
 
 
+
+/* -------------------------------
+        Thumbnails gallery
+--------------------------------- */
+.news-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+
+.news-thumbnail {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.news-thumbnail:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.news-thumbnail.active {
+  opacity: 1;
+  border-color: #1e234fff;
+}
+
+/* ------------------------------
+        Lightbox styles 
+-----------------------------------*/
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  z-index: 1200;
+}
+.lightbox[aria-hidden="false"] { display: flex; }
+.lightbox-stage {
+  max-width: 95%;
+  max-height: 85%;
+  text-align: center;
+}
+.lightbox-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.6rem;
+}
+.lightbox-caption {
+  color: #fff;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+.lightbox-close, .lightbox-prev, .lightbox-next {
+  position: absolute;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+}
+.lightbox-close { top: 1rem; right: 1rem; }
+.lightbox-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox-close:focus, .lightbox-prev:focus, .lightbox-next:focus { outline: 2px solid #fff; }
+
+
+
 /* -----------------------------
-   FOOTER
+          FOOTER
 ------------------------------ */
 .news-footer {
   background-color: #9fa2a3ff;
@@ -126,4 +209,16 @@ body {
   border-top: 3px solid #1e234fff;
 }
 
+
+
+/* Responsive adjustments */
+@media (max-width: 950px) {
+  .news-content { font-size: 1.7rem; line-height: 1.7; padding: 0 1.6rem; }
+  .news-content p { margin-bottom: 1.6rem; }
+}
+
+@media (max-width: 540px) {
+  .news-content { font-size: 1.5rem; line-height: 1.65; padding: 0 1.2rem; }
+  .news-content p { margin-bottom: 1.2rem; }
+}
 
