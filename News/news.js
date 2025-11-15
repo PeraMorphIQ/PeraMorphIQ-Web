@@ -6,24 +6,21 @@ function getNewsIdFromURL() {
 
 function resolveAssetPath(p) {
     if (!p) return '';
-    // Normalize supported relative prefixes to path from News/ folder
     if (p.startsWith('./img/')) {
         // Old scheme: assets in root img/
         return '../' + p.slice(2);
     }
     if (p.startsWith('./data/img/')) {
-        // New scheme: assets stored inside data/img/
         return '../' + p.slice(2);
     }
     return p;
 }
 
-const FALLBACK_IMAGE = '../img/blog.png'; // existing image used as a placeholder
+const FALLBACK_IMAGE = '../img/news.png'; // existing image used as a placeholder
 
 async function loadNewsDetails() {
 const id = getNewsIdFromURL();
 if (!id) {
-    // If no id provided, show a friendly message
     const main = document.querySelector('.news-main');
     if (main) main.innerHTML = '<p class="text-center">No news selected. Please return to the <a href="../index.html#news">news</a> section and choose an item.</p>';
     return;
@@ -104,8 +101,11 @@ try {
                 });
             }
 
-        const paragraphs = (news.fullContent || news.brief || '').split('\n');
-        document.querySelector('.news-content').innerHTML = paragraphs.map(p=>`<p>${p}</p>`).join(''); 
+    const paragraphs = (news.fullContent || news.brief || '').split('\n');
+    document.querySelector('.news-content').innerHTML = paragraphs.map(p=>`<p>${p}</p>`).join(''); 
+
+    // initialize share buttons after content is loaded
+    try { setupShareButtons(news); } catch (e) { /* ignore */ }
 
 } catch(e) {
     console.log(e);
@@ -183,3 +183,38 @@ document.addEventListener('click', (e) => {
     if (t.matches('.lightbox-prev')) lightboxPrev();
     if (t.matches('.lightbox-next')) lightboxNext();
 });
+
+// Share buttons helper
+function setupShareButtons(news){
+    if(!news) return;
+    const buttons = document.querySelectorAll('.share-btn');
+    if(!buttons || buttons.length===0) return;
+    const pageUrl = location.href;
+    const text = news.title || '';
+
+    buttons.forEach(btn => {
+        // remove existing handlers to avoid duplicates
+        btn.replaceWith(btn.cloneNode(true));
+    });
+
+    // re-query after clone
+    const freshButtons = document.querySelectorAll('.share-btn');
+    freshButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const net = btn.dataset.network;
+            // Native share when available
+            if(navigator.share){
+                navigator.share({ title: text, text, url: pageUrl }).catch(()=>{});
+                return;
+            }
+            let shareUrl = '#';
+            if(net === 'facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+            else if(net === 'twitter') shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(text)}`;
+            else if(net === 'linkedin') shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+
+            // open popup
+            window.open(shareUrl, 'sharewindow', 'width=600,height=450,noopener');
+        });
+    });
+}

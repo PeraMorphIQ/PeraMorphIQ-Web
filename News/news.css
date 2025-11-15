@@ -118,6 +118,53 @@ body {
 }
 
 
+/*------------------------------------
+          share Buttons
+--------------------------------------*/
+.share-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  max-width: 72ch;
+  justify-content: flex-start; 
+  padding: 0 1rem;
+}
+.share-label{
+  font-size: 1.6rem;
+  color: rgba(48,66,92,0.95);
+  flex: 0 0 auto;
+}
+.share-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+.share-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.share-btn ion-icon{ font-size:1.9rem; color: #1e234f; }
+.share-btn:hover{ transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.10); }
+.share-btn:focus{ outline: 2px solid rgba(30,64,111,0.2); }
+
+/* network colors (subtle) */
+.share-btn[data-network="facebook"] ion-icon{ color:#1877F2; }
+.share-btn[data-network="twitter"] ion-icon{ color:#1DA1F2; }
+.share-btn[data-network="linkedin"] ion-icon{ color:#0A66C2; }
+
+
+
+
+
 
 /* -------------------------------
         Thumbnails gallery
@@ -222,3 +269,14 @@ body {
   .news-content p { margin-bottom: 1.2rem; }
 }
 
+
+@media (max-width: 720px){
+  .share-row { justify-content: center; }
+}
+
+@media (max-width: 540px){
+  .share-row { gap: 0.6rem; }
+  .share-label{ font-size: 1.4rem; }
+  .share-btn{ width: 3rem; height: 3rem; }
+  .share-btn ion-icon{ font-size: 1.4rem; }
+}
