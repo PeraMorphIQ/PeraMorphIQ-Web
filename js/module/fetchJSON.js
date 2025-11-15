@@ -4,6 +4,8 @@ export async function fetchJSON(path) {
       publications: './data/publication.json',
       blogs: './data/blogs.json',
       projects: './data/project.json',
+      people: './data/people.json',
+      /* backward-compatible alias */
       contributors: './data/people.json'
     };
 

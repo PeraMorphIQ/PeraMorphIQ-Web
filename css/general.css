@@ -401,7 +401,7 @@ main {
 
   font-size: 3.6rem;
   line-height: 1.2;
-  margin-bottom: 4.8rem;
+  margin-bottom: 2rem;
 
 }
 
@@ -447,15 +447,27 @@ main {
     grid-template-columns:repeat(5,1fr)
 }
 
+
+
 /* **********************************
     contributor and supervisors
 *********************************** */
 
+.main-contributors{
+  display: grid;
+  gap: 2.4rem;
+  align-items: stretch; 
+  grid-auto-rows: 1fr; 
+}
+
 .contributor{
-    box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
-    border-radius:1.2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow:hidden;
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+  border-radius:1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* allow inner content to stretch so we can anchor the button */
 }
 
 .contributor:hover {
@@ -465,8 +477,16 @@ main {
 
 .contributor-img{
     width:100%;
-    height:15rem;
+    aspect-ratio: 4 / 3;
+    height: auto; 
+    display:block;
+    object-fit: cover; 
+    object-position: center center; 
+    background-color: #f5f7fb; 
+    -webkit-transform: translateZ(0);
 }
+
+
 
 .contributor-name{
     font-size:1.8rem;
@@ -483,8 +503,30 @@ main {
 }
 
 .contributor-text{
-    padding:2rem;
+  padding:2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1 1 auto; 
 }
+
+.profile-btn{
+  display: inline-block;
+  margin-top: auto; /* push to bottom of card */
+  padding: 0.6rem 1.2rem;
+  background: #2b7a8a;
+  color: #fff;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-size: 1.4rem;
+  text-align: center;
+  transition: transform 0.12s ease, background 0.12s ease;
+  width: 80%;
+  max-width: 18rem;
+}
+.profile-btn.disabled{ background: #f0f0f0; color: #8a8a8a; cursor: not-allowed; }
+
 
 
 /* **********************************
@@ -498,6 +540,21 @@ main {
   /* Improve rendering quality for SVG/raster icons */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+
+
+
+@media (min-width: 900px) {
+  .contributor-img{ max-height: 28rem; }
+}
+@media (max-width: 720px) {
+  .contributor-img{ aspect-ratio: 3 / 2; max-height: 18rem; }
+}
+
+@media (max-width: 720px) {
+  .contributor-img{ height: 14rem; }
+  .profile-btn{ width: 90%; }
 }
 
 

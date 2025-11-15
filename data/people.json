@@ -1,19 +1,25 @@
 {
   "data": [
     {
-      "name": "Dr. Sarah Smith",
-      "image": "./img/people/smith.jpg",
-      "position": "Lecture"
-    },
-    {
-      "name": "Student One",
-      "image": "./img/people/student1.jpg",
-      "position": "Student"
-    },
-    {
-      "name": "Student Two",
-      "image": "./img/people/student2.jpg",
-      "position": "Student"
+      "teamMembers": [
+        { "eNumber": "E/19/129"},
+        { "eNumber": "E/19/275"},
+        { "eNumber": "E/19/309"},
+        { "eNumber": "E/18/379"},
+        { "eNumber": "E/18/147"},
+        { "eNumber": "E/17/018"},
+        { "eNumber": "E/17/154"},
+        { "eNumber": "E/17/286"},
+        { "eNumber": "E/16/088"},
+        { "eNumber": "E/16/276"},
+        { "eNumber": "E/16/366"}
+      ],
+
+      "supervisors": [
+        {"email": "roshanr@eng.pdn.ac.lk","name": "Prof. Roshan G. Ragel", "profile_page":"https://people.ce.pdn.ac.lk/staff/academic/roshan-ragel"},
+        {"email":"isurunawinne@eng.pdn.ac.lk","name":"Dr. Isuru Nawinne","profile_page":"https://people.ce.pdn.ac.lk/staff/academic/isuru-nawinne"}
+      ]    
     }
+
   ]
 }
