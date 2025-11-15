@@ -1,3 +1,6 @@
+import { fetchTeamMembers } from '../../js/module/fetchTeamMembers.js';
+import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
+
 (async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const repoFullName = urlParams.get("repo");
@@ -26,9 +29,54 @@
 
     async function loadGitHubProject(fullName) {
         try {
+            // Check if repo name contains "Neuromorphic" before fetching
+            const repoName = fullName.split('/')[1] || '';
+            if (!repoName.toLowerCase().includes('neuromorphic')) {
+                document.querySelector("#project-title").textContent = 'Repository Not Available';
+                document.querySelector("#project-subtitle").textContent = '';
+                document.querySelector("#project-main-details").innerHTML = `
+                    <div class="project-overview">
+                        <h2 class="project-subtopics">Information</h2>
+                        <p class="project-decs">This repository is not available for display. Only neuromorphic-related projects are shown.</p>
+                    </div>
+                `;
+                document.querySelector("#project-side-details").innerHTML = '';
+                document.querySelector("#project-contributors").innerHTML = '';
+                document.querySelector("#project-github").innerHTML = '';
+                return;
+            }
+
             // Fetch repository details
             const repoResponse = await fetch(`https://api.github.com/repos/${fullName}`);
-            if (!repoResponse.ok) throw new Error(`GitHub API ${repoResponse.status}`);
+            if (!repoResponse.ok) {
+                // If GitHub API fails (403/rate limit), show a minimal fallback
+                document.querySelector("#project-title").textContent = fullName.split('/')[1] || 'Project';
+                document.querySelector("#project-subtitle").textContent = '';
+                document.querySelector("#project-main-details").innerHTML = `
+                    <div class="project-overview">
+                        <h2 class="project-subtopics">Information</h2>
+                        <p class="project-decs">Project details are currently unavailable due to GitHub API limits. Please visit the repository directly for more information.</p>
+                    </div>
+                `;
+                document.querySelector("#project-side-details").innerHTML = `
+                    <div class="project-side-card">
+                        <h3>Repository</h3>
+                        <p><a href="https://github.com/${fullName}" target="_blank">View on GitHub</a></p>
+                    </div>
+                `;
+                document.querySelector("#project-contributors").innerHTML = '<p class="text-center">Team information unavailable.</p>';
+                document.querySelector("#project-github").innerHTML = `
+                    <div class="git-hub-repo">
+                        <img src="./img/default.jpg" alt="GitHub Repo" class="github-img" />
+                        <div class="repo-content">
+                            <h4 class="repo-title">${fullName}</h4>
+                            <p class="repo-desc">Repository details unavailable due to API limits.</p>
+                            <a href="https://github.com/${fullName}" class="github-link" target="_blank">View on GitHub <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
             const repo = await repoResponse.json();
 
             // Fetch README
@@ -113,89 +161,42 @@
                 </div>
             `;
 
+
             sideContainer.innerHTML = sideContent;
 
             // Team Members and Supervisors
             const contribContainer = document.querySelector("#project-contributors");
-            
-            // Use parsed README data if available
+
+            // Use parsed README data if available and resolve via shared helpers
             if (parsedReadme?.teamMembers && parsedReadme.teamMembers.length > 0) {
-                // Render Team Members from README (without title)
-                let teamMembersHTML = '';
-                
-                for (const member of parsedReadme.teamMembers) {
-                    let memberData = {
-                        image: '',
-                        name: member.name,
-                        position: 'Student'
-                    };
+                // Build inputs for team members (eNumber is primary key)
+                const teamInputs = parsedReadme.teamMembers.map(m => ({ eNumber: m.eNumber, name: m.name }));
+                const resolvedTeam = teamInputs.length ? await fetchTeamMembers(teamInputs) : [];
 
-                    // Try to fetch student details from CE API
-                    if (member.eNumber) {
-                        try {
-                            const m = member.eNumber.match(/^([A-Za-z])\/(\d{2})\/(\d+)$/);
-                            if (m) {
-                                const batch = m[1] + m[2];
-                                const id = m[3];
-                                const url = `https://api.ce.pdn.ac.lk/people/v1/students/${batch}/${id}`;
-                                const res = await fetch(url);
-                                if (res.ok) {
-                                    const json = await res.json();
-                                    memberData.image = json.profile_image || '';
-                                    memberData.name = json.full_name || json.name_with_initials || member.name;
-                                    memberData.position = `${member.eNumber}`;
-                                }
-                            }
-                        } catch (e) {
-                            console.warn('Failed to fetch student details:', e);
-                        }
-                    }
-
-                    teamMembersHTML += `
-                        <div class="contributor">
-                            <img src="${memberData.image || './img/default.jpg'}" alt="${memberData.name}" class="contributor-img" />
-                            <div class="contributor-text">
-                                <p class="contributor-name">${memberData.name}</p>
-                                <p class="contributor-batch">${memberData.position}</p>
-                            </div>
+                // Render Team Members
+                const teamMembersHTML = resolvedTeam.map(member => `
+                    <div class="contributor">
+                        <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
+                        <div class="contributor-text">
+                            <p class="contributor-name">${member.name}</p>
+                            <p class="contributor-batch">${member.position}</p>
                         </div>
-                    `;
-                }
+                    </div>
+                `).join('');
 
                 contribContainer.innerHTML = teamMembersHTML;
 
-                // Supervisors Section
+                // Supervisors (resolve using shared supervisor helper)
                 if (parsedReadme.supervisors && parsedReadme.supervisors.length > 0) {
                     const supervisorSection = document.createElement('div');
                     supervisorSection.style.gridColumn = '1/-1';
                     supervisorSection.style.marginTop = '3rem';
-                    
+
+                    const supInputs = parsedReadme.supervisors.map(s => ({ email: s.email, name: s.name, profile_page: s.profile_page }));
+                    const resolvedSup = supInputs.length ? await fetchSupervisors(supInputs) : [];
+
                     let supervisorsHTML = '<div class="container grid grid--5--cols">';
-                    
-                    for (const supervisor of parsedReadme.supervisors) {
-                        let supervisorData = {
-                            image: '',
-                            name: supervisor.name,
-                            position: 'Supervisor'
-                        };
-
-                        // Try to fetch staff details from CE API
-                        if (supervisor.email) {
-                            try {
-                                const tag = supervisor.email.split('@')[0];
-                                const url = `https://api.ce.pdn.ac.lk/people/v1/staff/${tag}/`;
-                                const res = await fetch(url);
-                                if (res.ok) {
-                                    const json = await res.json();
-                                    supervisorData.image = json.profile_image || json.photo || json.image || '';
-                                    supervisorData.name = json.full_name || json.name || supervisor.name;
-                                    supervisorData.position = json.designation || json.title || 'Supervisor';
-                                }
-                            } catch (e) {
-                                console.warn('Failed to fetch supervisor details:', e);
-                            }
-                        }
-
+                    resolvedSup.forEach(supervisorData => {
                         supervisorsHTML += `
                             <div class="contributor">
                                 <img src="${supervisorData.image || './img/default.jpg'}" alt="${supervisorData.name}" class="contributor-img" />
@@ -205,9 +206,9 @@
                                 </div>
                             </div>
                         `;
-                    }
-                    
+                    });
                     supervisorsHTML += '</div>';
+
                     supervisorSection.innerHTML = supervisorsHTML;
                     contribContainer.parentElement.appendChild(supervisorSection);
                 }
@@ -215,12 +216,14 @@
                 contribContainer.innerHTML = '<p class="text-center">No team information available.</p>';
             }
 
-            // GitHub
+            // GitHub - render main repository card similar to legacy layout
             const githubContainer = document.querySelector("#project-github");
             githubContainer.innerHTML = `
                 <div class="git-hub-repo">
+                    <img src="./img/default.jpg" alt="${repo.name} Repo" class="github-img" />
                     <div class="repo-content">
                         <h4 class="repo-title">${decodeProjectTitle(repo.name)}</h4>
+                        <p class="repo-desc">${repo.description || ''}</p>
                         <a href="${repo.html_url}" class="github-link" target="_blank">View on GitHub <span>&rarr;</span></a>
                     </div>
                 </div>
@@ -413,6 +416,22 @@
         try {
             const project = await fetchProjectById(projectId);
 
+            // Filter out projects that don't contain "Neuromorphic" in the title
+            if (!project.title.toLowerCase().includes('neuromorphic')) {
+                document.querySelector("#project-title").textContent = 'Project Not Available';
+                document.querySelector("#project-subtitle").textContent = '';
+                document.querySelector("#project-main-details").innerHTML = `
+                    <div class="project-overview">
+                        <h2 class="project-subtopics">Information</h2>
+                        <p class="project-decs">This project is not available for display. Only neuromorphic-related projects are shown.</p>
+                    </div>
+                `;
+                document.querySelector("#project-side-details").innerHTML = '';
+                document.querySelector("#project-contributors").innerHTML = '';
+                document.querySelector("#project-github").innerHTML = '';
+                return;
+            }
+
             // Project Header
             document.querySelector("#project-title").textContent = project.title || '';
             document.querySelector("#project-subtitle").textContent = project.details || '';
@@ -480,22 +499,26 @@
             }
 
             async function renderContributors(list) {
-                const resolved = await Promise.all((list || []).map(async (c) => {
-                    if (c.eNumber) {
-                        const details = await fetchContributorDetails(c.eNumber);
-                        return details;
-                    }
-                    // legacy shape
-                    return { image: c.image || '', name: c.name || c.displayName || '', position: c.position || '' };
-                }));
+                // Separate eNumber-based entries and legacy entries
+                const eEntries = (list || []).filter(c => c.eNumber).map(c => ({ eNumber: c.eNumber, name: c.name }));
+                const legacy = (list || []).filter(c => !c.eNumber).map(c => ({ image: c.image || '', name: c.name || c.displayName || '', position: c.position || '' }));
 
-                contribContainer.innerHTML = resolved.map((r) => `
+                const resolvedE = eEntries.length ? await fetchTeamMembers(eEntries) : [];
+
+                // Create a combined array preserving original order where possible
+                const resolvedMap = new Map(resolvedE.map(r => [r.eNumber, r]));
+                const finalList = (list || []).map(c => {
+                    if (c.eNumber) return resolvedMap.get(c.eNumber) || { image: '', name: c.eNumber, position: '' };
+                    return legacy.shift();
+                });
+
+                contribContainer.innerHTML = finalList.map((r) => `
                     <div class="contributor">
-                    <img src="${r.image || './img/default.jpg'}" class="contributor-img" />
-                    <div class="contributor-text">
-                        <p class="contributor-name">${r.name}</p>
-                        <p class="contributor-batch">${r.position || ''}</p>
-                    </div>
+                        <img src="${r.image || './img/default.jpg'}" class="contributor-img" />
+                        <div class="contributor-text">
+                            <p class="contributor-name">${r.name}</p>
+                            <p class="contributor-batch">${r.position || ''}</p>
+                        </div>
                     </div>
                 `).join('');
             }
@@ -504,56 +527,30 @@
             async function renderAllContributors() {
                 const contribContainer = document.querySelector("#project-contributors");
                 
-                // Process team members (students)
-                const teamMemberPromises = (project.teamMembers || []).map(async (member) => {
-                    if (member.eNumber) {
-                        return await fetchContributorDetails(member.eNumber);
-                    }
-                    return { image: '', name: member.name || '', position: 'Student' };
-                });
+                // Resolve team members and supervisors using shared helpers
+                const teamInputs = (project.teamMembers || []).map(m => ({ eNumber: m.eNumber, name: m.name }));
+                const supInputs = (project.supervisors || []).map(s => ({ email: s.email, name: s.name }));
 
-                // Process supervisors (staff)  
-                const supervisorPromises = (project.supervisors || []).map(async (supervisor) => {
-                    if (supervisor.email) {
-                        // Fetch staff details using email
-                        const tag = supervisor.email.split('@')[0];
-                        const url = `https://api.ce.pdn.ac.lk/people/v1/staff/${tag}/`;
-                        
-                        try {
-                            const res = await fetch(url);
-                            if (!res.ok) throw new Error(`CE staff API ${res.status}`);
-                            const json = await res.json();
-                            return {
-                                image: json.profile_image || json.photo || json.image || '',
-                                name: json.full_name || json.name || supervisor.name || tag,
-                                position: json.designation || json.title || 'Lecturer'
-                            };
-                        } catch (e) {
-                            console.warn('Failed to load CE staff profile for', supervisor.email, e);
-                            return { image: '', name: supervisor.name || supervisor.email, position: 'Lecturer' };
-                        }
-                    }
-                    return { image: '', name: supervisor.name || '', position: 'Lecturer' };
-                });
+                const resolvedTeamMembers = teamInputs.length ? await fetchTeamMembers(teamInputs) : [];
+                const resolvedSupervisors = supInputs.length ? await fetchSupervisors(supInputs) : [];
 
-                const resolvedTeamMembers = await Promise.all(teamMemberPromises);
-                const resolvedSupervisors = await Promise.all(supervisorPromises);
-                
                 // Combine all contributors
                 const allContributors = [...resolvedTeamMembers, ...resolvedSupervisors];
 
                 contribContainer.innerHTML = allContributors.map((contributor) => `
                     <div class="contributor">
-                    <img src="${contributor.image || './img/default.jpg'}" class="contributor-img" />
-                    <div class="contributor-text">
-                        <p class="contributor-name">${contributor.name}</p>
-                        <p class="contributor-batch">${contributor.position || ''}</p>
-                    </div>
+                        <img src="${contributor.image || './img/default.jpg'}" class="contributor-img" />
+                        <div class="contributor-text">
+                            <p class="contributor-name">${contributor.name}</p>
+                            <p class="contributor-batch">${contributor.position || ''}</p>
+                        </div>
                     </div>
                 `).join('');
             }
 
             await renderAllContributors();
+
+
 
             // GitHub
             const githubContainer = document.querySelector("#project-github");

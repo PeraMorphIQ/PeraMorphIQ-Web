@@ -23,10 +23,18 @@ export async function loadProjects(selector,limit=6){
         const response = await fetch('https://api.github.com/orgs/PeraMorphIQ/repos');
         if(!response.ok) throw new Error(`GitHub API ${response.status}`);
         
-  let items = await response.json();
+        let items = await response.json();
 
         if(!Array.isArray(items) || items.length===0){
           container.innerHTML='<p class="text-center">No Projects available.</p>';
+          return;
+        }
+
+        // Filter repositories to only include those with "Neuromorphic" in the name
+        items = items.filter(repo => repo.name.toLowerCase().includes('neuromorphic'));
+
+        if(items.length === 0){
+          container.innerHTML='<p class="text-center">No Neuromorphic Projects available.</p>';
           return;
         }
 
@@ -37,7 +45,7 @@ export async function loadProjects(selector,limit=6){
         container.innerHTML=items.map(n=>
             `
             <div class="project-box">
-              <img src="${n.owner.avatar_url}" alt="${n.name}" class="project-img" />
+              <img src="${n.owner.avatar_url}" alt="${n.name}" class="project-img" loading="lazy" decoding="async" />
               <div class="project-card-text-box">
                 <h4 class="project-topics">${decodeProjectTitle(n.name)}</h4>
 
@@ -48,9 +56,9 @@ export async function loadProjects(selector,limit=6){
                 <p class="project-detials">${n.description || 'No description available'}</p>
 
                 <div class="project-card-footer">
-                  <a href="./project_folder/project.html?repo=${n.full_name}" class="more-details"
-                    >More details <span>&rarr;</span></a
-                  >
+                  <a href="./project_folder/project.html?repo=${n.full_name}" class="more-details" aria-label="More details about ${n.name}">
+                    More details <span aria-hidden="true">&rarr;</span>
+                  </a>
                 </div>
               </div>
             </div> 

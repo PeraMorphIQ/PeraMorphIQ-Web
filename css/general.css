@@ -110,6 +110,29 @@ main {
   transform: translateY(0);
 }
 
+/* Generic reveal utility for elements */
+.reveal-item{
+  opacity: 0;
+  transform: translateY(24px) scale(.995);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.9,.25,1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal-item.revealed{
+  opacity: 1;
+  transform: none;
+}
+
+/* Group helper: when a container has data-reveal-group, children with [data-reveal-child]
+   will be staggered using --reveal-delay set by JS. */
+.reveal-fade{
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: var(--reveal-delay,0s);
+}
+.reveal-fade.revealed{ opacity:1; transform:none; }
+
 /* Optional: staggered children animation */
 .page .fade-in {
   opacity: 0;
