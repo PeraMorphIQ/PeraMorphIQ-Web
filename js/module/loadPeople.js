@@ -1,4 +1,4 @@
-import { fetchJSON } from './fetchJson.js';
+import { fetchJSON } from './fetchJSON.js';
 import {fetchTeamMembers} from './fetchTeamMembers.js';
 import {fetchSupervisors} from './fetchSupervisors.js';
 

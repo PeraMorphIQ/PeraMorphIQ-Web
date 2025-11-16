@@ -1,4 +1,4 @@
-import { fetchJSON } from './fetchJson.js';
+import { fetchJSON } from './fetchJSON.js';
 
 export async function loadNews(selector,limit=3) {
     const container = document.querySelector(selector);

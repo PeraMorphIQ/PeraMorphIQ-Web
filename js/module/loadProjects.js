@@ -1,4 +1,4 @@
-import { fetchJSON } from './fetchJson.js';
+import { fetchJSON } from './fetchJSON.js';
 
 function decodeProjectTitle(repoName) {
     // Match pattern: exx-xxx-title-with-dashes
