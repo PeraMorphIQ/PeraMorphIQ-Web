@@ -37,11 +37,11 @@
       </div>
     </footer>
 
-    <script src="./js/sub-api.js"></script>
+    <script type="module" src="./js/neuroAPI.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function(){
         try {
-          window.NEURO_API.loadBlogs('#blog-container');
+          window.NEURO_API.loadBlogs('#blog-container',null);
         } catch (e) {
           console.error('Failed to initialize API loaders', e);
         }

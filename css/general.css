@@ -339,6 +339,14 @@ main {
   line-height: 1.6;
 }
 
+.contact-icon {
+  height: 1.8rem;
+  weight:1.8rem;
+  margin-right: 0.8rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 .footer-line{
     text-align:center;
     border-top:1px solid  #1e234fff;

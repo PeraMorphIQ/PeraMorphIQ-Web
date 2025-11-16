@@ -64,12 +64,29 @@
         <div class="hero">
           <div class="hero-text-box">
             <h1 class="hero-main--header">
-              <strong>PeraMorphIQ Neuromorphic Research Group</strong> at University of Peradeniya
+              <span class="hero-brand-name">PeraMorphIQ</span>
+              <span class="hero-subtitle">Neuromorphic Research Group</span>
+              <span class="hero-location">
+                <span class="typewriter-text" data-text="at University of Peradeniya"></span>
+              </span>
             </h1>
 
             <p class="hero-description">
               Advancing neuromorphic intelligence through innovative research in brain-inspired computing, low-power hardware design, and spiking neural network architectures at University of Peradeniya.
             </p>
+
+            <!-- Partnership Logos Section -->
+            <div class="hero-partners">
+              <div class="partners-container">
+                <div class="partner-logo">
+                  <img src="./img/partners/logo-2.png" alt="ESCAL Lab" class="logo-img" />
+                </div>
+                <div class="partner-logo">
+                  <img src="./img/partners/peracomlogo.png" alt="Computer Engineering" class="logo-img" />
+                </div>
+              </div>
+            </div>
+
             <div class="hero-btn">
               <a href="#about" class="hero-learn-btn btn--scroll-to"
                 ><span>Exploring more</span
@@ -95,25 +112,25 @@
 
           <div class="about-stats grid grid--4--cols">
             <div class="stat">
-              <img src="img/icons/brain.svg" class="about-icon" />
+              <img src="img/about/brain.svg" class="about-icon" />
               <p class="about-stats-number">7+</p>
               <p class="icon-desc">Active Projects</p>
             </div>
 
             <div class="stat">
-              <img src="img/icons/people.svg" class="about-icon" />
+              <img src="img/about/people.svg" class="about-icon" />
               <p class="about-stats-number">20+</p>
               <p class="icon-desc">Researchers & Students</p>
             </div>
 
             <div class="stat">
-              <img src="img/icons/publish.svg" class="about-icon" />
+              <img src="img/about/publish.svg" class="about-icon" />
               <p class="about-stats-number">1+</p>
               <p class="icon-desc">Publications</p>
             </div>
 
             <div class="stat">
-              <img src="img/icons/handshake.svg" class="about-icon" />
+              <img src="img/about/circuit.svg" class="about-icon" />
               <p class="about-stats-number">3+</p>
               <p class="icon-desc">Hardware Prototypes(ASIC/FPGA)</p>
             </div>
@@ -125,7 +142,7 @@
       <section class="section-news page" id="news">
         <div class="container">
           <h2 class="subheading">
-            News
+            Latest News
             <a href="./news.html" class="link-tags"
               ><img src="./img/icons/link.svg" class="link-icons" alt="Open News" width="48" height="48"/></a>
           </h2>
@@ -146,7 +163,7 @@
       <section class="section-publications page" id="publications">
         <div class="container">
           <h2 class="subheading">
-            Publications
+            Latest Publications
             <a href="./publication.html" class="link-tags"
               ><img src="./img/icons/link.svg" class="link-icons" alt="Open Publications" width="48" height="48"/></a>
           </h2>
@@ -158,7 +175,7 @@
       </section>
 
       <!-- Section of Blogs -->
-      <section class="section-blogs page" id="blogs">
+      <section class="section-blogs page" id="blogs" style="display:none;">
         <div class="container">
           <h2 class="subheading">
             Blogs
@@ -261,11 +278,16 @@
         </div>
 
         <div class="address-col">
-          <p class="footer-heading">Contact us</p>
+          <p class="footer-heading">Get In Touch</p>
           <address class="contacts">
-            <p class="address">peradeniya,university of peradeniya</p>
+            <p class="address">
+              <img src="./img/footer/location.png" alt="location" class="contact-icon"/>
+              Faculty of Engineering, Univeristy of Peradeniya, Sri Lanka.
+            </p>
             <p>
+              <img src="./img/footer/phone-call.png" alt="location" class="contact-icon"/>
               <a class="footer-link" href="tel:415-201-6370">1234567</a><br />
+              <img src="./img/footer/mail.png" alt="location" class="contact-icon"/>
               <a class="footer-link" href="mailto:hello@omnifood.com"
                 >nero@d.com</a
               >
@@ -287,14 +309,6 @@
         <nav class="nav-col">
           <p class="footer-heading">Other Websites</p>
           <ul class="footer-nav">
-            <li>
-              <a
-                class="footer-link"
-                href="https://2yp-project-full-stack-web-site.vercel.app"
-                target="_blank"
-                >Admin Panel</a
-              >
-            </li>
             <li>
               <a
                 class="footer-link"
@@ -338,6 +352,7 @@
 
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   <script src="./js/nav.js"></script>
+  <script src="./js/typewriter.js"></script>
   <script type="module" src="./js/reveal.js"></script>
   <script type="module" src="./js/neuroAPI.js"></script>
     <script type="module">
