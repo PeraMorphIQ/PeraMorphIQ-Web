@@ -45,7 +45,13 @@ export async function loadProjects(selector,limit=6){
         container.innerHTML=items.map(n=>
             `
             <div class="project-box">
-              <img src="${n.owner.avatar_url}" alt="${n.name}" class="project-img" loading="lazy" decoding="async" />
+              <img src="${n.owner.avatar_url}" 
+                  data-repo="${n.full_name}"
+                  alt="${n.name}" 
+                  class="project-img" 
+                  loading="lazy" 
+                  decoding="async" />
+                  
               <div class="project-card-text-box">
                 <h4 class="project-topics">${decodeProjectTitle(n.name)}</h4>
 
@@ -65,8 +71,45 @@ export async function loadProjects(selector,limit=6){
             `
         ).join('');
 
+        // After setting innerHTML, try to load repository images
+        setTimeout(() => {
+            const projectImages = container.querySelectorAll('.project-img[data-repo]');
+            projectImages.forEach(img => {
+                tryLoadProjectImage(img);
+            });
+        }, 100);
+
     }catch(e){
         console.log(e);
         container.innerHTML = '<p class="text-center">Failed to load Projects.</p>';
     }
+}
+
+// Function to try loading project images with multiple fallbacks
+async function tryLoadProjectImage(img) {
+    const repoName = img.getAttribute('data-repo');
+    if (!repoName) return;
+    
+    const imagePaths = [
+        `https://raw.githubusercontent.com/${repoName}/main/images/main.jpg`,
+        `https://raw.githubusercontent.com/${repoName}/main/img/main.jpg`,
+        `https://raw.githubusercontent.com/${repoName}/main/docs/images/main.jpg`,
+        `https://raw.githubusercontent.com/${repoName}/main/assets/main.jpg`,
+        `https://raw.githubusercontent.com/${repoName}/main/main.jpg`
+    ];
+    
+    for (const imagePath of imagePaths) {
+        try {
+            const response = await fetch(imagePath, { method: 'HEAD' });
+            if (response.ok) {
+                img.src = imagePath;
+                return; // Success, exit the loop
+            }
+        } catch (error) {
+            console.log(`Failed to load: ${imagePath}`);
+        }
+    }
+    
+    // If all paths fail, keep the avatar (already set as default)
+    console.log(`No project image found for ${repoName}, using avatar`);
 }

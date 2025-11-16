@@ -687,7 +687,10 @@
   }
 
   .project-tags {
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
   }
 
   .project-detials {
@@ -904,6 +907,8 @@
   .tag {
     font-size: 1rem;
     padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   /* footer */

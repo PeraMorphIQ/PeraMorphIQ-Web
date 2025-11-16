@@ -300,3 +300,389 @@
   color: #005fcc;
 }
 
+/* *****************************************
+    ENHANCED README CONTENT STYLING
+******************************************** */
+
+.project-description {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #495057;
+  margin-bottom: 2rem;
+}
+
+.table-of-contents {
+  background: #f8f9fa;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #4a90e2;
+}
+
+.table-of-contents li {
+  margin-bottom: 0.8rem;
+}
+
+.toc-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.toc-link:hover {
+  color: #357abd;
+  text-decoration: underline;
+}
+
+.section-content {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #495057;
+}
+
+.section-h1, .section-h2, .section-h3, .section-h4 {
+  color: #2c3e50;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.section-h1 { font-size: 2.4rem; }
+.section-h2 { font-size: 2.1rem; }
+.section-h3 { font-size: 1.8rem; }
+.section-h4 { font-size: 1.6rem; }
+
+.content-paragraph {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.code-block {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 2rem;
+  border-radius: 0.6rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.inline-code {
+  background: #f1f3f4;
+  color: #d63384;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.image-container {
+  margin: 2.5rem 0;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  border: 1px solid #e9ecef;
+}
+
+.image-placeholder {
+  transition: all 0.3s ease;
+}
+
+.image-placeholder:hover {
+  background: #f1f3f4 !important;
+  border-color: #4a90e2 !important;
+}
+
+.placeholder-icon {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.placeholder-text {
+  transition: color 0.3s ease;
+}
+
+.image-placeholder:hover .placeholder-text {
+  color: #4a90e2 !important;
+}
+
+.content-image {
+  max-width: 50%;
+  width: auto;
+  max-height: 25rem;
+  height: auto;
+  border-radius: 0.6rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  display: block;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  object-fit: contain;
+}
+
+.content-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.content-image[src*="raw.githubusercontent.com"] {
+  border: 1px solid #e9ecef;
+}
+
+/* Different sizes for different types of images */
+.content-image[alt*="method"], 
+.content-image[alt*="Method"],
+.content-image[alt*="architecture"],
+.content-image[alt*="Architecture"] {
+  max-width: 45%;
+  max-height: 20rem;
+}
+
+.content-image[alt*="diagram"], 
+.content-image[alt*="Diagram"],
+.content-image[alt*="flow"],
+.content-image[alt*="Flow"] {
+  max-width: 40%;
+  max-height: 18rem;
+}
+
+.content-image[alt*="result"], 
+.content-image[alt*="Result"],
+.content-image[alt*="chart"],
+.content-image[alt*="Chart"] {
+  max-width: 45%;
+  max-height: 15rem;
+}
+
+/* Loading state for images */
+.content-image {
+  position: relative;
+}
+
+.content-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 0.6rem;
+  z-index: -1;
+}
+
+/* Responsive image sizing */
+@media screen and (max-width: 768px) {
+  .content-image {
+    max-width: 70%;
+    max-height: 20rem;
+  }
+  
+  .content-image[alt*="method"], 
+  .content-image[alt*="Method"],
+  .content-image[alt*="architecture"],
+  .content-image[alt*="Architecture"] {
+    max-width: 65%;
+    max-height: 18rem;
+  }
+  
+  .content-image[alt*="diagram"], 
+  .content-image[alt*="Diagram"],
+  .content-image[alt*="flow"],
+  .content-image[alt*="Flow"] {
+    max-width: 60%;
+    max-height: 15rem;
+  }
+  
+  .content-image[alt*="result"], 
+  .content-image[alt*="Result"],
+  .content-image[alt*="chart"],
+  .content-image[alt*="Chart"] {
+    max-width: 65%;
+    max-height: 12rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content-image {
+    max-width: 90%;
+    max-height: 15rem;
+  }
+  
+  .content-image[alt*="method"], 
+  .content-image[alt*="Method"],
+  .content-image[alt*="architecture"],
+  .content-image[alt*="Architecture"],
+  .content-image[alt*="diagram"], 
+  .content-image[alt*="Diagram"],
+  .content-image[alt*="flow"],
+  .content-image[alt*="Flow"],
+  .content-image[alt*="result"], 
+  .content-image[alt*="Result"],
+  .content-image[alt*="chart"],
+  .content-image[alt*="Chart"] {
+    max-width: 85%;
+    max-height: 12rem;
+  }
+}
+
+/* Lightbox for large images */
+.content-image {
+  cursor: pointer;
+}
+
+.content-image.enlarged {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  max-width: 90vw;
+  max-height: 90vh;
+  z-index: 1000;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+}
+
+.image-caption {
+  font-size: 1.3rem;
+  color: #6c757d;
+  font-style: italic;
+  margin: 0;
+  font-weight: 500;
+}
+
+.content-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.content-link:hover {
+  color: #357abd;
+  text-decoration: underline;
+}
+
+.external-icon {
+  font-size: 0.9em;
+  margin-left: 0.3rem;
+  opacity: 0.7;
+}
+
+.bold-text {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.italic-text {
+  color: #495057;
+}
+
+.content-list, .numbered-list {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.list-item, .numbered-item {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.list-level-0 { margin-left: 0; }
+.list-level-1 { margin-left: 1.5rem; }
+.list-level-2 { margin-left: 3rem; }
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, #4a90e2, transparent);
+  margin: 3rem 0;
+}
+
+.content-table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+.table-cell {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.table-row:nth-child(even) .table-cell {
+  background: #f8f9fa;
+}
+
+.resource-links {
+  background: #f8f9fa;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #28a745;
+}
+
+.resource-link {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.resource-link:hover {
+  color: #1e7e34;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-content {
+    font-size: 1.4rem;
+  }
+  
+  .section-h1 { font-size: 2rem; }
+  .section-h2 { font-size: 1.8rem; }
+  .section-h3 { font-size: 1.6rem; }
+  .section-h4 { font-size: 1.4rem; }
+  
+  .code-block {
+    font-size: 1.2rem;
+    padding: 1.5rem;
+  }
+  
+  .image-container {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .content-table {
+    font-size: 1.2rem;
+  }
+  
+  .table-cell {
+    padding: 1rem;
+  }
+}
+

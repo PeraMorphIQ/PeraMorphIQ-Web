@@ -29,6 +29,9 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
 
     async function loadGitHubProject(fullName) {
         try {
+            // Set global context for image resolution
+            window.currentRepoFullName = fullName;
+            
             // Check if repo name contains "Neuromorphic" before fetching
             const repoName = fullName.split('/')[1] || '';
             if (!repoName.toLowerCase().includes('neuromorphic')) {
@@ -125,26 +128,62 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
             const mainContainer = document.querySelector("#project-main-details");
             let mainContent = '';
 
-            // Description/Overview
+            // Abstract/Description with enhanced styling
             if (parsedReadme?.description) {
                 mainContent += `
                     <div class="project-overview">
-                        <h2 class="project-subtopics">Description</h2>
-                        <p class="project-decs">${parsedReadme.description}</p>
+                        <h2 class="project-subtopics">Abstract</h2>
+                        <div class="project-description">${formatMarkdown(parsedReadme.description)}</div>
                     </div>
                 `;
             }
 
-            // Additional sections from README
+            // Table of Contents if sections exist
             if (parsedReadme?.sections && parsedReadme.sections.length > 0) {
-                parsedReadme.sections.forEach(section => {
+                const tocItems = parsedReadme.sections
+                    .filter(section => section.title && section.title !== 'Table of content')
+                    .map(section => {
+                        const anchor = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        return `<li><a href="#${anchor}" class="toc-link">${section.title}</a></li>`;
+                    }).join('');
+                
+                if (tocItems) {
                     mainContent += `
                         <div class="project-overview">
-                            <h2 class="project-subtopics">${section.title}</h2>
-                            <div class="project-decs">${formatMarkdown(section.content)}</div>
+                            <h2 class="project-subtopics">Table of Contents</h2>
+                            <ul class="table-of-contents">${tocItems}</ul>
                         </div>
                     `;
+                }
+            }
+
+            // Additional sections from README with enhanced formatting
+            if (parsedReadme?.sections && parsedReadme.sections.length > 0) {
+                parsedReadme.sections.forEach(section => {
+                    if (section.title && section.content && section.title !== 'Table of content') {
+                        const anchor = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        mainContent += `
+                            <div class="project-overview" id="${anchor}">
+                                <h2 class="project-subtopics">${section.title}</h2>
+                                <div class="section-content">${formatMarkdown(section.content)}</div>
+                            </div>
+                        `;
+                    }
                 });
+            }
+
+            // Links section if available
+            if (parsedReadme?.links && parsedReadme.links.length > 0) {
+                const linksHTML = parsedReadme.links.map(link => 
+                    `<li><a href="${link.url}" target="_blank" class="resource-link">${link.title} <span class="external-icon">↗</span></a></li>`
+                ).join('');
+                
+                mainContent += `
+                    <div class="project-overview">
+                        <h2 class="project-subtopics">Resources & Links</h2>
+                        <ul class="resource-links">${linksHTML}</ul>
+                    </div>
+                `;
             }
 
             mainContainer.innerHTML = mainContent;
@@ -192,21 +231,43 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                     supervisorSection.style.gridColumn = '1/-1';
                     supervisorSection.style.marginTop = '3rem';
 
-                    const supInputs = parsedReadme.supervisors.map(s => ({ email: s.email, name: s.name, profile_page: s.profile_page }));
-                    const resolvedSup = supInputs.length ? await fetchSupervisors(supInputs) : [];
+                    // Separate CE and external supervisors
+                    const ceSupervisors = parsedReadme.supervisors.filter(s => !s.isExternal && s.email);
+                    const externalSupervisors = parsedReadme.supervisors.filter(s => s.isExternal || !s.email);
 
                     let supervisorsHTML = '<div class="container grid grid--5--cols">';
-                    resolvedSup.forEach(supervisorData => {
+                    
+                    // Handle CE supervisors with API lookup
+                    if (ceSupervisors.length > 0) {
+                        const supInputs = ceSupervisors.map(s => ({ email: s.email, name: s.name, profile_page: s.profile_page }));
+                        const resolvedSup = await fetchSupervisors(supInputs);
+                        
+                        resolvedSup.forEach(supervisorData => {
+                            supervisorsHTML += `
+                                <div class="contributor">
+                                    <img src="${supervisorData.image || './img/default.jpg'}" alt="${supervisorData.name}" class="contributor-img" />
+                                    <div class="contributor-text">
+                                        <p class="contributor-name">${supervisorData.name}</p>
+                                        <p class="contributor-batch">${supervisorData.position}</p>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    // Handle external supervisors without API lookup
+                    externalSupervisors.forEach(supervisor => {
                         supervisorsHTML += `
                             <div class="contributor">
-                                <img src="${supervisorData.image || './img/default.jpg'}" alt="${supervisorData.name}" class="contributor-img" />
+                                <img src="./img/default.jpg" alt="${supervisor.name}" class="contributor-img" />
                                 <div class="contributor-text">
-                                    <p class="contributor-name">${supervisorData.name}</p>
-                                    <p class="contributor-batch">${supervisorData.position}</p>
+                                    <p class="contributor-name">${supervisor.name}</p>
+                                    <p class="contributor-batch">External Supervisor</p>
                                 </div>
                             </div>
                         `;
                     });
+                    
                     supervisorsHTML += '</div>';
 
                     supervisorSection.innerHTML = supervisorsHTML;
@@ -265,8 +326,8 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 continue;
             }
 
-            // Check for Description section
-            if (line.match(/^##\s+Description$/i)) {
+            // Check for Abstract/Description section
+            if (line.match(/^##\s+(Abstract|Description)$/i)) {
                 if (currentSection) {
                     result.sections.push({ title: currentSection, content: currentContent.join('\n') });
                 }
@@ -275,15 +336,24 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 inTeamMembers = false;
                 inSupervisors = false;
                 inLinks = false;
-                // Next non-empty line will be description
+                
+                // Collect content for Abstract/Description
+                let abstractContent = [];
                 for (let j = i + 1; j < lines.length; j++) {
                     const nextLine = lines[j].trim();
-                    if (nextLine && !nextLine.startsWith('#') && !nextLine.startsWith('[//]:')) {
-                        result.description = nextLine;
-                        i = j;
-                        break;
+                    if (nextLine.startsWith('##')) break; // Stop at next section
+                    if (nextLine && !nextLine.startsWith('[//]:')) {
+                        abstractContent.push(nextLine);
                     }
                 }
+                result.description = abstractContent.join(' ');
+                
+                // Find the end of this section
+                let endIndex = i + 1;
+                while (endIndex < lines.length && !lines[endIndex].trim().startsWith('##')) {
+                    endIndex++;
+                }
+                i = endIndex - 1;
                 continue;
             }
 
@@ -346,7 +416,14 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                     const name = match[1];
                     const emailMatch = line.match(/mailto:([^\]]+)/);
                     const email = emailMatch ? emailMatch[1] : '';
-                    result.supervisors.push({ name, email });
+                    
+                    // Only add supervisors from CE department to avoid API errors
+                    if (email && email.includes('@eng.pdn.ac.lk')) {
+                        result.supervisors.push({ name, email });
+                    } else {
+                        // For non-CE supervisors, just store the name
+                        result.supervisors.push({ name, email: '', isExternal: true });
+                    }
                 }
                 continue;
             }
@@ -360,7 +437,7 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 continue;
             }
 
-            // Handle other sections
+            // Handle other sections (capture everything including subsections)
             if (line.match(/^##\s+(.+)$/)) {
                 if (currentSection) {
                     result.sections.push({ title: currentSection, content: currentContent.join('\n') });
@@ -373,8 +450,8 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 continue;
             }
 
-            // Add content to current section
-            if (currentSection && line && !line.startsWith('#')) {
+            // Add content to current section (including subsections and all content)
+            if (currentSection && !inTeamMembers && !inSupervisors && !inLinks) {
                 currentContent.push(line);
             }
         }
@@ -388,17 +465,111 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
     }
 
     function formatMarkdown(markdown) {
-        // Basic markdown to HTML conversion (you might want to use a proper markdown library)
+        if (!markdown) return '';
+        
+        // Basic markdown to HTML conversion with enhanced features
         let html = markdown
-            .replace(/```[\s\S]*?```/g, match => `<pre><code>${match.slice(3, -3)}</code></pre>`)
-            .replace(/`([^`]+)`/g, '<code>$1</code>')
-            .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-            .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-            .replace(/\n/g, '<br>');
+            // Code blocks
+            .replace(/```[\s\S]*?```/g, match => {
+                const codeContent = match.slice(3, -3).trim();
+                return `<pre><code class="code-block">${codeContent}</code></pre>`;
+            })
+            // Inline code
+            .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+            // Headers (process in order from largest to smallest)
+            .replace(/^#### (.*$)/gim, '<h4 class="section-h4">$1</h4>')
+            .replace(/^### (.*$)/gim, '<h3 class="section-h3">$1</h3>')
+            .replace(/^## (.*$)/gim, '<h2 class="section-h2">$1</h2>')
+            .replace(/^# (.*$)/gim, '<h1 class="section-h1">$1</h1>')
+            // Images with better handling and GitHub raw content support
+            .replace(/!\[([^\]]*)\]\(([^)]+)(?:\s+"([^"]*)")?\)/g, (match, alt, src, title) => {
+                // Handle different image path scenarios
+                let imageSrc = src;
+                
+                // If we're in a GitHub project context, try to resolve images from GitHub
+                if (window.currentRepoFullName && (src.startsWith('./') || src.startsWith('images/'))) {
+                    // Convert relative paths to GitHub raw content URLs
+                    const cleanPath = src.replace(/^\.\//, '');
+                    imageSrc = `https://raw.githubusercontent.com/${window.currentRepoFullName}/main/${cleanPath}`;
+                }
+                // If it's an absolute path or external URL, keep as is
+                else if (src.startsWith('http') || src.startsWith('/')) {
+                    imageSrc = src;
+                }
+                // For other relative paths in local context
+                else {
+                    imageSrc = `./img/${src.replace(/^\.\//, '')}`;
+                }
+
+                const titleAttr = title ? ` title="${title}"` : '';
+                const fallbackAlt = alt || title || 'Project Diagram';
+                
+                return `<div class="image-container">
+                    <img src="${imageSrc}" 
+                         alt="${fallbackAlt}" 
+                         class="content-image" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                         onload="this.nextElementSibling.style.display='none';"${titleAttr} />
+                    <div class="image-placeholder" style="display: none; background: #f8f9fa; border: 2px dashed #dee2e6; padding: 3rem; text-align: center; border-radius: 0.8rem;">
+                        <div class="placeholder-icon" style="font-size: 3rem; color: #6c757d; margin-bottom: 1rem;">📊</div>
+                        <p class="placeholder-text" style="color: #6c757d; font-size: 1.4rem; margin: 0;">
+                            <strong>${fallbackAlt}</strong><br>
+                            <small>Source: ${src}</small>
+                        </p>
+                        <small style="color: #adb5bd; font-size: 1.2rem;">
+                            Image could not be loaded from repository
+                        </small>
+                    </div>
+                    ${alt || title ? `<p class="image-caption">${alt || title}</p>` : ''}
+                </div>`;
+            })
+            // Links
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="content-link">$1 <span class="external-icon">↗</span></a>')
+            // Bold text
+            .replace(/\*\*([^*]+)\*\*/g, '<strong class="bold-text">$1</strong>')
+            // Italic text
+            .replace(/\*([^*]+)\*/g, '<em class="italic-text">$1</em>')
+            // Unordered lists (multi-level support)
+            .replace(/^(\s*)-\s+(.+)$/gm, (match, spaces, content) => {
+                const level = Math.floor(spaces.length / 2);
+                return `<li class="list-item list-level-${level}">${content}</li>`;
+            })
+            // Ordered lists
+            .replace(/^(\s*)\d+\.\s+(.+)$/gm, (match, spaces, content) => {
+                const level = Math.floor(spaces.length / 2);
+                return `<li class="numbered-item list-level-${level}">${content}</li>`;
+            })
+            // Horizontal rules
+            .replace(/^---+$/gm, '<hr class="section-divider" />')
+            // Tables (basic support)
+            .replace(/\|(.+)\|/g, (match, content) => {
+                const cells = content.split('|').map(cell => cell.trim());
+                if (cells.some(cell => cell.match(/^:?-+:?$/))) {
+                    return ''; // Skip separator rows
+                }
+                const cellsHTML = cells.map(cell => `<td class="table-cell">${cell}</td>`).join('');
+                return `<tr class="table-row">${cellsHTML}</tr>`;
+            })
+            // Paragraphs (convert double line breaks to paragraphs)
+            .replace(/\n\n/g, '</p><p class="content-paragraph">')
+            // Single line breaks
+            .replace(/\n/g, '<br />');
+
+        // Wrap in paragraph tags if not already wrapped
+        if (!html.startsWith('<')) {
+            html = `<p class="content-paragraph">${html}</p>`;
+        }
+
+        // Wrap list items in proper ul/ol tags
+        html = html.replace(/(<li class="list-item[^"]*">[^<]+<\/li>)/g, '<ul class="content-list">$1</ul>');
+        html = html.replace(/(<li class="numbered-item[^"]*">[^<]+<\/li>)/g, '<ol class="numbered-list">$1</ol>');
+        
+        // Wrap table rows in table tags
+        if (html.includes('<tr class="table-row">')) {
+            html = html.replace(/(<tr class="table-row">.*?<\/tr>)/gs, '<table class="content-table"><tbody>$1</tbody></table>');
+        }
+
         return html;
     }
 
@@ -467,9 +638,6 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
             // Side Details
             const sideContainer = document.querySelector("#project-side-details");
             sideContainer.innerHTML = `
-                <div class="project-side-card"><h3>Project Status</h3><p>${project.status || ''}</p></div>
-                <div class="project-side-card"><h3>Duration</h3><p>${project.duration || ''}</p></div>
-                <div class="project-side-card"><h3>Funding</h3><p>${project.funding || ''}</p></div>
                 <div class="project-side-card"><h3>Technologies</h3><ul class="tech-list">${(project.technologies || []).map((t) => `<li>${t}</li>`).join("")}</ul></div>
             `;
 
@@ -561,7 +729,6 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                     <img src="${imgSrc}" alt="${g.type} Repo" class="github-img" />
                     <div class="repo-content">
                         <h4 class="repo-title">${g.title}</h4>
-                        <p class="repo-desc">${g.description}</p>
                         <a href="${g.link}" class="github-link" target="_blank">View on ${g.type} <span>&rarr;</span></a>
                     </div>
                     </div>
@@ -579,6 +746,8 @@ const header=document.querySelector('.header');
     header.classList.toggle('nav-open');
 })
 
+
+
 window.addEventListener("scroll", function() {
     const header = document.querySelector(".header");
     const logo = header.querySelector("img.escal");
@@ -593,6 +762,60 @@ window.addEventListener("scroll", function() {
     logo.src = "./img/logo.png";
     logo.style.height="3.2rem" 
     }
+});
+
+// Image enlargement functionality
+function toggleImageEnlargement(img) {
+  if (img.classList.contains('enlarged')) {
+    img.classList.remove('enlarged');
+    document.body.style.overflow = 'auto';
+    
+    // Remove backdrop
+    const backdrop = document.querySelector('.image-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+  } else {
+    // Create backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'image-backdrop';
+    backdrop.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 999;
+      backdrop-filter: blur(5px);
+    `;
+    
+    backdrop.addEventListener('click', () => toggleImageEnlargement(img));
+    document.body.appendChild(backdrop);
+    
+    img.classList.add('enlarged');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Add click handlers to existing images
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('content-image')) {
+      e.preventDefault();
+      toggleImageEnlargement(e.target);
+    }
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const enlargedImg = document.querySelector('.content-image.enlarged');
+      if (enlargedImg) {
+        toggleImageEnlargement(enlargedImg);
+      }
+    }
+  });
 });
 
 
