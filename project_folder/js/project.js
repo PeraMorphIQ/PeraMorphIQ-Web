@@ -188,20 +188,22 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
 
             mainContainer.innerHTML = mainContent;
 
-            // Side Details - Only Technologies
+            // Technologies Section (Horizontal at the top)
+            const techContainer = document.querySelector("#project-technologies");
+            if (languages.length > 0) {
+                techContainer.innerHTML = languages.map(lang => 
+                    `<div class="tech-item">${lang}</div>`
+                ).join('');
+            } else {
+                techContainer.innerHTML = '<div class="tech-item">Not specified</div>';
+            }
+
+            // Side Details - Remove Technologies from here
             const sideContainer = document.querySelector("#project-side-details");
             
-            let sideContent = `
-                <div class="project-side-card">
-                    <h3>Technologies</h3>
-                    <ul class="tech-list">
-                        ${languages.length > 0 ? languages.map(lang => `<li>${lang}</li>`).join('') : '<li>Not specified</li>'}
-                    </ul>
-                </div>
-            `;
-
-
-            sideContainer.innerHTML = sideContent;
+            // Only keep other details if needed (Status, Duration, Funding)
+            // For GitHub projects, we might not have these, so we can leave it empty or remove the section
+            sideContainer.innerHTML = '';
 
             // Team Members and Supervisors
             const contribContainer = document.querySelector("#project-contributors");
