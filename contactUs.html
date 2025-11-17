@@ -161,6 +161,10 @@
             flex-shrink: 0;
         }
         
+        .contact-details {
+            text-align: center;
+        }
+        
         .contact-details h3 {
             font-size: 1.8rem;
             font-weight: 600;
@@ -317,6 +321,17 @@
         }
         
         /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            .contact-grid {
+                gap: 4rem;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 3.5rem;
+            }
+        }
+        
         @media screen and (max-width: 768px) {
             .contact-title {
                 font-size: 3.6rem;
@@ -328,27 +343,59 @@
             
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 3rem;
             }
             
             .contact-info,
             .contact-form {
-                padding: 3rem;
+                padding: 2.5rem;
+            }
+            
+            .contact-info-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                text-align: center;
             }
             
             .contact-item {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                text-align: left;
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+                gap: 1.5rem;
+                align-items: center;
+            }
+            
+            .contact-details {
+                text-align: left;
+            }
+            
+            .contactUs-contact-icon {
+                flex-shrink: 0;
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.8rem;
+            }
+            
+            .contact-details h3 {
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .contact-details p {
+                font-size: 1.3rem;
+                line-height: 1.4;
             }
             
             .contactUs-social-links {
                 gap: 1.5rem;
+                justify-content: center;
             }
             
             .contactUs-social-link {
-                width: 5rem;
-                height: 5rem;
-                font-size: 2rem;
+                width: 4.5rem;
+                height: 4.5rem;
+                font-size: 1.8rem;
             }
         }
         
@@ -364,10 +411,72 @@
             .contact-info,
             .contact-form {
                 padding: 2rem;
+                border-radius: 1.5rem;
+            }
+            
+            .contact-info-title {
+                font-size: 1.8rem;
             }
             
             .contact-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem 1rem;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .contact-details {
+                text-align: center;
+            }
+            
+            .contactUs-contact-icon {
+                margin: 0 auto;
+                width: 5rem;
+                height: 5rem;
+                font-size: 2rem;
+            }
+            
+            .contact-details h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .contact-details p {
+                font-size: 1.2rem;
+                line-height: 1.5;
+            }
+            
+            .contactUs-social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .contactUs-social-link {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media screen and (max-width: 320px) {
+            .contact-info,
+            .contact-form {
                 padding: 1.5rem;
+            }
+            
+            .contact-item {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                align-items: center;
+            }
+            
+            .contact-details {
+                text-align: center;
+            }
+            
+            .contact-details p {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -451,8 +560,7 @@
                             </div>
                             <div class="contact-details">
                                 <h3>Call Us</h3>
-                                <p>+94 81 239 3301<br>
-                                   +94 81 239 3273</p>
+                                <p>+94 81 239 3301<br>+94 81 239 3273</p>
                             </div>
                         </div>
 
