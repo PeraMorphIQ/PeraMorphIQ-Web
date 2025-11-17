@@ -183,6 +183,9 @@ main {
   font-weight: 600;
   font-size: 2rem;
   transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
 }
 
 .main-nav-link:hover,
@@ -571,6 +574,17 @@ main {
   /* Improve rendering quality for SVG/raster icons */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+.link-tags {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.link-tags:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
 }
 
 

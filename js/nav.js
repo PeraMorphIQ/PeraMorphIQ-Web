@@ -23,14 +23,19 @@ if (btnNav && header) {
 const mainNavList = document.querySelector('.main-nav-list');
 if (mainNavList) {
     mainNavList.addEventListener('click', function (e) {
-        e.preventDefault();
-
         if (e.target.classList.contains('main-nav-link')) {
-            const id = e.target.getAttribute('href');
-            const targetElement = document.querySelector(id);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            const href = e.target.getAttribute('href');
+            
+            // Only prevent default and do smooth scroll for same-page anchors
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
+            // For external links (other pages), let the default behavior work
+            // No e.preventDefault() needed - browser will handle the navigation
         }
     });
 }
