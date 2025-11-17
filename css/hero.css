@@ -146,14 +146,20 @@
 
 /* hero_section - Button */
 .hero-btn {
-  text-align: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
 }
 
 .explore-more-icon{
-  height:2.2rem;
-  width:2.2rem;
-  animation: bounce 1.2s infinite;
+  height:1.8rem;
+  width:1.8rem;
+  animation: bounce 1.5s infinite;
   display:inline-block;
+  transition: all 0.3s ease;
 }
 
 /* Bounce animation */
@@ -173,7 +179,9 @@
   display: inline-flex; 
   align-items: center;
   justify-content: center;
-  gap: 1.6rem; 
+  gap: 1.2rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-learn-btn span {
@@ -183,21 +191,47 @@
 .hero-learn-btn:link,
 .hero-learn-btn:visited {
   text-decoration: none;
-  background-color: #fff;
-  border-radius: 10px;
-  color: #54575aff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  color: #495057;
   font-weight: 600;
-  font-size: 1.8rem;
-  padding: 1.6rem 4.8rem;
-  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  padding: 1.2rem 2.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle shine effect */
+.hero-learn-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
 }
 
 /* Button hover */
 .hero-learn-btn:hover,
 .hero-learn-btn:active {
-  background-color: #51606eff;
+  background: linear-gradient(135deg, #51606e 0%, #435664 100%);
+  border-color: #51606e;
   color: #fff;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(81, 96, 110, 0.3);
+}
+
+.hero-learn-btn:hover::before {
+  left: 100%;
+}
+
+.hero-learn-btn:hover .explore-more-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 

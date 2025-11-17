@@ -172,7 +172,8 @@
   }
 
   .hero-btn {
-    text-align: center;
+    gap: 2rem;
+    flex-direction: column;
   }
 
   .hero-main--header {
@@ -489,19 +490,21 @@
   }
 
   .hero-learn-btn {
-    font-size: 1.6rem;
-    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    padding: 1rem 2.2rem;
+    width: 100%;
+    max-width: 250px;
   }
 
   .hero-learn-btn:link,
   .hero-learn-btn:visited{
-    font-size:1.5rem;
-    padding:1rem 2rem;
+    font-size: 1.4rem;
+    padding: 1rem 2.2rem;
   }
 
   .explore-more-icon{
-    height:1.8rem;
-    width:1.8rem;
+    height: 1.6rem;
+    width: 1.6rem;
   }
 
   /* about-section */
