@@ -319,6 +319,7 @@ main {
   gap: 2rem;
 }
 
+.footer-link,
 .footer-link:link,
 .footer-link:visited {
   text-decoration: none;

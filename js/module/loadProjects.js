@@ -45,12 +45,14 @@ export async function loadProjects(selector,limit=6){
         container.innerHTML=items.map(n=>
             `
             <div class="project-box">
-              <img src="${n.owner.avatar_url}" 
+              <img src="./img/project/pro.jpg" 
                   data-repo="${n.full_name}"
+                  data-avatar="${n.owner.avatar_url}"
                   alt="${n.name}" 
                   class="project-img" 
                   loading="lazy" 
-                  decoding="async" />
+                  decoding="async"
+                  onerror="this.src='./img/project/pro.jpg'" />
                   
               <div class="project-card-text-box">
                 <h4 class="project-topics">${decodeProjectTitle(n.name)}</h4>
@@ -88,6 +90,7 @@ export async function loadProjects(selector,limit=6){
 // Function to try loading project images with multiple fallbacks
 async function tryLoadProjectImage(img) {
     const repoName = img.getAttribute('data-repo');
+    const avatarUrl = img.getAttribute('data-avatar');
     if (!repoName) return;
     
     const imagePaths = [
@@ -95,7 +98,10 @@ async function tryLoadProjectImage(img) {
         `https://raw.githubusercontent.com/${repoName}/main/img/main.jpg`,
         `https://raw.githubusercontent.com/${repoName}/main/docs/images/main.jpg`,
         `https://raw.githubusercontent.com/${repoName}/main/assets/main.jpg`,
-        `https://raw.githubusercontent.com/${repoName}/main/main.jpg`
+        `https://raw.githubusercontent.com/${repoName}/main/main.jpg`,
+        `https://raw.githubusercontent.com/${repoName}/main/images/main.png`,
+        `https://raw.githubusercontent.com/${repoName}/main/img/main.png`,
+        `https://raw.githubusercontent.com/${repoName}/main/README.md` // This will fail but shows we tried
     ];
     
     for (const imagePath of imagePaths) {
@@ -110,6 +116,19 @@ async function tryLoadProjectImage(img) {
         }
     }
     
-    // If all paths fail, keep the avatar (already set as default)
-    console.log(`No project image found for ${repoName}, using avatar`);
+    // If project images fail, try the avatar
+    if (avatarUrl) {
+        try {
+            const response = await fetch(avatarUrl, { method: 'HEAD' });
+            if (response.ok) {
+                img.src = avatarUrl;
+                return;
+            }
+        } catch (error) {
+            console.log(`Failed to load avatar: ${avatarUrl}`);
+        }
+    }
+    
+    // If everything fails, the onerror in HTML will handle the final fallback
+    console.log(`No image found for ${repoName}, using default fallback`);
 }
