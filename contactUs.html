@@ -320,6 +320,32 @@
             color: #87cbe4;
         }
         
+        /* Mobile Navigation Styles */
+        .btn-mobile-nav {
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 4.8rem;
+            height: 4.8rem;
+        }
+        
+        .hamburger-line {
+            width: 2.5rem;
+            height: 0.2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            margin: 0.3rem 0;
+        }
+        
+        .header.sticky .hamburger-line {
+            background-color: #333;
+        }
+        
         /* Responsive Design */
         @media screen and (max-width: 1200px) {
             .contact-grid {
@@ -333,6 +359,14 @@
         }
         
         @media screen and (max-width: 768px) {
+            .btn-mobile-nav {
+                display: flex;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
             .contact-title {
                 font-size: 3.6rem;
             }
@@ -560,7 +594,7 @@
                             </div>
                             <div class="contact-details">
                                 <h3>Call Us</h3>
-                                <p>+94 81 239 3301<br>+94 81 239 3273</p>
+                                <p>+94 71 849 5506<br>+94 76 215 2049</p>
                             </div>
                         </div>
 
@@ -641,16 +675,16 @@
                     <a href="https://www.linkedin.com/company/peramorphiq" class="contactUs-social-link" target="_blank" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://twitter.com/PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="Twitter">
+                    <a href="https://twitter.com/PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="Twitter" style="display:none;">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://www.researchgate.net/lab/PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="ResearchGate">
+                    <a href="https://www.researchgate.net/lab/PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="ResearchGate" style="display:none;">
                         <i class="fab fa-researchgate"></i>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="Google Scholar">
+                    <a href="https://scholar.google.com/citations?user=PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="Google Scholar" style="display:none;">
                         <i class="fas fa-graduation-cap"></i>
                     </a>
-                    <a href="https://www.youtube.com/@PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@PeraMorphIQ" class="contactUs-social-link" target="_blank" aria-label="YouTube" style="display:none;">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
