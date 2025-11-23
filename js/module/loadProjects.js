@@ -55,7 +55,7 @@ export async function loadProjects(selector,limit=6){
                   onerror="this.src='./img/project/pro.jpg'" />
                   
               <div class="project-card-text-box">
-                <h4 class="project-topics">${decodeProjectTitle(n.name)}</h4>
+                <h4 class="project-topics">${n.name}</h4>
 
                 <div class="project-tags">
                   ${n.topics && n.topics.length > 0 ? n.topics.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}

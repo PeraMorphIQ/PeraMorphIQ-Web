@@ -121,8 +121,8 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
             }
 
             // Project Header
-            document.querySelector("#project-title").textContent = parsedReadme?.title || decodeProjectTitle(repo.name) || '';
-            document.querySelector("#project-subtitle").textContent = ''; // No subtitle needed
+            document.querySelector("#project-title").textContent = `${repo.name}` || '';
+            document.querySelector("#project-subtitle").textContent = parsedReadme?.title || ''; // Show parsed title as subtitle
 
             // Main Details
             const mainContainer = document.querySelector("#project-main-details");
