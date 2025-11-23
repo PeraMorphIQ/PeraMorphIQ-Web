@@ -109,20 +109,6 @@ async function tryLoadProjectImage(img) {
             console.log(`Failed to load: ${imagePath}`);
         }
     }
-    
-    // If project images fail, try the avatar
-    if (avatarUrl) {
-        try {
-            const response = await fetch(avatarUrl, { method: 'HEAD' });
-            if (response.ok) {
-                img.src = avatarUrl;
-                return;
-            }
-        } catch (error) {
-            console.log(`Failed to load avatar: ${avatarUrl}`);
-        }
-    }
-    
     // If everything fails, the onerror in HTML will handle the final fallback
     console.log(`No image found for ${repoName}, using default fallback`);
 }
