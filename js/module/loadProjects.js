@@ -45,7 +45,7 @@ export async function loadProjects(selector,limit=6){
         container.innerHTML=items.map(n=>
             `
             <div class="project-box">
-              <img src="./img/project/pro.jpg" 
+              <img src="./img/project/pro.jpeg" 
                   data-repo="${n.full_name}"
                   data-avatar="${n.owner.avatar_url}"
                   alt="${n.name}" 
@@ -95,13 +95,7 @@ async function tryLoadProjectImage(img) {
     
     const imagePaths = [
         `https://raw.githubusercontent.com/${repoName}/main/images/main.jpg`,
-        `https://raw.githubusercontent.com/${repoName}/main/img/main.jpg`,
-        `https://raw.githubusercontent.com/${repoName}/main/docs/images/main.jpg`,
-        `https://raw.githubusercontent.com/${repoName}/main/assets/main.jpg`,
-        `https://raw.githubusercontent.com/${repoName}/main/main.jpg`,
         `https://raw.githubusercontent.com/${repoName}/main/images/main.png`,
-        `https://raw.githubusercontent.com/${repoName}/main/img/main.png`,
-        `https://raw.githubusercontent.com/${repoName}/main/README.md` // This will fail but shows we tried
     ];
     
     for (const imagePath of imagePaths) {

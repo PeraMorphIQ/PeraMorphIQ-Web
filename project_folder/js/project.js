@@ -742,29 +742,6 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
     }
 })();
 
-const btnNav=document.querySelector('.btn-mobile-nav');
-const header=document.querySelector('.header');
-    btnNav.addEventListener('click',()=>{
-    header.classList.toggle('nav-open');
-})
-
-
-
-window.addEventListener("scroll", function() {
-    const header = document.querySelector(".header");
-    const logo = header.querySelector("img.escal");
-    if (window.scrollY > 50) {
-    header.style.backgroundColor ="rgba(255, 255, 255, 0.98)";
-    header.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
-    logo.src = "./img/logo-3.png";
-    logo.style.height="3.8rem" 
-    } else {
-    header.style.backgroundColor = "transparent";
-    header.style.boxShadow = "none";
-    logo.src = "./img/logo.png";
-    logo.style.height="3.2rem" 
-    }
-});
 
 // Image enlargement functionality
 function toggleImageEnlargement(img) {

@@ -53,7 +53,7 @@
         </div>
 
         <!--supervisors-->
-        <section class="contributors-group">
+        <section class="contributors-group" style="margin-bottom: 4.8rem;">
           <div class="container">
             <h3 class="inherheader">Supervisors</h3>
             <div class="main-contributors grid grid--5--cols" id="supervisors-container">
@@ -61,18 +61,41 @@
             </div>
           </div>
         </section>
-      </section>
 
         <!---team members-->
         <section class="contributors-group team-member-card">
-          <div class="container">
-            <h3 class="inherheader">Team Members</h3>
-
-            <div class="main-contributors grid grid--5--cols" id="team-container">
-              <!-- Team members will be loaded dynamically -->
+          <div class="container" style="margin-bottom: 4.8rem;">
+            <h3 class="inherheader">Graduate Researchers</h3>
+            <div
+              class="main-contributors grid grid--5--cols"
+              id="graduate-container"
+            >
+              <!-- Graduate researchers will be loaded dynamically -->
+            </div>
+          </div>
+          
+          <div class="container" style="margin-bottom: 4.8rem;">
+            <h3 class="inherheader">Undergraduate Researchers</h3>
+            <div
+              class="main-contributors grid grid--5--cols"
+              id="team-container"
+            >
+              <!-- Undergraduate researchers will be loaded dynamically -->
+            </div>
+          </div>
+          
+          <div class="container" style="margin-bottom: 4.8rem;">
+            <h3 class="inherheader">Alumni Researchers</h3>
+            <div
+              class="main-contributors grid grid--5--cols"
+              id="alumni-container"
+            >
+              <!-- Alumni researchers will be loaded dynamically -->
             </div>
           </div>
         </section>
+
+      </section>        
     </main>
 
     <!-- Footer -->
@@ -104,7 +127,12 @@
     <script>
       document.addEventListener('DOMContentLoaded', function(){
         try {
-          window.NEURO_API.loadPeoples('#team-container','#supervisors-container')
+          window.NEURO_API.loadPeoples(
+            '#team-container',
+            '#supervisors-container',
+            '#graduate-container',
+            '#alumni-container'
+          );
         } catch (e) {
           console.error('Failed to initialize API loaders', e);
         }

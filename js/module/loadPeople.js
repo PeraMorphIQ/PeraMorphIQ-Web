@@ -3,60 +3,34 @@ import {fetchTeamMembers} from './fetchTeamMembers.js';
 import {fetchSupervisors} from './fetchSupervisors.js';
 
 
-export async function loadPeoples(teamSelector, supervisorSelector){
-    const teamContainer = document.querySelector(teamSelector);
+export async function loadPeoples(undergraduateSelector, supervisorSelector, graduateSelector = null, alumniSelector = null){
+    const undergraduateContainer = document.querySelector(undergraduateSelector);
     const supContainer = document.querySelector(supervisorSelector);
+    const graduateContainer = graduateSelector ? document.querySelector(graduateSelector) : null;
+    const alumniContainer = alumniSelector ? document.querySelector(alumniSelector) : null;
     
     try{
-        // Load projects to get teamMembers and supervisors
+        // Load people data with new structure
         const pres = await fetchJSON('people');
-        const projects = Array.isArray(pres.data) ? pres.data : [];
+        const data = Array.isArray(pres.data) && pres.data.length > 0 ? pres.data[0] : {};
         
-        let allTeamMembers = [];
-        let allSupervisors = [];
+        // Extract categorized researchers and supervisors
+        const graduateResearchers = data["Graduate Researchers"] || [];
+        const undergraduateResearchers = data["Undergraduate Researchs"] || [];
+        const alumniResearchers = data["Alumni Researchers"] || [];
+        const supervisors = data["supervisors"] || [];
         
-        // Collect unique team members and supervisors from all projects
-        const teamMemberMap = new Map();
-        const supervisorMap = new Map();
+        // Resolve each category using fetchTeamMembers
+        const resolvedGraduate = graduateResearchers.length > 0 ? await fetchTeamMembers(graduateResearchers) : [];
+        const resolvedUndergraduate = undergraduateResearchers.length > 0 ? await fetchTeamMembers(undergraduateResearchers) : [];
+        const resolvedAlumni = alumniResearchers.length > 0 ? await fetchTeamMembers(alumniResearchers) : [];
         
-        projects.forEach(project => {
+        // Resolve supervisors
+        const resolvedSupervisors = supervisors.length > 0 ? await fetchSupervisors(supervisors) : [];
 
-            // Process team members (eNumber based)
-            (project.teamMembers || []).forEach(member => {
-                if(member.eNumber && !teamMemberMap.has(member.eNumber)) {
-                    teamMemberMap.set(member.eNumber, {
-                        eNumber: member.eNumber,
-                    });
-                }
-            });
-            
-            // Process supervisors (email based)
-            (project.supervisors || []).forEach(supervisor => {
-                if(supervisor.email && !supervisorMap.has(supervisor.email)) {
-                    supervisorMap.set(supervisor.email, {
-                        email: supervisor.email,
-                        name:supervisor.name,
-                        profile_page:supervisor.profile_page
-                    });
-                }
-            });
-        });
-        
-
-        allTeamMembers = Array.from(teamMemberMap.values());
-        allSupervisors = Array.from(supervisorMap.values());
-
-        // Resolve team members 
-        const resolvedTeamMembers = await fetchTeamMembers(allTeamMembers);
-
-
-        // Resolve supervisors 
-        const resolvedSupervisors = await fetchSupervisors(allSupervisors);
-
-
-        // Render team members
-        if(resolvedTeamMembers.length > 0) {
-            teamContainer.innerHTML = resolvedTeamMembers.map(member => `
+        // Render undergraduate researchers
+        if(resolvedUndergraduate.length > 0) {
+            undergraduateContainer.innerHTML = resolvedUndergraduate.map(member => `
                 <div class="contributor">
                     <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
                     <div class="contributor-text">
@@ -67,7 +41,43 @@ export async function loadPeoples(teamSelector, supervisorSelector){
                 </div>
             `).join('');
         } else {
-            teamContainer.innerHTML = '<p class="text-center">No team members available.</p>';
+            undergraduateContainer.innerHTML = '<p class="text-center">No undergraduate researchers available.</p>';
+        }
+
+        // Render graduate researchers
+        if(graduateContainer) {
+            if(resolvedGraduate.length > 0) {
+                graduateContainer.innerHTML = resolvedGraduate.map(member => `
+                    <div class="contributor">
+                        <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
+                        <div class="contributor-text">
+                            <p class="contributor-name">${member.name}</p>
+                            <p class="contributor-batch">${member.position}</p>
+                            ${member.profile_page ? `<a class="profile-btn" href="${member.profile_page}" target="_blank" rel="noopener">Profile</a>` : `<button class="profile-btn disabled" disabled>Profile</button>`}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                graduateContainer.innerHTML = '<p class="text-center">No graduate researchers available.</p>';
+            }
+        }
+
+        // Render alumni researchers
+        if(alumniContainer) {
+            if(resolvedAlumni.length > 0) {
+                alumniContainer.innerHTML = resolvedAlumni.map(member => `
+                    <div class="contributor">
+                        <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
+                        <div class="contributor-text">
+                            <p class="contributor-name">${member.name}</p>
+                            <p class="contributor-batch">${member.position}</p>
+                            ${member.profile_page ? `<a class="profile-btn" href="${member.profile_page}" target="_blank" rel="noopener">Profile</a>` : `<button class="profile-btn disabled" disabled>Profile</button>`}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                alumniContainer.innerHTML = '<p class="text-center">No alumni researchers available.</p>';
+            }
         }
 
         // Render supervisors
@@ -88,7 +98,9 @@ export async function loadPeoples(teamSelector, supervisorSelector){
 
     } catch(e) {
         console.error('Failed to load people:', e);
-        teamContainer.innerHTML = '<p class="text-center">Failed to load team members.</p>';
+        undergraduateContainer.innerHTML = '<p class="text-center">Failed to load undergraduate researchers.</p>';
         supContainer.innerHTML = '<p class="text-center">Failed to load supervisors.</p>';
+        if(graduateContainer) graduateContainer.innerHTML = '<p class="text-center">Failed to load graduate researchers.</p>';
+        if(alumniContainer) alumniContainer.innerHTML = '<p class="text-center">Failed to load alumni researchers.</p>';
     }
 }
