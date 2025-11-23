@@ -302,6 +302,7 @@
 **************************/
 .section-projects{
   padding:9.6rem 0;
+  background: #f6f9fbff;
 }
 
 /* Hero-specific reveal tweaks */
@@ -683,7 +684,7 @@
 ********************************* */
 .section-supervisors{
     padding:9.6rem 0;
-    background: #f6f9fbff;
+    background: #ffff;
 }
 .team-member-card{
   padding:0 0 4.8rem 0;

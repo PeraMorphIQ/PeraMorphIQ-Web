@@ -279,16 +279,81 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 contribContainer.innerHTML = '<p class="text-center">No team information available.</p>';
             }
 
-            // GitHub - render main repository card similar to legacy layout
+            // GitHub - render main repository card with simple styling
             const githubContainer = document.querySelector("#project-github");
             githubContainer.innerHTML = `
-                <div class="git-hub-repo">
-                    <img src="./img/default.jpg" alt="${repo.name} Repo" class="github-img" />
-                    <div class="repo-content">
-                        <h4 class="repo-title">${decodeProjectTitle(repo.name)}</h4>
-                        <p class="repo-desc">${repo.description || ''}</p>
-                        <a href="${repo.html_url}" class="github-link" target="_blank">View on GitHub <span>&rarr;</span></a>
+                <div class="git-hub-repo" style="
+                    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                    border: 2px solid #e9ecef;
+                    border-radius: 1.5rem;
+                    padding: 2.5rem;
+                    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2rem;
+                    margin: 2rem 0;
+                " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 2rem 4rem rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1rem 3rem rgba(0, 0, 0, 0.1)'">
+                    
+                    <!-- Background decoration -->
+                    <div style="
+                        position: absolute;
+                        top: -50%;
+                        right: -50%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(45deg, rgba(135, 203, 228, 0.1), transparent);
+                        border-radius: 50%;
+                        z-index: 0;
+                    "></div>
+                    
+                    <!-- GitHub Icon -->
+                    <div style="
+                        position: relative;
+                        z-index: 1;
+                        width: 6rem;
+                        height: 6rem;
+                        background: linear-gradient(135deg, #24292e, #586069);
+                        border-radius: 1.2rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 0.8rem 2rem rgba(36, 41, 46, 0.3);
+                        flex-shrink: 0;
+                    ">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.55C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.7 3.75 17.415C3.33 17.19 2.73 16.605 3.735 16.59C4.68 16.575 5.355 17.49 5.58 17.85C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5807 20.2772 21.0497 21.7437 19.0074C23.2101 16.965 23.9993 14.5143 24 12C24 5.37 18.63 0 12 0Z"/>
+                        </svg>
                     </div>
+                    
+                    <!-- Repository Button -->
+                    <a href="${repo.html_url}" class="github-link" target="_blank" style="
+                        position: relative;
+                        z-index: 1;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding: 1.5rem 3rem;
+                        background: linear-gradient(135deg, #87cbe4, #5a9bd3);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 1rem;
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 0.4rem 1.5rem rgba(135, 203, 228, 0.4);
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        font-family: 'Orbitron', monospace;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0.6rem 2rem rgba(135, 203, 228, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0.4rem 1.5rem rgba(135, 203, 228, 0.4)'">
+                        VIEW REPOSITORY
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
                 </div>
             `;
 
@@ -488,15 +553,15 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 // Handle different image path scenarios
                 let imageSrc = src;
                 
+                // If it's an absolute path or external URL, keep as is
+                if (src.startsWith('http') || src.startsWith('/')) {
+                    imageSrc = src;
+                }
                 // If we're in a GitHub project context, try to resolve images from GitHub
-                if (window.currentRepoFullName && (src.startsWith('./') || src.startsWith('images/'))) {
+                else if (window.currentRepoFullName) {
                     // Convert relative paths to GitHub raw content URLs
                     const cleanPath = src.replace(/^\.\//, '');
                     imageSrc = `https://raw.githubusercontent.com/${window.currentRepoFullName}/main/${cleanPath}`;
-                }
-                // If it's an absolute path or external URL, keep as is
-                else if (src.startsWith('http') || src.startsWith('/')) {
-                    imageSrc = src;
                 }
                 // For other relative paths in local context
                 else {

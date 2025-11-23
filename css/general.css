@@ -270,8 +270,8 @@ main {
 
 .footer-grid{
     display:grid;
-    grid-template-columns:1.5fr 1.2fr 1fr 1fr 1fr;
-    column-gap: 5rem;
+    grid-template-columns:1.5fr 1.5fr 1fr 1fr 1fr;
+    column-gap: 3rem;
     row-gap: 4rem;
     align-items:start;
 }
