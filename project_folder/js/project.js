@@ -380,6 +380,8 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
         let inTeamMembers = false;
         let inSupervisors = false;
         let inLinks = false;
+        let collectingMainDescription = false;
+        let mainDescriptionContent = [];
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i].trim();
@@ -390,6 +392,7 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
             // Extract main title (first # heading)
             if (!result.title && line.match(/^#\s+(.+)$/)) {
                 result.title = line.replace(/^#\s+/, '');
+                collectingMainDescription = true; // Start collecting description after title
                 continue;
             }
 
@@ -403,6 +406,7 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 inTeamMembers = false;
                 inSupervisors = false;
                 inLinks = false;
+                collectingMainDescription = false; // Stop collecting main description
                 
                 // Collect content for Abstract/Description
                 let abstractContent = [];
@@ -506,6 +510,12 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
 
             // Handle other sections (capture everything including subsections)
             if (line.match(/^##\s+(.+)$/)) {
+                // If we were collecting main description, finalize it
+                if (collectingMainDescription && mainDescriptionContent.length > 0) {
+                    result.description = mainDescriptionContent.join(' ');
+                    collectingMainDescription = false;
+                }
+                
                 if (currentSection) {
                     result.sections.push({ title: currentSection, content: currentContent.join('\n') });
                 }
@@ -514,6 +524,12 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
                 inTeamMembers = false;
                 inSupervisors = false;
                 inLinks = false;
+                continue;
+            }
+
+            // Collect main description content (after title, before any ## sections)
+            if (collectingMainDescription && line && !line.startsWith('#')) {
+                mainDescriptionContent.push(line);
                 continue;
             }
 
@@ -526,6 +542,11 @@ import { fetchSupervisors } from '../../js/module/fetchSupervisors.js';
         // Add last section if exists
         if (currentSection && currentContent.length > 0) {
             result.sections.push({ title: currentSection, content: currentContent.join('\n') });
+        }
+
+        // If we were collecting main description and haven't set it yet, finalize it
+        if (collectingMainDescription && mainDescriptionContent.length > 0 && !result.description) {
+            result.description = mainDescriptionContent.join(' ');
         }
 
         return result;
