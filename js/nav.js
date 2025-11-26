@@ -195,17 +195,20 @@ window.addEventListener("scroll", function() {
     if (!headerElement) return;
     
     const logo = headerElement.querySelector("img.escal");
+    const logo_name=headerElement.querySelector("img.escal_name");
     if (!logo) return;
     
     if (window.scrollY > 50) {
         headerElement.style.backgroundColor ="rgba(255, 255, 255, 0.98)";
         headerElement.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
         logo.src = "./img/pera_5.png";
+        if (logo_name) logo_name.src = "./img/pera_4_1.png";
         logo.style.height="7rem";
     } else {
         headerElement.style.backgroundColor = "transparent";
         headerElement.style.boxShadow = "none";
-        logo.src = "./img/pera_5.png";
+        logo.src = "";
+        if (logo_name) logo_name.src = "";
         logo.style.height="7rem";
     }
 });

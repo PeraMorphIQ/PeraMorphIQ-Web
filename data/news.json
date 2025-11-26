@@ -5,6 +5,7 @@
       "image": "./data/img/news/news1/Main.jpg",
       "backgroundImg":"./data/img/news/news1/img3.jpg",
       "images": [
+        "./data/img/news/news1/Main.jpg",
         "./data/img/news/news1/img1.jpg",
         "./data/img/news/news1/img2.jpg",
         "./data/img/news/news1/img3.jpg",

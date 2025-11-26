@@ -1,0 +1,23 @@
+[
+  { 
+    "_id": "project1",
+    "name": "e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs",
+    "description": "This project implements a neuromorphic NoC using RISC-V nodes with custom hardware to simulate spiking neural networks. Tested on an FPGA, it supports up to 1,024 neurons and uses dedicated FIFO buffers for stable, low-power operation. The design combines RISC-V flexibility with hardware acceleration for efficient small-scale SNN applications.",
+    "topics": ["BRAIN-INSPRIRED", "EDGE-COMPUTING", "FPGA", "HARDWARE-ACCELERATION","LOW-POWER"],
+    "image":""
+  },
+  {
+    "_id": "project2",
+    "name": "e17-4yp-Neuromorphic-NoC-Architecture-for-SNNs",
+    "description": "This project implements a neuromorphic Network-on-Chip using customized RV32IMF RISC-V cores, a 2D mesh NoC, and neuron bank hardware to accelerate spiking neural networks. It supports event-driven spike communication via custom ISA extensions and AXI interfaces, and is implemented and tested on an FPGA.",
+    "topics": ["HARDWARE-ACCELERATION", "BRAIN-INSPRIRED"],
+    "image":""
+  },
+  {
+    "_id": "project3",
+    "name": "e16-4yp-Neuromorphic Architecture",
+    "description": "This project implements a neuromorphic architecture using parallel RISC-V processing elements to model spiking neurons, either individually or virtually grouped. It will also develop encoder and decoder modules to benchmark the system on classical machine learning tasks.",
+    "topics": ["HARDWARE-ACCELERATION", "BRAIN-INSPRIRED"],
+    "image": "" 
+  }
+]

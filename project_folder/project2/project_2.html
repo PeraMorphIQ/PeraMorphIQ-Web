@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../project.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/general.css"/>
+    <link href="../query.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/query.css" />
+
+    <title>Neuromorphic Network-on-Chip Architecture - PeraMorphIQ</title>
+  </head>
+  
+  <body>
+    <div class="top-page">
+      <header class="header">
+        <a href="../../index.html" style="display: flex; align-items:center;">
+          <img src="../../img/pera_5.png" alt="" class="escal"/>
+          <img src="../../img/peramorphiq_name.png" alt="" style="height:5rem;">
+        </a>
+        <button class="btn-mobile-nav" aria-label="Toggle menu" type="button">
+            <span class="hamburger-line line1"></span>
+            <span class="hamburger-line line2"></span>
+            <span class="hamburger-line line3"></span>
+        </button>
+
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+            <li>
+                <a class="main-nav-link" href="../../index.html#about">ABOUT</a>
+            </li>
+            <li>
+                <a class="main-nav-link" href="../../index.html#news">NEWS</a>
+            </li>
+            <li>
+                <a class="main-nav-link" href="../../index.html#publications">PUBLICATIONS</a>
+            </li>
+            <li>
+                <a class="main-nav-link" href="../../index.html#blogs">BLOGS</a>
+            </li>
+            <li>
+                <a class="main-nav-link nav-cta" href="../../index.html#projects">PROJECTS</a>
+            </li>
+            <li>
+                <a class="main-nav-link nav-cta" href="../../index.html#supervisors">PEOPLE</a>
+            </li>
+            </ul>
+            <span class="nav-indicator"></span>
+        </nav>
+      </header>
+
+      <section class="project-header">
+        <div class="project-container">
+          <h1 class="project-header-name" id="project-title">Neuromorphic Network-on-Chip Architecture for Spiking Neural Networks</h1>
+          <p class="project-header-details" id="project-subtitle">
+            RISC-V based NoC architecture for hardware-level processing of spiking neural networks
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+
+    <main>
+    
+      <!-- Technologies Section (Horizontal) -->
+    <section class="technologies-section">
+        <div class="container">
+          <h2 class="project-subtopics">Technologies</h2>
+          <div class="technologies-container" id="project-technologies">
+            <div class="tech-item">RISC-V</div>
+            <div class="tech-item">Verilog</div>
+            <div class="tech-item">FPGA</div>
+            <div class="tech-item">SystemVerilog</div>
+            <div class="tech-item">Network-on-Chip</div>
+            <div class="tech-item">Neuromorphic Computing</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-details-section">
+        <div class="container grid-of-project">
+          <div class="main-details" id="project-main-details">
+
+            <!-- Abstract -->
+            <div class="project-overview">
+              <h2 class="project-subtopics">Abstract</h2>
+              <div class="project-description">
+                <p class="content-paragraph">Neuromorphic engineering is an interesting discipline within computer science which endeavours to emulate the in- tricate functioning of the human brain through the utilisation of very large-scale integrated (VLSI) circuits. These architectures employ artificial neurons and synapses to replicate the characteristics of the brain, including its exceptional parallelism,rapid processing capabilities, and energy efficiency achieved by virtue of a densely interconnected neural network as well as its event-driven nature. Notably, the escalating prominence of machine learning and neural networks has rendered neuromorphic architectures increasingly relevant, surpassing the traditional von Neumann architecture employed in most general-purpose computers. As such, exploring the potential of neuromorphic engineering holds promise for advancing com- putational capabilities and paving the way for novel computing paradigms.</p>
+                
+                <p class="content-paragraph">Neuromorphic computing is an interdisciplinary subject en- compassing multiple fields such as biology, computer science,and electronic engineering. Current research in neuromorphic engineering focuses on developing neuron models inspired by biological neurons, creating hardware implementations of artificial neurons, and designing scalable neuromorphic processor architectures. These architectures consist of numerous artificial neurons organized in a densely-connected network, often containing a large number of interconnected processing nodes. While these architectures differ in performance and configuration flexibility, they are generally known for their efficiency in simulating spiking neural networks. Compared to traditional computer architectures, they offer superior performance and reduced power consumption.</p>
+
+                <p class="content-paragraph">Our Approach represents how a Network-on-Chip (NoC) architecture based on the RISC-V instruction set architecture (ISA) which allows for hardware-level processing of spiking neural networks, and the implementation of the design on an FPGA. RISC-V was chosen as the base ISA since it is not only highly practical and popular, but also completely open source and amenable to custom extensions.</p>
+
+                <p class="content-paragraph">The proposed design consists of customised RISC-V processing nodes interconnected using a network interface attached to each processing node as well as a routing framework to negotiate communication between the nodes. This hardware layout is specifically employed for the purpose of simulating a spiking neural network, where each processing node is responsible for managing one or more neurons. The interconnectivity between nodes enables communication among neurons spanning across multiple nodes. Furthermore, the architecture adopts an event-driven messaging mechanism to effectively emulate the activity of the neurons.</p>
+
+                <p class="content-paragraph">As such, the primary objective of this research is to demon- strate how a general purpose ISA such as RISC-V can be augmented to perform a highly-specialised task, namely the simulation of spiking neural networks in a scalable and con- figurable manner, whilst maintaining adherence to the original specifications of the ISA.</p>
+              </div>
+
+            </div>
+
+            <!-- Related Works -->
+            <div class="project-overview" id="related-works">
+              <h2 class="project-subtopics">Related Works</h2>
+              <div class="section-content">
+
+                <h3 class="section-h3">A. Spiking Neural Networks</h3>
+                <p class="content-paragraph">An Artificial Neural Network (ANN) is a computing system inspired by the biological neural networks that exist within the brain in order to solve complex tasks. An ANN is essentially a collection of artificial neurons connected together to form a network using links that imitate synapses in the brain A Spiking Neural Network (SNN) is a relatively new variety of ANNs that more closely resembles actual biological neural networks by incorporating the concept of time, with neurons transmitting information during neuron spike events rather than at each propagation cycle as is typically the case with ANNs. Due to this inherent event-driven nature, SNNs of- fer higher energy efficiency and a greater degree of parallelism in computations. However, it is the same event-driven nature that hinders the realisation of SNNs using general-purpose CPU and GPU hardware, and specialised hardware with native capabilities for simulating neuron spike events as well as hardware support for large-scale parallelism is required.</p>
+                <p class="content-paragraph">This is the primary motivation for the development of neuromorphic architectures. In the exploration of SNNs, various neuron models have been developed, ranging from biologically plausible models such as the Hodgkin-Huxley model to simplistic mod- els such as the integrate-and-fire model. Biophysically accurate models are prohibitively expensive in terms of the computational power required and it is difficult to simulate more than a handful of such neurons using currently available hardware. In contrast, simple models such as the integrate- and-fire model are computationally efficient but they are too simple and not realistic enough to imitate the rich spiking and bursting dynamics of natural neurons. Biologically- inspired models such as the Izhikevich model and the Fitzhugh-Nagumo model offer a compromise between the two extremes wherein the model is complex enough to sufficiently emulate the behaviour of natural neurons while also being computationally effective.</p>
+                      
+                <h3 class="section-h3">B. Neuromorphic Architecture Implementations</h3>
+                <p class="content-paragraph">Given that the development of neuromorphic architectures is an active area of research, there have been several proposed implementations with the intention of simulating and accelerating SNNs.The most prominent architecture is a massive multi-core processor network purpose-built for accelerating SNN workloads named SpiNNaker developed by the Advanced Processor Technologies Research Group (APT) at the Department of Computer Science, University of Manchester. The SpiNNaker system utilises a network of 57600 nodes with each node consisting of 18 ARM968 cores and it is being used as the neuromorphic computing platform for the Human Brain Project. It is implemented with a globally asynchronous locally synchronous (GALS) routing mechanism to allow for energy-efficient and scalable inter-node communications due to the sheer number of nodes. While SpiNNaker boasts impressively high performance and parallelism, it is an extremely expensive, large-scale project requiring 100 kW of power from a 240 V supply and an air-conditioned environment. DYNAP (Dynamic Neuromorphic Asynchronous Processor), by Moradi, S. et al., is yet another neuromorphic proces- sor architecture that boasts high scalability with heterogeneous memory structures for minimising memory utilisation. This design focuses primarily on the interconnect between the processor nodes and proposes a hierarchical routing mechanism for making the event-based communication much more efficient. DYNAPs have been demonstrated to achieve high scalability with minimal memory requirements in simulating a three-layer convolutional neural network. Further, the OpenSpike project by Modaresi, F. et al. and research by Zhang, J. et al. demonstrate the utilisation of Application-Specific Integrated Circuits (ASICs) in developing neuromorphic architectures. Both implementations adopt the leaky integrate-and-fire neuron model at the hardware level along with a network implementation to provide the interconnect between the hardware neurons through event-driven updates. Such ASIC implementations of artificial neurons offer excellent performance but lack the flexibility in programming and configuration offered by higher-level architectures.</p>
+                <p class="content-paragraph">Another approach to neuromorphic architectures is demon- strated by Urgese, G. et al. in the ODIN coprocessor for accelerating SNN workloads in Internet-of-Things (IoT) applications. The designed architecture consists of a reconfigurable neuromorphic coprocessor which interfaces with a RISC-V based System on Chip (SoC) via the Serial Peripheral Interface (SPI), allowing the RISC-V core to configure and offload SNN tasks to the ODIN coprocessor. ODIN supports the leaky integrate-and-fire model and a custom Izhikevich inspired neuron model.</p>
+                <p class="content-paragraph">The POETS (Partial Ordered Event Triggered Systems) architecture by Shahsavari, M. et al. [15] is another ongoing research project which focuses on building a customizable hardware platform for event-driven parallel programming. The POETS system is a large parallel processing cluster where the SNN is configured using a graph schema and it is capable of simulating both the leaky integrate-and-fire neuron model as well as the Izhikevich model. Part of the POETS project is the development of a hyperthreaded RISC-V core named Tinsel , by Naylor, M. et al., specifically designed to work in tandem with the POETS system to reduce latency. Although numerous such neuromorphic architectures exist, there is a lack of designs that exploit the programming flexibility and platform maturity of existing architectures. Granted that highly-specialised hardware as presented in existing designs deliver very high performance, the authors of this paper believe that a neuromorphic architecture based on the RISC- V architecture, which offers greater flexibility, will yield a valuable compromise.</p>
+              </div>
+            </div>
+
+            <!-- Methodology -->
+            <div class="project-overview" id="methodology">
+              <h2 class="project-subtopics">Methodology</h2>
+              <div class="section-content">
+                <p class="content-paragraph project-text-enhanced">The methodology followed for the project is as follows:</p>
+                <ul class="content-list">
+                  <li class="list-item">Build RISC-V Core</li>
+                  <li class="list-item">Add Custom Hardware</li>
+                  <li class="list-item">Implement NoC</li>
+                  <li class="list-item">Verification</li>
+                  <li class="list-item">Simulate an SNN</li>
+                  <li class="list-item">Evaluate Performance</li>
+                </ul>
+
+                <p class="content-paragraph project-text-enhanced">We start off with building a RISC-V core and adding custom hardware to handle SNN related calculations. All of this is implemented as a Network on Chip Architecture. Once this is achieved verification in both software and hardware are done to verify the operation of the implementation. This is followed by simulation of an SNN on the designed architecture which gets evaluated for performance.</p>
+                
+                <div class="project-image-small">
+                    <img src="./images/arch/method.png" 
+                        alt="Methodology Diagram">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">The Core</h3>
+                <p class="content-paragraph project-text-enhanced">The core built is started with RV32IMF core according to specification, which handles integer, multiplication and floating point operations needed for SNN simulation. An interrupt mechanism is used for the communication with the Network Interface connected to the core. Additional ISA Extensions are used for NoC operations and spike calculations.</p>
+                <div class="project-image-small">
+                    <img src="./images/arch/core.png" 
+                        alt="Core Architecture">
+                </div>
+
+
+                <h3 class="section-h3 project-heading-enhanced">The NoC</h3>
+                <p class="content-paragraph project-text-enhanced">The NoC is a 2D Mesh architecture where each core is connected to a router through a local port. Below image shows how a core is connected to a router.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-NoC.drawio.png" 
+                        alt="Network on Chip Architecture">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Network Interface</h3>
+                <p class="content-paragraph project-text-enhanced">The network interface module is the primary interface for the core to connect with the network. Here the network interface includes an AXI4-slave protocol for better handling in latency and bandwidth for the core communication and at the same time making it more of a general use protocol. To access the network interface from the core we use the custom instruction we define as SWNET and LWNET. Here LWNET is purely used by ISR where an interrupt occurs when read buffer is above threshold.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp_NI.drawio.png" 
+                        alt="Network Interface Architecture">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Packet Processing</h3>
+                <p class="content-paragraph project-text-enhanced">For packet processing we do flit handling where packets from the core gets made into flits and flits from network gets made into packets. This module is followed by asynchronous FIFO buffer. These are in place to handle the data passthrough between two different clock domains.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp-pkt_proc.drawio.png" 
+                        alt="Packet Processing">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Input Module</h3>
+                <p class="content-paragraph project-text-enhanced">Input Module to a router contains the input router which decides the routing per each flit. And the module also contains Virtual Channel buffers to enable deadlock freedom and resolve Head-of-Line blocking. The round robin arbiter chooses the channel to be used for flit input to the router.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp-input_module.drawio.png" 
+                        alt="Input Module">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Output Module</h3>
+                <p class="content-paragraph project-text-enhanced">Similar to the input module the output module has a set of Virtual Channels in this case more of a flow control mechanism. Here the round robin arbiter is used to output the data in the virtual channels away from the router.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp-output_module.drawio.png" 
+                        alt="Output Module Architecture">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Router</h3>
+                <p class="content-paragraph project-text-enhanced">The router itself is a huge crossbar switch where each input module is connected to each output module where the control signal is generated by the collection of input module round robin arbiter select.</p>
+                <div class="project-images-inline">
+                    <img src="./images/NOC/NoC-temp-router.drawio.png" 
+                        alt="Router Architecture"
+                        >
+                    <img src="./images/NOC/NoC-temp-router_crossbar.drawio.png" 
+                        alt="Router Crossbar">
+                </div>
+
+
+                <h3 class="section-h3 project-heading-enhanced">Custom Hardware - Neuron Banks</h3>
+                <p class="content-paragraph project-text-enhanced">The Neuron Banks are specialized custom hardware designed to handle the neuron update calculations away from CPU mediation. At start of operation Neuron configuration parameters are set by CPU to be used by the neurons. The CPU spike calculation inputs are taken into input buffer with Random number generated at that instance. These values are used in the neuron update calculation.</p>
+                <div class="project-image-small">
+                    <img src="./images/arch/bank.png" 
+                        alt="Neuron Banks Architecture">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Final Architecture</h3>
+                <p class="content-paragraph project-text-enhanced">The final architecture of the implementation is as follows where the NoC is responsible for the initialization and the spike calculation of the neurons. The Neuron bank section does the continuous neuron updates and the neuron reset after spike. Here note that each core gets allocated a section of the neuron banks to be used as its own. This defines the neuron mapping to CPUs.</p>
+                <div class="project-image-medium">
+                    <img src="./images/arch/arch.png" 
+                        alt="Final Architecture">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Verification</h3>
+                <h5 class="project-heading-enhanced h5">Software Simulation</h5>
+                <p class="content-paragraph project-text-enhanced">Verification in software is done using iverilog to verify the module outputs by writing testbenches for each module. Gtkwave is used to verify timing in the modules.</p>
+
+                <h5 class="project-heading-enhanced h5">Hardware Testing</h5>
+                <p class="content-paragraph project-text-enhanced">Hardware testing is done using the Terasic DE2-115 FPGA board. Here our implementation is loaded to run the experiments on it.</p>
+                <div class="project-image-small">
+                    <img src="./images/arch/hard.png" 
+                        alt="Hardware Testing Setup">
+                </div>
+
+                
+              </div>
+            </div>
+
+            <!-- Experiment Setup -->
+            <div class="project-overview" id="experiment-setup-and-implementation">
+              <h2 class="project-subtopics">Experiment Setup and Implementation</h2>
+              <div class="section-content">
+                <p class="content-paragraph project-text-enhanced">The experiments are conducted as follows:</p>
+                <ul class="content-list">
+                  <li class="list-item">Sample SNN with four neurons</li>
+                  <li class="list-item">Simulated on FPGA hardware</li>
+                  <li class="list-item">Three different configurations used (Single Core, Two Core NoC, Two Core NoC + Neuron Banks)</li>
+                  <li class="list-item">Measured clock cycles taken to execute 1s of simulation (1ms timesteps)</li>
+                </ul>
+
+                <p class="content-paragraph project-text-enhanced">The image represents 4 neuron fully connected network with weights. This is the network used for the following experiments in different configurations.</p>
+                <div class="project-image-small">
+                    <img src="./images/arch/neurons.png" 
+                        alt="4 Neuron Network">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Experiment I - Single Core</h3>
+                <p class="content-paragraph project-text-enhanced">Using a single core for the simulation of all the neurons.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp-1.drawio.png" 
+                        alt="Single Core Configuration">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Experiment II - 2 Core NoC</h3>
+                <p class="content-paragraph project-text-enhanced">Using two cores connected through the NoC where the 4 neurons are divided between the two cores as two each.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp_NI.drawio.png" 
+                        alt="2 Core NoC Configuration">
+                </div>
+
+                <h3 class="section-h3 project-heading-enhanced">Experiment III - 2 Core NoC + Neuron Banks</h3>
+                <p class="content-paragraph project-text-enhanced">Two cores are used as before but the neuron update calculation is offloaded to the neuron bank. Only the spike calculation and initialization is handled by the CPUs.</p>
+                <div class="project-image-small">
+                    <img src="./images/NOC/NoC-temp-2.drawio.png" 
+                        alt="2 Core NoC with Neuron Banks">
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="project-overview" id="results-and-analysis">
+              <h2 class="project-subtopics">Results and Analysis</h2>
+              <div class="section-content">
+                <p class="content-paragraph project-text-enhanced">The experimental results demonstrate the effectiveness of the proposed neuromorphic NoC architecture for SNN simulation. Performance improvements were observed with the multi-core NoC configuration and custom neuron banks.</p>
+                
+                <div class="project-image-medium">
+                    <img src="./images/arch/results.png" 
+                        alt="Experimental Results">
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section-contributes">
+        <div class="container">
+          <h2 class="project-subtopics contribute-header">
+            Team Members & Supervisors
+          </h2>
+        </div>
+
+        <div class="container grid grid--5--cols" id="project-contributors">
+          <!-- Contributors will be dynamically loaded here -->
+        </div>
+      </section>
+
+      <section class="section-github">
+        <div class="container">
+          <h2 class="project-subtopics contribute-header">
+            GitHub Repository
+          </h2>
+          <div class="git-repo-grid" id="project-github">
+            <div class="git-hub-repo">
+              <!-- GitHub Icon -->
+              <div class="github-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.55C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.7 3.75 17.415C3.33 17.19 2.73 16.605 3.735 16.59C4.68 16.575 5.355 17.49 5.58 17.85C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5807 20.2772 21.0497 21.7437 19.0074C23.2101 16.965 23.9993 14.5143 24 12C24 5.37 18.63 0 12 0Z"/>
+                </svg>
+              </div>
+              
+              <!-- Repository Button -->
+              <a href="https://github.com/PeraMorphIQ/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs" class="github-link" target="_blank">
+                VIEW REPOSITORY
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-1">
+          <a href="../../index.html" class="footer-logo" style="display: flex; align-items:center;">
+            <img src="../../img/pera_5.png" alt="" class="escal" />
+            <img src="../../img/peramorphiq_name.png" alt="" style="height: 6rem;">
+          </a>
+
+          <p class="footer-desc">
+            Advancing the frontiers of neural interface technology through
+            innovative research and collaboration
+          </p>
+
+          <ul class="social-links" style="display:none;">
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading">Get In Touch</p>
+          <address class="contacts">
+            <p class="address">
+              <img src="../../img/footer/location.png" alt="location" class="contact-icon"/>
+              Faculty of Engineering, University of Peradeniya,<br> Sri Lanka.
+            </p>
+            <p>
+              <img src="../../img/footer/phone-call.png" alt="location" class="contact-icon"/>
+              <a class="footer-link" href="tel:415-201-6370">+94 71 849 5506</a><br />
+              <img src="../../img/footer/mail.png" alt="location" class="contact-icon"/>
+              <a class="footer-link" href="mailto:peramorphiq@eng.pdn.ac.lk"
+                >peramorphiq@eng.pdn.ac.lk</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Quick Links</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="../../index.html#news">News</a></li>
+            <li><a class="footer-link" href="../../index.html#publications">Publication</a></li>
+            <li><a class="footer-link" href="../../index.html#blogs">Blog</a></li>
+            <li><a class="footer-link" href="../../index.html#projects">Projects</a></li>
+            <li><a class="footer-link" href="../../index.html#supervisors">People</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Other Websites</p>
+          <ul class="footer-nav">
+            <li>
+              <a
+                class="footer-link"
+                href="https://2yp-project-full-stack-web-site.vercel.app"
+                target="_blank"
+                >Admin Panel</a
+              >
+            </li>
+            <li>
+              <a
+                class="footer-link"
+                href="https://escal.ce.pdn.ac.lk"
+                target="_blank"
+                >ESCAL</a
+              >
+            </li>
+            <li>
+              <a
+                class="footer-link"
+                href="https://www.ce.pdn.ac.lk"
+                target="_blank"
+                >Peracom</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Research Area</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link">Hardware Accelerators</a></li>
+            <li>
+              <a class="footer-link">On-Chip learning</a>
+            </li>
+            <li>
+              <a class="footer-link">Embedded Al</a>
+            </li>
+            <li><a class="footer-link">Low Power Designs</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-line">
+        <p class="copyright">
+          Copyright &copy; 2027 PeraMorphIQ Neuromorphic Research Group. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <script type="module" src="../../js/reveal.js"></script>
+  <script type="module" src="../js/nav.js"></script>
+  <script type="module" src="./js/project_1.js"></script>
+
+</html>
