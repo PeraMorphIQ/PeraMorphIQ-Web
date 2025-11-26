@@ -19,5 +19,26 @@
     "description": "This project implements a neuromorphic architecture using parallel RISC-V processing elements to model spiking neurons, either individually or virtually grouped. It will also develop encoder and decoder modules to benchmark the system on classical machine learning tasks.",
     "topics": ["HARDWARE-ACCELERATION", "BRAIN-INSPRIRED"],
     "image": "" 
+  },
+  {
+    "_id": "project4",
+    "name": "Configurable Neuromorphic Accelerator for Embedded Applications",
+    "description": "This project focuses on developing a configurable neuromorphic accelerator tailored for small-scale, embedded applications. The goal is to establish an end-to-end workflow from software modelling to hardware implementation,  enabling real-time, energy-efficient neuromorphic computation within a complete System-on-Chip (SoC) platform.",
+    "topics": [ "Neuromorphic Computing", "Accelerator Design", "Embedded Systems"],
+    "image": "" 
+  },
+  {
+    "_id": "project5",
+    "name": "On-Chip Learning for Spiking Neural Networks",
+    "description":"This project explores enabling learning directly within neuromorphic hardware by implementing both online and offline learning mechanisms. The research focuses on hardware-based SNN learning algorithms and accelerator optimizations to bring adaptive intelligence closer to the chip.",
+    "topics":["Spiking Neural Networks", "On-Chip Learning", "Hardware Learning"],
+    "image":""
+  },
+  {
+    "_id": "project6",
+    "name": "Memory and Power Optimization in Neuromorphic Accelerators",
+    "description":"This project investigates memory and power optimization techniques for neuromorphic accelerators, addressing one of the key bottlenecks in modern neuromorphic hardware — distributed memory inefficiency and energy constraints.",
+    "topics":[ "Power Optimization", "Memory Architecture", "Neuromorphic Systems"],
+    "image":""
   }
 ]
