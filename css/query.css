@@ -746,6 +746,10 @@
     width: 2.6rem;
   }
 
+  .footer-logo {
+    justify-content: center;
+  }
+
 }
 
 /* ≤540px */
@@ -941,6 +945,10 @@
   }
 
   .social-links {
+    justify-content: center;
+  }
+
+  .footer-logo {
     justify-content: center;
   }
 

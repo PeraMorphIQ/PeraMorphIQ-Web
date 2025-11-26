@@ -43,8 +43,12 @@ if (mainNavList) {
 
 // Sticky navigation
 const hero = document.querySelector('.section-hero');
+const topPage = document.querySelector('.top-page');
 
-if (hero && header) {
+// Use either section-hero (main page) or top-page (project pages)
+const targetSection = hero || topPage;
+
+if (targetSection && header) {
     const navHeight = header.getBoundingClientRect().height;
 
     const stickyNav = function (entries) {
@@ -60,7 +64,7 @@ if (hero && header) {
         rootMargin: `-${navHeight}px`,
     });
 
-    headerObserver.observe(hero);
+    headerObserver.observe(targetSection);
 }
 
 
@@ -195,21 +199,39 @@ window.addEventListener("scroll", function() {
     if (!headerElement) return;
     
     const logo = headerElement.querySelector("img.escal");
-    const logo_name=headerElement.querySelector("img.escal_name");
+    const logoName = headerElement.querySelector("img.escal_name");
     if (!logo) return;
     
-    if (window.scrollY > 50) {
-        headerElement.style.backgroundColor ="rgba(255, 255, 255, 0.98)";
+    // Check if we're on main page or project page
+    const isMainPage = document.querySelector('.section-hero');
+    const isProjectPage = document.querySelector('.top-page');
+    
+    // Get the target section height for better scroll detection
+    const targetSection = isMainPage ? document.querySelector('.section-hero') : document.querySelector('.top-page');
+    const sectionHeight = targetSection ? targetSection.offsetHeight : 200;
+    const triggerPoint = Math.min(sectionHeight * 0.8, 150); // 80% of section height or 150px max
+    
+    if (window.scrollY > triggerPoint) {
+        headerElement.style.backgroundColor = "rgba(255, 255, 255, 0.98)";
         headerElement.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
-        logo.src = "./img/pera_5.png";
-        if (logo_name) logo_name.src = "./img/pera_4_1.png";
-        logo.style.height="7rem";
+        headerElement.style.backdropFilter = "blur(10px)";
+        
+        // Set appropriate logo paths based on page type
+        if (isMainPage) {
+            logo.src = "./img/pera_5.png";
+            if (logoName) logoName.src = "./img/pera_4_1.png";
+        } else if (isProjectPage) {
+            logo.src = "../../img/pera_5.png";
+            if (logoName) logoName.src = "../../img/pera_4_1.png";
+        }
+        logo.style.height = "6rem";
     } else {
         headerElement.style.backgroundColor = "transparent";
         headerElement.style.boxShadow = "none";
+        headerElement.style.backdropFilter = "none";
         logo.src = "";
-        if (logo_name) logo_name.src = "";
-        logo.style.height="7rem";
+        if (logoName) logoName.src = "";
+        logo.style.height = "7rem";
     }
 });
 
