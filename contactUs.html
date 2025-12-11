@@ -21,6 +21,8 @@
     <link href="css/general.css" rel="stylesheet" />
     <link href="css/query.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <title>PeraMorphIQ | Contact Us</title>
     <style>
         /* Contact Page Header Override */
@@ -513,6 +515,60 @@
                 font-size: 1.1rem;
             }
         }
+        
+        /* Notification animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .notification-icon {
+            font-size: 1.2rem;
+        }
+        
+        .notification-message {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .notification-close:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -614,15 +670,15 @@
                     <!-- Contact Form -->
                     <div class="contact-form">
                         <h2 class="form-title">Send us a Message</h2>
-                        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <form id="contact-form">
                             <div class="form-group">
-                                <label for="name" class="form-label">Full Name *</label>
-                                <input type="text" id="name" name="name" class="form-input" required>
+                                <label for="user_name" class="form-label">Full Name *</label>
+                                <input type="text" id="user_name" name="user_name" class="form-input" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
+                                <label for="user_email" class="form-label">Email Address *</label>
+                                <input type="email" id="user_email" name="user_email" class="form-input" required>
                             </div>
 
                             <div class="form-group">
@@ -640,7 +696,7 @@
                                 <textarea id="message" name="message" class="form-textarea" rows="6" required></textarea>
                             </div>
 
-                            <button type="submit" class="submit-btn">
+                            <button type="submit" id="submit-btn" class="submit-btn">
                                 Send Message
                             </button>
                         </form>
@@ -838,53 +894,113 @@
             headerObserver.observe(contactHero);
         });
         
-        // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Initialize EmailJS
+        (function(){
+            emailjs.init({
+                publicKey: "wCAPr3UyMoGUKj12M", 
+            });
+        })();
+
+        // Form submission with EmailJS
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            
-            // Show loading state
-            const submitBtn = document.querySelector('.submit-btn');
+            const submitBtn = document.getElementById('submit-btn');
             const originalText = submitBtn.textContent;
+            
+            // Update button state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
+            submitBtn.style.background = 'linear-gradient(135deg, #6c757d, #495057)';
             
-            // Submit form (replace with your actual form endpoint)
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success
+            // Send email using EmailJS
+            emailjs.sendForm('service_77hfq86', 'template_esgiqpo', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Success state
                     submitBtn.textContent = 'Message Sent!';
                     submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                    this.reset();
                     
+                    // Reset form
+                    document.getElementById('contact-form').reset();
+                    
+                    // Show success message
+                    showNotification('Message sent successfully! We will get back to you soon.', 'success');
+                    
+                    // Reset button after 3 seconds
                     setTimeout(() => {
                         submitBtn.textContent = originalText;
                         submitBtn.disabled = false;
                         submitBtn.style.background = '';
                     }, 3000);
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.textContent = 'Error - Try Again';
-                submitBtn.disabled = false;
-                
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                }, 3000);
-            });
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Error state
+                    submitBtn.textContent = 'Failed - Try Again';
+                    submitBtn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                    submitBtn.disabled = false;
+                    
+                    // Show error message
+                    showNotification('Failed to send message. Please try again or contact us directly.', 'error');
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.background = '';
+                    }, 3000);
+                });
         });
+        
+        // Notification system
+        function showNotification(message, type) {
+            // Remove any existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span class="notification-icon">
+                        ${type === 'success' ? '✅' : '❌'}
+                    </span>
+                    <span class="notification-message">${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
+                </div>
+            `;
+            
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                max-width: 400px;
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                animation: slideIn 0.3s ease;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #28a745, #20c997)' : 'linear-gradient(135deg, #dc3545, #c82333)'};
+                color: white;
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
         
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
