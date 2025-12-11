@@ -4,20 +4,6 @@
 
 A comprehensive web platform for the PeraMorphIQ Neuromorphic Research Group at the University of Peradeniya. This website showcases cutting-edge research in brain-inspired computing, neuromorphic hardware design, and spiking neural network architectures. The platform features dynamic content management, responsive design, and seamless integration with GitHub repositories to display research projects, publications, team members, and latest news in the field of neuromorphic computing.
 
-## Team Members
-1. E/21/XXX Student Name 1 [[email]](mailto:e21XXX@eng.pdn.ac.lk)
-2. E/21/XXX Student Name 2 [[email]](mailto:e21XXX@eng.pdn.ac.lk)
-3. E/21/XXX Student Name 3 [[email]](mailto:e21XXX@eng.pdn.ac.lk)
-
-## Supervisors
-1. Dr. Supervisor Name [[email]](mailto:supervisor@eng.pdn.ac.lk)
-2. Prof. Co-supervisor Name [[email]](mailto:cosupervisor@eng.pdn.ac.lk)
-
-## Links
-1. [Project Website](https://peramorphiq.github.io/PeraMorphIQ-Web/)
-2. [GitHub Organization](https://github.com/PeraMorphIQ)
-3. [Live Demo](https://peramorphiq.vercel.app)
-
 ## Features
 
 ### Core Functionality

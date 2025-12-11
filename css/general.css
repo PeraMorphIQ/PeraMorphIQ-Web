@@ -267,9 +267,9 @@ main {
 *********************************** */
 .footer{
     padding:6rem 0 3rem 0; 
-    border-top:2px solid #1e234fff;
-    background-color: #9fa2a3ff;
-    color: #273747ff;
+    border-top: 1px solid rgba(184, 188, 193, 0.2);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #b8bcc1;
 }
 
 .footer-grid{
@@ -306,15 +306,15 @@ main {
 
 .social-icon:hover {
   transform: scale(1.2);
-  color: #1e3e75;
+  color: #87cbe4;
 }
 
 .footer-heading {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: rgba(52, 87, 136, 0.91);
-  border-left: 4px solid rgba(52, 87, 136, 0.91);
+  color: #87cbe4;
+  border-left: 4px solid #87cbe4;
   padding-left: 0.6rem;
 }
 
@@ -330,13 +330,13 @@ main {
 .footer-link:visited {
   text-decoration: none;
   font-size: 1.6rem;
-  color:rgba(48, 66, 92, 0.91);
+  color: #b8bcc1;
   transition: all 0.3s ease;
 }
 
 .footer-link:hover,
 .footer-link:active {
-  color:rgba(58, 90, 138, 0.91);
+  color: #87cbe4;
 }
 
 .address {
@@ -359,7 +359,7 @@ main {
 
 .footer-line{
     text-align:center;
-    border-top:1px solid  #1e234fff;
+    border-top:1px solid  #375677ff;
     margin-top-2rem; 
     padding-top:2rem;
 
@@ -368,7 +368,7 @@ main {
 .copyright {
   font-size: 1.4rem;
   line-height: 1.6;
-  color:rgba(31, 47, 69, 0.91);
+  color:rgba(171, 203, 246, 0.91);
 }
 
 
