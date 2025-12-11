@@ -15,7 +15,8 @@
         { "eNumber": "E/20/346"},
         { "eNumber": "E/20/024"},
         { "eNumber": "E/20/242"},
-        { "eNumber": "E/20/034"}
+        { "eNumber": "E/20/034"},
+        { "eNumber": "E/20/419"}
 
       ],
 
@@ -31,8 +32,8 @@
 
       ],
       "supervisors": [
-        {"email": "roshanr@eng.pdn.ac.lk","name": "Prof. Roshan G. Ragel", "profile_page":"https://people.ce.pdn.ac.lk/staff/academic/roshan-ragel"},
-        {"email":"isurunawinne@eng.pdn.ac.lk","name":"Dr. Isuru Nawinne","profile_page":"https://people.ce.pdn.ac.lk/staff/academic/isuru-nawinne"}
+        {"email":"isurunawinne@eng.pdn.ac.lk","name":"Dr. Isuru Nawinne","profile_page":"https://people.ce.pdn.ac.lk/staff/academic/isuru-nawinne"},
+        {"email": "roshanr@eng.pdn.ac.lk","name": "Prof. Roshan G. Ragel", "profile_page":"https://people.ce.pdn.ac.lk/staff/academic/roshan-ragel"}
       ]    
     }
 
