@@ -150,7 +150,6 @@ if (logoElement) {
 
 const nav = document.querySelector(".main-nav");
 
-// Note: btnNav event listener already added above
 
 
 
@@ -229,9 +228,15 @@ window.addEventListener("scroll", function() {
         headerElement.style.backgroundColor = "transparent";
         headerElement.style.boxShadow = "none";
         headerElement.style.backdropFilter = "none";
-        logo.src = "";
-        if (logoName) logoName.src = "";
-        logo.style.height = "7rem";
+        
+        // Set appropriate loo paths based on page type for transparent state too
+        if (isMainPage) {
+            logo.src = "";
+            if (logoName) logoName.src = "";
+        } else if (isProjectPage) {
+            logo.src = "";
+            if (logoName) logoName.src = "";
+        }
     }
 });
 
