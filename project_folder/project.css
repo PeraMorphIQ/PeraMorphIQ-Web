@@ -12,14 +12,16 @@
     url("./img/hero1.avif");
   background-size: cover;
   background-position: center;
+  padding-top: 8rem;
 }
 
 .project-header {
-  height: 35vh;
+  min-height: 35vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3rem 0;
 }
 
 .project-container {

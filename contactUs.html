@@ -328,28 +328,46 @@
         
         /* Mobile Navigation Styles */
         .btn-mobile-nav {
-            border: none;
-            background: none;
-            cursor: pointer;
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 4.8rem;
+            height: 4.8rem;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 4.8rem;
-            height: 4.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10002;
+            gap: 0.4rem;
         }
         
         .hamburger-line {
+            display: block;
             width: 2.5rem;
-            height: 0.2rem;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-            margin: 0.3rem 0;
+            height: 0.3rem;
+            background-color: #707e93ff;
+            border-radius: 2px;
+            transition: all 0.4s ease;
         }
         
         .header.sticky .hamburger-line {
-            background-color: #333;
+            background-color: #707e93ff;
+        }
+        
+        /* Mobile Navigation Animation */
+        .nav-open .line1 {
+            transform: rotate(45deg) translate(0.6rem, 0.6rem);
+        }
+
+        .nav-open .line2 {
+            opacity: 0;
+        }
+
+        .nav-open .line3 {
+            transform: rotate(-45deg) translate(0.6rem, -0.6rem);
         }
         
         /* Responsive Design */
@@ -369,8 +387,63 @@
                 display: flex;
             }
             
+            /* Main nav overlay */
             .main-nav {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(8px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.5s ease, opacity 0.5s ease;
+                opacity: 0;
+                pointer-events: none;
+                z-index: 999;
+            }
+
+            /* Open menu */
+            .nav-open .main-nav {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Menu items */
+            .main-nav-list {
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .main-nav-list li {
+                font-size: 3rem;
+                margin: 2rem 0;
+                color: #fff;
+                opacity: 0;
+                transform: scale(0.8);
+                animation: menuItemIn 0.5s forwards;
+            }
+
+            /* Staggered animation */
+            .nav-open .main-nav-list li:nth-child(1) { animation-delay: 0.1s; }
+            .nav-open .main-nav-list li:nth-child(2) { animation-delay: 0.2s; }
+            .nav-open .main-nav-list li:nth-child(3) { animation-delay: 0.3s; }
+            .nav-open .main-nav-list li:nth-child(4) { animation-delay: 0.4s; }
+            .nav-open .main-nav-list li:nth-child(5) { animation-delay: 0.5s; }
+            .nav-open .main-nav-list li:nth-child(6) { animation-delay: 0.6s; }
+            .nav-open .main-nav-list li:nth-child(7) { animation-delay: 0.7s; }
+
+            @keyframes menuItemIn {
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
             }
             
             .contact-title {
@@ -579,10 +652,10 @@
 <body>
     <div class="landing-page-contactUs">
         <!-- Header -->
-        <header class="header">
-            <a href="index.html" style="display: flex; align-items:center;">
-                <img src="./img/pera_5.png" alt="" class="escal" />
-                <img src="./img/peramorphiq_name.png" alt="" style="height: 5rem;">
+        <header class="header sticky" style="background-color: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px);">
+            <a href="index.html" style="display: flex; align-items:center;  text-decoration: none; ">
+                <img src="./img/title/image3.png" style="height:5rem;" alt="" class="escal" />
+                <span style="font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 700; color: #2c3e50;" class="logoName">PeraMorphIQ</span>
             </a>
             <button class="btn-mobile-nav" aria-label="Toggle menu">
                 <span class="hamburger-line line1"></span>
@@ -591,14 +664,14 @@
             </button>
 
             <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li><a class="main-nav-link" href="index.html#about">ABOUT</a></li>
-                    <li><a class="main-nav-link" href="index.html#news">NEWS</a></li>
-                    <li><a class="main-nav-link" href="index.html#publications">PUBLICATIONS</a></li>
-                    <li><a class="main-nav-link" href="index.html#blogs">BLOGS</a></li>
-                    <li><a class="main-nav-link nav-cta" href="index.html#projects">PROJECTS</a></li>
-                    <li><a class="main-nav-link nav-cta" href="index.html#supervisors">PEOPLE</a></li>
-                    <li><a class="main-nav-link nav-cta" href="contactUs.html">CONTACT</a></li>
+                <ul class="main-nav-list" style="font-family: 'Poppins', sans-serif;">
+                    <li><a class="main-nav-link" href="index.html#about">About</a></li>
+                    <li><a class="main-nav-link" href="index.html#news">News</a></li>
+                    <li><a class="main-nav-link" href="index.html#publications">Publications</a></li>
+                    <li><a class="main-nav-link" href="index.html#blogs">Blogs</a></li>
+                    <li><a class="main-nav-link nav-cta" href="index.html#projects">Projects</a></li>
+                    <li><a class="main-nav-link nav-cta" href="index.html#supervisors">People</a></li>
+                    <li><a class="main-nav-link nav-cta" href="contactUs.html">Contact</a></li>
                 </ul>
                 <span class="nav-indicator"></span>
             </nav>
@@ -745,8 +818,8 @@
       <div class="container footer-grid">
         <div class="footer-1">
           <a href="#" class="footer-logo" style="display: flex; align-items:center;">
-            <img src="./img/pera_5.png" alt="" class="escal" />
-            <img src="./img/peramorphiq_name.png" alt="" style="height: 6rem;">
+            <img src="./img/title/image3.png" alt="" class="escal" />
+            <img src="./img/partners/pera_11.png" alt="" style="height: 6rem;">
           </a>
 
           <p class="footer-desc">
@@ -851,41 +924,6 @@
     <script src="./js/nav.js"></script>
     
     <script>
-        // Contact page specific navigation behavior
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.querySelector('.header');
-            const contactHero = document.querySelector('.contact-hero');
-            const logo = document.querySelector('.escal');
-            
-            if (!contactHero || !header) return;
-            
-            const navHeight = header.getBoundingClientRect().height;
-            
-            const stickyNav = function (entries) {
-                const [entry] = entries;
-                
-                if (!entry.isIntersecting) {
-                    header.classList.add('sticky');
-                    if (logo) {
-                        logo.style.height = '3.2rem';
-                    }
-                } else {
-                    header.classList.remove('sticky');
-                    if (logo) {
-                        logo.style.height = '';
-                    }
-                }
-            };
-            
-            const headerObserver = new IntersectionObserver(stickyNav, {
-                root: null,
-                threshold: 0,
-                rootMargin: `-${navHeight}px`,
-            });
-            
-            headerObserver.observe(contactHero);
-        });
-        
         // Initialize EmailJS
         (function(){
             emailjs.init({

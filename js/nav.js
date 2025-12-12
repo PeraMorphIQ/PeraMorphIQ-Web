@@ -41,14 +41,10 @@ if (mainNavList) {
 }
 
 
-// Sticky navigation
+// Sticky navigation - only for main page
 const hero = document.querySelector('.section-hero');
-const topPage = document.querySelector('.top-page');
 
-// Use either section-hero (main page) or top-page (project pages)
-const targetSection = hero || topPage;
-
-if (targetSection && header) {
+if (hero && header) {
     const navHeight = header.getBoundingClientRect().height;
 
     const stickyNav = function (entries) {
@@ -64,7 +60,7 @@ if (targetSection && header) {
         rootMargin: `-${navHeight}px`,
     });
 
-    headerObserver.observe(targetSection);
+    headerObserver.observe(hero);
 }
 
 
@@ -192,51 +188,45 @@ if (allSections.length > 0) {
 
 
 
-// Header scroll effect
+// Header scroll effect - only for main page
 window.addEventListener("scroll", function() {
     const headerElement = document.querySelector(".header");
     if (!headerElement) return;
-    
     const logo = headerElement.querySelector("img.escal");
-    const logoName = headerElement.querySelector("img.escal_name");
+    const logoName = headerElement.querySelector(".logoName");
     if (!logo) return;
     
-    // Check if we're on main page or project page
+    // Check if we're on main page
     const isMainPage = document.querySelector('.section-hero');
-    const isProjectPage = document.querySelector('.top-page');
+    
+    // Only apply scroll effect on main page
+    if (!isMainPage) return;
     
     // Get the target section height for better scroll detection
-    const targetSection = isMainPage ? document.querySelector('.section-hero') : document.querySelector('.top-page');
-    const sectionHeight = targetSection ? targetSection.offsetHeight : 200;
-    const triggerPoint = Math.min(sectionHeight * 0.8, 150); // 80% of section height or 150px max
+    const sectionHeight = document.querySelector('.section-hero').offsetHeight;
+    const triggerPoint = Math.min(sectionHeight * 0.8, 150);
     
     if (window.scrollY > triggerPoint) {
         headerElement.style.backgroundColor = "rgba(255, 255, 255, 0.98)";
         headerElement.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
         headerElement.style.backdropFilter = "blur(10px)";
         
-        // Set appropriate logo paths based on page type
-        if (isMainPage) {
-            logo.src = "./img/pera_5.png";
-            if (logoName) logoName.src = "./img/pera_4_1.png";
-        } else if (isProjectPage) {
-            logo.src = "../../img/pera_5.png";
-            if (logoName) logoName.src = "../../img/pera_4_1.png";
+        logo.src = "./img/title/image3.png";
+        if (logoName) {
+            logoName.style.display = "inline";
+            logoName.style.color = "#2c3e50";
         }
-        logo.style.height = "6rem";
+        logo.style.height = "5rem";
     } else {
         headerElement.style.backgroundColor = "transparent";
         headerElement.style.boxShadow = "none";
         headerElement.style.backdropFilter = "none";
         
-        // Set appropriate loo paths based on page type for transparent state too
-        if (isMainPage) {
-            logo.src = "";
-            if (logoName) logoName.src = "";
-        } else if (isProjectPage) {
-            logo.src = "";
-            if (logoName) logoName.src = "";
+        logo.src = "";
+        if (logoName) {
+            logoName.style.display = "none";
         }
+        logo.style.height = "5rem";
     }
 });
 
