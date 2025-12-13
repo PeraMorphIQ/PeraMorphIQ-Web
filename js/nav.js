@@ -222,11 +222,12 @@ window.addEventListener("scroll", function() {
         headerElement.style.boxShadow = "none";
         headerElement.style.backdropFilter = "none";
         
-        logo.src = "";
+        logo.src = "./img/title/image3.png";
         if (logoName) {
-            logoName.style.display = "none";
+            logoName.style.display = "inline";
+            logoName.style.color="#7e95adff";
         }
-        logo.style.height = "5rem";
+        logo.style.height = "4rem";
     }
 });
 

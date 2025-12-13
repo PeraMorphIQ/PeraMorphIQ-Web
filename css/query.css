@@ -960,3 +960,134 @@
   }
 
 }
+
+/* ≤400px - Extra Small Mobile */
+@media (max-width: 400px) {
+  /* Hero section */
+  .hero-main--header {
+    font-size: 2.8rem;
+  }
+
+  .hero-brand-name {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .hero-location {
+    font-size: 1.2rem;
+    min-height: 1em;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .partners-container {
+    gap: 0.6rem;
+  }
+
+  .logo-img {
+    height: 2rem;
+  }
+
+  .hero-btn {
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+  }
+
+  /* Header */
+  .header {
+    padding: 0 1.5rem;
+  }
+
+  .escal{
+    height:6rem;
+  }
+
+  /* About section */
+  .about-description {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  .section-about {
+    padding: 4rem 0;
+  }
+
+  /* News section */
+  .section-news {
+    padding: 4rem 0;
+  }
+
+  .main-news {
+    gap: 1.5rem;
+  }
+
+  .news-heading {
+    font-size: 1.5rem;
+  }
+
+  .news-brief-desc {
+    font-size: 1.2rem;
+  }
+
+  /* Projects section */
+  .section-projects {
+    padding: 4rem 0;
+  }
+
+  .project-topics {
+    font-size: 1.5rem;
+  }
+
+  .project-detials {
+    font-size: 1.2rem;
+  }
+
+  .tag {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* Publications section */
+  .section-publications {
+    padding: 4rem 0;
+  }
+
+  .pub-title {
+    font-size: 1.4rem;
+  }
+
+  .pub-journal {
+    font-size: 1.1rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 4rem 0 2rem 0;
+  }
+
+  .footer-desc,
+  .contacts,
+  .footer-link {
+    font-size: 1.2rem;
+  }
+
+  .copyright {
+    font-size: 1.1rem;
+  }
+
+  /* Container */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Subheading */
+  .subheading {
+    font-size: 1.8rem;
+  }
+}
