@@ -4,7 +4,9 @@
       "Graduate Researchers": [
         { "eNumber": "E/19/129"},
         { "eNumber": "E/19/275"},
-        { "eNumber": "E/19/309"}
+        { "eNumber": "E/19/309"},
+        { "eNumber": "E/18/379"},
+        { "eNumber": "E/18/147"}
       ],
 
       "Undergraduate Researchs":[
@@ -21,8 +23,6 @@
       ],
 
       "Alumni Researchers":[
-        { "eNumber": "E/18/379"},
-        { "eNumber": "E/18/147"},
         { "eNumber": "E/17/018"},
         { "eNumber": "E/17/154"},
         { "eNumber": "E/17/286"},
