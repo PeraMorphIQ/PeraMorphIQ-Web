@@ -2,11 +2,11 @@
   "data": [
     {
       "Graduate Researchers": [
-        { "eNumber": "E/19/129"},
-        { "eNumber": "E/19/275"},
-        { "eNumber": "E/19/309"},
-        { "eNumber": "E/18/379"},
-        { "eNumber": "E/18/147"}
+        { "eNumber": "E/19/129", "current": "TA @ UOP"},
+        { "eNumber": "E/19/275", "current": "TA @ UOP"},
+        { "eNumber": "E/19/309", "current": "Software Engineer"},
+        { "eNumber": "E/18/379", "current": "PhD Student @ UMD"},
+        { "eNumber": "E/18/147", "current": "PhD Student @ JHU"}
       ],
 
       "Undergraduate Researchs":[
@@ -23,12 +23,11 @@
       ],
 
       "Alumni Researchers":[
-        { "eNumber": "E/17/018"},
-        { "eNumber": "E/17/154"},
-        { "eNumber": "E/17/286"},
-        { "eNumber": "E/16/088"},
-        { "eNumber": "E/16/276"},
-        { "eNumber": "E/16/366"}
+        { "eNumber": "E/17/018","current": "Engineer @ ARM"},
+        { "eNumber": "E/17/154","current": "PhD Student @ UMD"},
+        { "eNumber": "E/16/088","current": "PhD Student @ USYD"},
+        { "eNumber": "E/16/276","current": "PhD Student @ NYU"},
+        { "eNumber": "E/16/366","current": "Engineer @ ARM"}
 
       ],
       "supervisors": [

@@ -55,6 +55,7 @@ export async function fetchTeamMembers(allTeamMembers) {
                     image: json.profile_image || '',
                     name: json.name_with_initials,
                     position: 'Student',
+                    current_affiliation: member.current || json.current_affiliation || json.current_position || json.current_status || '',
                     eNumber: member.eNumber,
                     urls:json.urls || {},
                     profile_page: buildProfilePage(member.eNumber)
@@ -67,6 +68,7 @@ export async function fetchTeamMembers(allTeamMembers) {
                     image: '',
                     name: member.name || member.eNumber,
                     position: 'Student',
+                    current_affiliation: member.current || '',
                     eNumber: member.eNumber
                 };
             }

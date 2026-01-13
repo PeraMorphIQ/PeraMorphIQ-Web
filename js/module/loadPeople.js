@@ -52,7 +52,7 @@ export async function loadPeoples(undergraduateSelector, supervisorSelector, gra
                         <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
                         <div class="contributor-text">
                             <p class="contributor-name">${member.name}</p>
-                            <p class="contributor-batch">${member.position}</p>
+                            <p class="contributor-batch">${member.current_affiliation || member.position}</p>
                             ${member.profile_page ? `<a class="profile-btn" href="${member.profile_page}" target="_blank" rel="noopener">Profile</a>` : `<button class="profile-btn disabled" disabled>Profile</button>`}
                         </div>
                     </div>
@@ -70,7 +70,7 @@ export async function loadPeoples(undergraduateSelector, supervisorSelector, gra
                         <img src="${member.image || './img/default.jpg'}" alt="${member.name}" class="contributor-img" />
                         <div class="contributor-text">
                             <p class="contributor-name">${member.name}</p>
-                            <p class="contributor-batch">${member.position}</p>
+                            <p class="contributor-batch">${member.current_affiliation || member.position}</p>
                             ${member.profile_page ? `<a class="profile-btn" href="${member.profile_page}" target="_blank" rel="noopener">Profile</a>` : `<button class="profile-btn disabled" disabled>Profile</button>`}
                         </div>
                     </div>
