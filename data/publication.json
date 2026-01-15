@@ -3,11 +3,11 @@
     {
       "title": "Neuromorphic Architectures for Edge-Oriented Spiking Neural Networks: A Review",
       "authors": [
-        { "name": "Roshan Ragel"},
-        { "name": "Isuru Nawinne" },
         { "name": "Kanishka Gunawardana" },
+        { "name": "Kavishka Rambukwella" },
         { "name": "Sanka Peeris" },
-        { "name": "Kavishka Rambukwella" }
+        { "name": "Roshan Ragel"},
+        { "name": "Isuru Nawinne" }
       ],
       "preprint" : "SSRN",
       "year": 2025,
