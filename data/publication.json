@@ -28,6 +28,23 @@
       "year": 2024,
       "doi": "10.1109/ICIIS58898.2023.10253607",
       "link": " https://doi.org/10.1109/ICIIS58898.2023.10253607"
+    },
+
+    {
+      "title": "SNAP-V: A RISC-V SoC with Configurable Neuromorphic Acceleration for Small-Scale Spiking Neural Networks",
+      "authors": [
+        { "name": "Kanishka Gunawardana" },
+        { "name": "Sanka Peeris" },
+        { "name": "Kavishka Rambukwella" },
+        { "name": "Thamish Wanduragala" },
+        { "name": "Saadia Jameel" },
+        { "name": "Roshan Ragel" },
+        { "name": "Isuru Nawinne" }
+      ],
+      "preprint": "arxiv",
+      "year": 2026,
+      "doi": "https://doi.org/10.48550/arXiv.2603.11939",
+      "link": "https://arxiv.org/abs/2603.11939"
     }
   ]
 }
