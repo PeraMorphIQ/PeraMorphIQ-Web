@@ -86,7 +86,14 @@ export async function fetchSupervisors(supervisors = []) {
 
   return Promise.all(
     supervisors.map(async (supervisor) => {
-      const tag = String(supervisor.email || '').split('@')[0];
+      const email = String(supervisor.email || '');
+      const tag = email.split('@')[0];
+      const domain = email.split('@')[1] || '';
+
+      // The CE staff directory only holds Computer Engineering staff. Querying
+      // it for a co-supervisor from another department (e.g. @ee.pdn.ac.lk)
+      // can only ever 404, so use the supplied details directly instead.
+      const inCeDirectory = domain === 'eng.pdn.ac.lk';
 
       const fallback = {
         image: '',
@@ -94,11 +101,14 @@ export async function fetchSupervisors(supervisors = []) {
         position: 'Academic staff',
         email: supervisor.email,
         urls: {},
+        // Only guess a CE profile URL for CE staff; for anyone else an
+        // unverified people.ce.pdn.ac.lk link would simply 404.
         profile_page:
-          supervisor.profile_page || `https://people.ce.pdn.ac.lk/staff/${tag}/`
+          supervisor.profile_page ||
+          (inCeDirectory ? `https://people.ce.pdn.ac.lk/staff/${tag}/` : '')
       };
 
-      if (!tag) return fallback;
+      if (!tag || !inCeDirectory) return fallback;
 
       try {
         const res = await fetch(`${STAFF_API}/${tag}/`);
