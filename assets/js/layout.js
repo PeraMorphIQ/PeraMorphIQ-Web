@@ -33,6 +33,9 @@ const CONTACT_EMAIL = 'peramorphiq@eng.pdn.ac.lk';
 const CONTACT_PHONE_DISPLAY = '+94 71 849 5506';
 const CONTACT_PHONE_HREF = '+94718495506';
 const GITHUB_URL = 'https://github.com/PeraMorphIQ';
+const ESCAL_URL = 'https://escal.ce.pdn.ac.lk/';
+// No public PeraCom site is known; leave empty and the mark renders unlinked.
+const PERACOM_URL = '';
 const DEPT_URL = 'https://www.ce.pdn.ac.lk/';
 
 function headerHTML(active) {
@@ -44,10 +47,27 @@ function headerHTML(active) {
   return `
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="brand" href="${asset('index.html')}">
-          <img class="brand__mark" src="${asset('assets/img/title/image3.png')}" alt="" width="32" height="32" />
-          <span class="wordmark">PeraMorphIQ</span>
-        </a>
+        <div class="brand-lockup">
+          <a class="brand" href="${asset('index.html')}">
+            <img class="brand__mark" src="${asset('assets/img/title/image3.png')}" alt="" width="32" height="32" />
+            <span class="wordmark">PeraMorphIQ</span>
+          </a>
+
+          <!-- PeraMorphIQ sits under ESCAL and PeraCom; the header states that. -->
+          <span class="brand-lockup__rule" aria-hidden="true"></span>
+          <ul class="parent-orgs">
+            <li>
+              <a href="${ESCAL_URL}" rel="noopener"
+                 title="ESCAL - Embedded Systems and Computer Architecture Laboratory">
+                <img src="${asset('assets/img/partners/logo-2.png')}"
+                     alt="ESCAL - Embedded Systems and Computer Architecture Laboratory" />
+              </a>
+            </li>
+            <li title="PeraCom">
+              <img src="${asset('assets/img/partners/peracomlogo.png')}" alt="PeraCom" />
+            </li>
+          </ul>
+        </div>
 
         <button class="nav-toggle" type="button" aria-label="Open menu"
                 aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
@@ -71,17 +91,6 @@ function footerHTML() {
   const year = new Date().getFullYear();
 
   return `
-    <div class="partner-strip">
-      <div class="container">
-        <p class="partner-strip__label">Affiliated with</p>
-        <ul class="partner-strip__list">
-          <li><img src="${asset('assets/img/partners/logo-2.png')}"
-                   alt="ESCAL — Embedded Systems and Computer Architecture Laboratory" /></li>
-          <li><img src="${asset('assets/img/partners/peracomlogo.png')}" alt="PeraCom" /></li>
-        </ul>
-      </div>
-    </div>
-
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
@@ -89,7 +98,7 @@ function footerHTML() {
             <span class="wordmark">PeraMorphIQ</span>
             <p class="site-footer__tagline">
               Neuromorphic computing research at the Department of Computer
-              Engineering, University of Peradeniya — brain-inspired hardware
+              Engineering, University of Peradeniya. Brain-inspired hardware
               for energy-efficient intelligence at the edge.
             </p>
           </div>
@@ -151,7 +160,7 @@ function initNav() {
 
   toggle.addEventListener('click', () => setOpen(!isOpen()));
 
-  // The old site never closed the drawer — you tapped a link and the overlay
+  // The old site never closed the drawer - you tapped a link and the overlay
   // stayed up over the destination. All three of these fix that.
   nav.addEventListener('click', (e) => {
     if (e.target.closest('a')) setOpen(false);

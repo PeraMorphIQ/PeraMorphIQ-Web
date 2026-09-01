@@ -32,7 +32,7 @@
           "heading": "Overview",
           "body": [
             "This project focuses on developing a configurable neuromorphic accelerator tailored for small-scale, embedded applications. The goal is to establish an end-to-end workflow from software modelling to hardware implementation, enabling real-time, energy-efficient neuromorphic computation within a complete System-on-Chip (SoC) platform.",
-            "Rather than scaling up towards the very large neuromorphic systems that dominate the field, the design deliberately targets the small-network regime where most embedded and edge workloads actually sit — and where large-scale architectures waste both area and power."
+            "Rather than scaling up towards the very large neuromorphic systems that dominate the field, the design deliberately targets the small-network regime where most embedded and edge workloads actually sit, and where large-scale architectures waste both area and power."
           ]
         },
         {
@@ -54,7 +54,7 @@
       "endYear": null,
       "cohort": "E20 Final Year Project",
       "featured": true,
-      "summary": "Bringing adaptation into the hardware itself — online and offline learning mechanisms implemented directly on neuromorphic silicon.",
+      "summary": "Bringing adaptation into the hardware itself: online and offline learning mechanisms implemented directly on neuromorphic silicon.",
       "topics": [
         "Spiking Neural Networks",
         "On-Chip Learning",
@@ -116,7 +116,7 @@
         {
           "heading": "Overview",
           "body": [
-            "This project investigates memory and power optimization techniques for neuromorphic accelerators, addressing one of the key bottlenecks in modern neuromorphic hardware — distributed memory inefficiency and energy constraints.",
+            "This project investigates memory and power optimization techniques for neuromorphic accelerators, addressing one of the key bottlenecks in modern neuromorphic hardware: distributed memory inefficiency and energy constraints.",
             "In practice, a large share of the energy in a neuromorphic accelerator is spent not on computing neuron updates but on fetching and writing back synaptic state. The work targets that traffic directly, through memory organisation and access scheduling rather than through changes to the neuron model."
           ]
         }
@@ -166,7 +166,7 @@
           "body": [
             "Spiking neural networks fall in the category of artificial neural networks, and represent a newer variant considered to be a third-generation neural network. They resemble the activities of the brain more closely by incorporating time, transmitting spikes as events throughout the network. When a synapse receives an action potential from one of its pre-synaptic neurons, it transmits the spike to its post-synaptic neurons, updating the membrane potential according to the synaptic weight and other neuron parameters.",
             "Intel's Loihi adopts a variation of the CUBA leaky-integrate-and-fire model, featuring a manycore mesh of 128 neuromorphic cores connected by an asynchronous NoC that transports all communication as packetized messages. Each core implements 1,024 spiking neural units sharing configuration and state across ten architectural memories.",
-            "The OpenSpike project and related ASIC work demonstrate application-specific implementations of the leaky integrate-and-fire model with time-multiplexed accelerator designs. SpiNNaker, by contrast, focuses on scale — simulating aggregates of up to a billion neurons in real time using nodes of 18 ARM968 cores each with 128 MB of off-die SDRAM."
+            "The OpenSpike project and related ASIC work demonstrate application-specific implementations of the leaky integrate-and-fire model with time-multiplexed accelerator designs. SpiNNaker, by contrast, focuses on scale, simulating aggregates of up to a billion neurons in real time using nodes of 18 ARM968 cores each with 128 MB of off-die SDRAM."
           ]
         },
         {
@@ -189,7 +189,7 @@
         {
           "heading": "Experiment setup and implementation",
           "body": [
-            "Once the architecture was completed and verified in simulation, it was implemented on an FPGA device — specifically the Altera DE2-115. A small-scale SNN was then tested on the device to confirm the implementation.",
+            "Once the architecture was completed and verified in simulation, it was implemented on an FPGA device, specifically the Altera DE2-115. A small-scale SNN was then tested on the device to confirm the implementation.",
             "The number of neurons the design can simulate was restricted to 1,024, chosen to support that count efficiently in both power and time. An SNN with 994 neurons was successfully simulated on the design for MNIST classification.",
             "An architectural experiment was conducted to quantify the benefit of using multiple FIFO buffers at the output side of the neuron interconnect. The objective was to observe the difference in operating frequency between a single shared FIFO buffer and dedicated FIFO buffers from the neuron interconnect to the neurons, which established the right balance between resource usage and time efficiency."
           ],
@@ -266,7 +266,7 @@
             "Neuromorphic engineering endeavours to emulate the intricate functioning of the human brain through very large-scale integrated (VLSI) circuits. These architectures employ artificial neurons and synapses to replicate the characteristics of the brain, including its exceptional parallelism, rapid processing and energy efficiency, achieved by virtue of a densely interconnected neural network and its event-driven nature.",
             "This work presents a Network-on-Chip (NoC) architecture based on the RISC-V instruction set architecture which allows for hardware-level processing of spiking neural networks, implemented and evaluated on an FPGA. RISC-V was chosen as the base ISA since it is highly practical and popular, completely open source, and amenable to custom extensions.",
             "The design consists of customised RISC-V processing nodes interconnected using a network interface attached to each node, together with a routing framework to negotiate communication between nodes. Each processing node manages one or more neurons, and the architecture adopts an event-driven messaging mechanism to emulate neuron activity.",
-            "The primary objective is to demonstrate how a general-purpose ISA such as RISC-V can be augmented to perform a highly specialised task — the simulation of spiking neural networks in a scalable and configurable manner — whilst maintaining adherence to the original specifications of the ISA."
+            "The primary objective is to demonstrate how a general-purpose ISA such as RISC-V can be augmented to perform a highly specialised task (the simulation of spiking neural networks in a scalable and configurable manner) whilst maintaining adherence to the original specifications of the ISA."
           ]
         },
         {
@@ -350,7 +350,7 @@
           ]
         },
         {
-          "heading": "Custom hardware — neuron banks",
+          "heading": "Custom hardware: neuron banks",
           "body": [
             "The neuron banks are specialised custom hardware designed to handle neuron update calculations away from CPU mediation. At the start of operation, neuron configuration parameters are set by the CPU. Spike calculation inputs are taken into an input buffer together with a random number generated at that instant, and these values are used in the neuron update calculation.",
             "In the final architecture, the NoC is responsible for initialisation and spike calculation, while the neuron bank section performs continuous neuron updates and the neuron reset after a spike. Each core is allocated a section of the neuron banks for its own use, which defines the neuron-to-CPU mapping."
@@ -369,7 +369,7 @@
         {
           "heading": "Experiments",
           "body": [
-            "Experiments were simulated on FPGA hardware across three configurations — a single core, a two-core NoC, and a two-core NoC with neuron banks — measuring the clock cycles taken to execute one second of simulation at 1 ms timesteps. The test network was a four-neuron fully connected network with weights.",
+            "Experiments were simulated on FPGA hardware across three configurations (a single core, a two-core NoC, and a two-core NoC with neuron banks), measuring the clock cycles taken to execute one second of simulation at 1 ms timesteps. The test network was a four-neuron fully connected network with weights.",
             "Experiment I used a single core for the simulation of all neurons. Experiment II used two cores connected through the NoC, with the four neurons divided two per core. Experiment III used the same two cores but offloaded the neuron update calculation to the neuron bank, leaving only spike calculation and initialisation to the CPUs."
           ],
           "images": [

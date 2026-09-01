@@ -50,7 +50,7 @@
           <p class="page-head__lead">
             Whether you are a prospective student, a researcher looking to
             collaborate, or an industry partner working on neuromorphic and edge
-            AI hardware — we would like to hear from you.
+            AI hardware, we would like to hear from you.
           </p>
         </div>
       </section>
@@ -163,7 +163,7 @@
         };
 
         if (typeof emailjs === 'undefined') {
-          say('The contact form is unavailable right now — please email us directly.', 'error');
+          say('The contact form is unavailable right now. Please email us directly.', 'error');
           submit.disabled = true;
           return;
         }
@@ -185,7 +185,7 @@
           try {
             await emailjs.sendForm(EMAILJS.serviceId, EMAILJS.templateId, form);
             form.reset();
-            say('Thank you — your message has been sent. We will reply by email.', 'ok');
+            say('Thank you. Your message has been sent. We will reply by email.', 'ok');
           } catch (err) {
             console.error(err);
             say('Could not send the message. Please email peramorphiq@eng.pdn.ac.lk directly.', 'error');

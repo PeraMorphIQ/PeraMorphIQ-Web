@@ -1,7 +1,7 @@
 /**
  * Department of Computer Engineering people directory.
  *
- * Names, photos, positions and social links are not stored in this repo — only
+ * Names, photos, positions and social links are not stored in this repo - only
  * e-numbers and staff emails are. Everything else is resolved at runtime from
  * the CE API, so profiles stay current without anyone editing this site.
  *

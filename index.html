@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>PeraMorphIQ — Neuromorphic Research Group, University of Peradeniya</title>
+    <title>PeraMorphIQ | Neuromorphic Research Group, University of Peradeniya</title>
     <meta
       name="description"
       content="PeraMorphIQ is a neuromorphic computing research group at the Department of Computer Engineering, University of Peradeniya, building brain-inspired hardware for energy-efficient intelligence at the edge."
@@ -13,7 +13,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PeraMorphIQ" />
-    <meta property="og:title" content="PeraMorphIQ — Neuromorphic Research Group" />
+    <meta property="og:title" content="PeraMorphIQ | Neuromorphic Research Group" />
     <meta
       property="og:description"
       content="Brain-inspired hardware for energy-efficient intelligence at the edge. Department of Computer Engineering, University of Peradeniya."
@@ -88,7 +88,7 @@
             </h1>
             <p class="hero__lead">
               PeraMorphIQ designs neuromorphic architectures for spiking neural
-              networks — from accelerator microarchitecture and RISC-V
+              networks, from accelerator microarchitecture and RISC-V
               System-on-Chip integration through to FPGA prototypes and silicon
               energy analysis.
             </p>
@@ -96,7 +96,29 @@
               <a class="btn btn--primary" href="./projects.html">Explore our research</a>
               <a class="btn btn--secondary" href="./publications.html">Publications</a>
             </div>
+
+            <div class="hero__affiliation">
+              <p class="hero__affiliation-label">Part of</p>
+              <ul class="org-list">
+                <li>
+                  <img src="./assets/img/partners/logo-2.png" alt="" width="110" height="32" />
+                  <span class="org-list__text">
+                    <span class="org-list__name">ESCAL</span>
+                    <span class="org-list__full">Embedded Systems and Computer<br />Architecture Laboratory</span>
+                  </span>
+                </li>
+                <li>
+                  <img src="./assets/img/partners/peracomlogo.png" alt="" width="74" height="32" />
+                  <span class="org-list__text">
+                    <span class="org-list__name">PeraCom</span>
+                    <span class="org-list__full">University of Peradeniya</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
+
+          <div class="hero-stats" data-stats></div>
         </div>
       </section>
 
@@ -115,13 +137,6 @@
         </div>
       </section>
 
-      <!-- At a glance -->
-      <section class="section section--tight">
-        <div class="container">
-          <div class="stats" data-stats></div>
-        </div>
-      </section>
-
       <!-- Featured projects -->
       <section class="section" id="projects">
         <div class="container">
@@ -136,8 +151,13 @@
         </div>
       </section>
 
+      <!-- Featured publication -->
+      <section class="highlight">
+        <div class="container" data-featured-publication></div>
+      </section>
+
       <!-- Publications -->
-      <section class="section section--alt" id="publications">
+      <section class="section" id="publications">
         <div class="container">
           <div class="section-head section-head--row">
             <div>
@@ -160,7 +180,7 @@
             </div>
             <a class="link-forward" href="./news.html">All news</a>
           </div>
-          <div class="grid grid--3" data-news></div>
+          <div data-news></div>
         </div>
       </section>
 
@@ -175,7 +195,7 @@
             <p>
               PeraMorphIQ is a neuromorphic computing research group at the
               Department of Computer Engineering, University of Peradeniya. We
-              work on brain-inspired computing across the full stack —
+              work on brain-inspired computing across the full stack:
               architecture design, algorithmic development and system
               implementation.
             </p>
@@ -189,7 +209,7 @@
             <p>
               By bridging neuroscience, machine learning and embedded systems,
               we aim at computing platforms that borrow the adaptability and
-              energy efficiency of biological neural systems — and are small
+              energy efficiency of biological neural systems, and are small
               enough to actually deploy.
             </p>
           </div>
@@ -238,16 +258,22 @@
     <script type="module">
       import { loadResearchAreas, loadStats } from './assets/js/modules/home.js';
       import { loadProjects } from './assets/js/modules/projects.js';
-      import { loadPublications } from './assets/js/modules/publications.js';
+      import {
+        loadPublications,
+        loadFeaturedPublication
+      } from './assets/js/modules/publications.js';
       import { loadNews } from './assets/js/modules/news.js';
       import { loadPeople } from './assets/js/modules/people.js';
 
       loadResearchAreas('[data-research-areas]');
       loadStats('[data-stats]');
       loadProjects('[data-featured-projects]', { limit: 3, featured: true });
+      loadFeaturedPublication('[data-featured-publication]');
       loadPublications('[data-publications]', 3);
-      loadNews('[data-news]', { limit: 3 });
-      loadPeople('[data-people-preview]', { only: ['supervisors'] });
+      loadNews('[data-news]', { limit: 3, variant: 'list' });
+      loadPeople('[data-people-preview]', {
+        only: ['supervisors', 'Graduate Researchers']
+      });
     </script>
   </body>
 </html>

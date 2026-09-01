@@ -1,4 +1,4 @@
-# PeraMorphIQ — Neuromorphic Research Group
+# PeraMorphIQ - Neuromorphic Research Group
 
 Website for the PeraMorphIQ neuromorphic computing research group, Department of
 Computer Engineering, University of Peradeniya.
@@ -9,7 +9,7 @@ Computer Engineering, University of Peradeniya.
 
 ## Stack
 
-A hand-written **static site with no build step** — plain HTML, CSS custom
+A hand-written **static site with no build step** - plain HTML, CSS custom
 properties, and ES modules. There is no `package.json`, no bundler and no
 framework. Deployed by **GitHub Pages** straight from the default branch
 (`CNAME` + `.nojekyll` at the repository root).
@@ -21,7 +21,7 @@ stay current without anyone editing this repository.
 
 ## Running locally
 
-ES modules and `fetch()` of local JSON require HTTP — opening the files via
+ES modules and `fetch()` of local JSON require HTTP - opening the files via
 `file://` will not work.
 
 ```bash
@@ -34,7 +34,7 @@ python -m http.server 5502
 ```
 index.html          Home
 projects.html       Project index (filter by status and topic, search)
-project.html?id=…   Project detail — generated from data/projects.json
+project.html?id=…   Project detail - generated from data/projects.json
 publications.html   Publications (year-grouped, filters, BibTeX export)
 people.html         Supervisors, researchers, alumni
 news.html           News index
@@ -47,8 +47,8 @@ assets/
   js/modules/   data, projects, publications, people, people-api, news, home
   img/    partners, placeholder, title
 data/     projects, publications, news, people, research-areas (+ img/)
-tools/    add-project.html — content authoring form and data validator
-docs/     DESIGN.md — the design system
+tools/    add-project.html - content authoring form and data validator
+docs/     DESIGN.md - the design system
 ```
 
 Old URLs (`publication.html`, `contactUs.html`, `News/news.html`,
@@ -64,7 +64,7 @@ Full instructions: **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Design system
 
-Near-monochrome — a neutral ink ramp plus one accent. Every value is a custom
+Near-monochrome - a neutral ink ramp plus one accent. Every value is a custom
 property in `assets/css/tokens.css`; no raw colour value appears anywhere else.
 
 See **[docs/DESIGN.md](docs/DESIGN.md)**.
@@ -75,5 +75,5 @@ See **[docs/DESIGN.md](docs/DESIGN.md)**.
   `assets/js/layout.js`. Do not add nav or footer markup to a page.
 - **`html { font-size: 62.5% }`**, so `1rem = 10px` throughout.
 - **DOIs are stored bare** (`10.1016/...`). Full URLs are normalised on render.
-- **Project images are displayed whole**, not cropped — covers are architecture
+- **Project images are displayed whole**, not cropped - covers are architecture
   diagrams, so any aspect ratio works.

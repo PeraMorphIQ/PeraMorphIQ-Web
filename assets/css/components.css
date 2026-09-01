@@ -1,11 +1,11 @@
 /* ==========================================================================
-   PeraMorphIQ — Components
+   PeraMorphIQ - Components
    Header, footer, buttons, cards, badges, chips, avatars, forms, lightbox.
    Responsive rules live next to their component. No raw colour values.
    ========================================================================== */
 
 /* ==========================================================================
-   Buttons — three variants, replacing the six ad-hoc styles of the old site.
+   Buttons - three variants, replacing the six ad-hoc styles of the old site.
    ========================================================================== */
 
 .btn {
@@ -108,7 +108,7 @@
   white-space: nowrap;
 }
 
-/* Status is conveyed by an outlined badge with a dot — never by hue. */
+/* Status is conveyed by an outlined badge with a dot - never by hue. */
 .badge__dot {
   width: 6px;
   height: 6px;
@@ -247,7 +247,7 @@
 }
 
 /* ==========================================================================
-   Card primitive — border-led, not shadow-led.
+   Card primitive - border-led, not shadow-led.
    ========================================================================== */
 
 .card {
@@ -338,7 +338,7 @@
   gap: var(--space-3);
 }
 
-/* Stretched link — makes the whole card clickable while keeping a single,
+/* Stretched link - makes the whole card clickable while keeping a single,
    correctly-labelled focusable element for keyboard and screen-reader users. */
 .stretched-link::after {
   content: "";
@@ -378,6 +378,51 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
+}
+
+/* PeraMorphIQ sits under ESCAL and PeraCom, so the header carries all three:
+   the group's own wordmark, a hairline, then the two parent-lab marks. */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.brand-lockup__rule {
+  width: 1px;
+  height: 2.8rem;
+  background-color: var(--rule);
+  flex-shrink: 0;
+}
+
+.parent-orgs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* The supplied marks have mixed polarity (ESCAL is white on transparent), so
+   they are flattened to one ink tone - the same treatment as the footer strip. */
+.parent-orgs img {
+  height: 2.2rem;
+  width: auto;
+  filter: brightness(0);
+  opacity: 0.5;
+  transition: opacity var(--transition);
+}
+
+.parent-orgs a:hover img {
+  opacity: 0.8;
+}
+
+/* Below the drawer breakpoint the header only has room for the group's own
+   mark; the affiliation is still stated in the hero and the footer. */
+@media (max-width: 68em) {
+  .brand-lockup__rule,
+  .parent-orgs {
+    display: none;
+  }
 }
 
 .brand {
@@ -634,46 +679,6 @@
   justify-content: space-between;
   gap: var(--space-3);
   font-size: var(--text-xs);
-}
-
-/* Partner logos — shown at their real colours on a light band, not
-   force-inverted to white as they were in the old hero. */
-.partner-strip {
-  border-top: var(--border);
-  padding-block: var(--space-6);
-}
-
-.partner-strip__label {
-  text-align: center;
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--ink-500);
-  margin-bottom: var(--space-5);
-}
-
-.partner-strip__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
-}
-
-/* The supplied logos have mixed polarity (one is pure white on transparent,
-   which is invisible on a light ground). Flattening every mark to a single ink
-   silhouette guarantees legibility and matches the monochrome direction. */
-.partner-strip img {
-  height: 4rem;
-  width: auto;
-  filter: brightness(0);
-  opacity: 0.55;
-  transition: opacity var(--transition);
-}
-
-.partner-strip img:hover {
-  opacity: 0.85;
 }
 
 /* ==========================================================================

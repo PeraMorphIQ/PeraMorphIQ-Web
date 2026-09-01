@@ -31,7 +31,7 @@
           <p class="page-head__lead">
             Fill this in, copy the JSON, and paste it into the
             <code>data</code> array in <code>data/projects.json</code>. No HTML
-            to write — the card and the full detail page are generated from this
+            to write: the card and the full detail page are generated from this
             entry.
           </p>
         </div>
@@ -424,7 +424,7 @@
                 ([file, where, msg]) => `
                 <div class="validate-row">
                   <span class="validate-row__badge">${file}</span>
-                  <span><strong>${where}</strong> — ${msg}</span>
+                  <span><strong>${where}</strong>: ${msg}</span>
                 </div>`
               )
               .join('')

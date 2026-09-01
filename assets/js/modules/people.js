@@ -72,7 +72,7 @@ export function loadPeople(selector, { only = null, limit = null } = {}) {
     const groups = GROUPS.filter((g) => !only || only.includes(g.key));
 
     // Render the headings immediately, then fill each group as its API calls
-    // resolve — one slow lookup should not hold up the whole page.
+    // resolve - one slow lookup should not hold up the whole page.
     container.innerHTML = groups
       .map(
         (g) => `

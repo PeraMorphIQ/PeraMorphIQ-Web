@@ -42,8 +42,27 @@ function byDateDesc(a, b) {
   return new Date(b.date || 0) - new Date(a.date || 0);
 }
 
-/** Render news cards. Pass `limit: null` for the full list. */
-export function loadNews(selector, { limit = 3 } = {}) {
+function rowHTML(item) {
+  return `
+    <article class="news-row reveal-item">
+      <time class="news-row__date" datetime="${attr(item.date)}">${esc(formatDate(item.date))}</time>
+      <div class="news-row__body">
+        <h3 class="news-row__title">
+          <a href="${attr(articleHref(item._id))}">${esc(item.title)}</a>
+        </h3>
+        <p class="news-row__text">${esc(item.brief)}</p>
+      </div>
+    </article>`;
+}
+
+/**
+ * Render news.
+ * @param {object} [options]
+ * @param {number|null} [options.limit] null for the full list
+ * @param {'cards'|'list'} [options.variant] a card grid with three items looks
+ *   sparse when the group has posted only one; `list` reads correctly at any count.
+ */
+export function loadNews(selector, { limit = 3, variant = 'cards' } = {}) {
   return withContainer(selector, async (container) => {
     const all = (await getData('news')).slice().sort(byDateDesc);
 
@@ -53,7 +72,9 @@ export function loadNews(selector, { limit = 3 } = {}) {
     }
 
     const items = limit ? all.slice(0, limit) : all;
-    container.innerHTML = items.map(cardHTML).join('');
+    container.innerHTML = items
+      .map(variant === 'list' ? rowHTML : cardHTML)
+      .join('');
   });
 }
 
@@ -126,7 +147,7 @@ export function loadArticle(selector) {
                    ${gallery
                      .map(
                        (src, i) =>
-                         `<img src="${attr(asset(src))}" alt="${attr(`${item.title} — image ${i + 1}`)}" loading="lazy" decoding="async" />`
+                         `<img src="${attr(asset(src))}" alt="${attr(`${item.title}, image ${i + 1}`)}" loading="lazy" decoding="async" />`
                      )
                      .join('')}
                  </div>`

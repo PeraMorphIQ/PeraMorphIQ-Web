@@ -1,7 +1,7 @@
 # Contributing content
 
 All content on this site is data-driven. **You should not need to write HTML to
-publish a project, publication or news item** — you edit one JSON file in
+publish a project, publication or news item** - you edit one JSON file in
 `data/` and commit.
 
 ## Running the site locally
@@ -33,7 +33,7 @@ malformed DOIs. Run it before you commit.
 ### By hand
 
 Add an object to the `data` array in [`data/projects.json`](data/projects.json).
-New projects go at the top — the home page shows the first three with
+New projects go at the top - the home page shows the first three with
 `"featured": true`.
 
 ```jsonc
@@ -71,7 +71,7 @@ New projects go at the top — the home page shows the first three with
 }
 ```
 
-Only `slug`, `title` and `summary` are required — everything else degrades
+Only `slug`, `title` and `summary` are required - everything else degrades
 gracefully if omitted.
 
 **Notes**
@@ -89,7 +89,7 @@ gracefully if omitted.
 ## Adding a publication
 
 Add an object to the `data` array in
-[`data/publications.json`](data/publications.json). Order does not matter —
+[`data/publications.json`](data/publications.json). Order does not matter -
 the list is sorted by year (then month) automatically.
 
 ```jsonc
@@ -121,7 +121,7 @@ the list is sorted by year (then month) automatically.
 **Give the DOI in bare form** (`10.1016/...`), not as a URL. A full URL is
 tolerated and normalised, but bare is correct.
 
-BibTeX is generated from these fields — there is nothing extra to write.
+BibTeX is generated from these fields - there is nothing extra to write.
 
 ---
 
@@ -161,7 +161,7 @@ Add an object to the `data` array in [`data/news.json`](data/news.json):
 ```
 
 Names and photos come from <https://api.ce.pdn.ac.lk>. If someone appears with a
-placeholder avatar, their department profile is missing or private — that is
+placeholder avatar, their department profile is missing or private - that is
 fixed in the department directory, not here.
 
 > The key `Undergraduate Researchs` is misspelled in the data file. The code

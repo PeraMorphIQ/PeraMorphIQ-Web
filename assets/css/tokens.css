@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PeraMorphIQ — Design Tokens
+   PeraMorphIQ - Design Tokens
    --------------------------------------------------------------------------
    THE SINGLE SOURCE OF TRUTH FOR THE VISUAL SYSTEM.
 
@@ -7,13 +7,13 @@
    codebase. If you need a colour, add it here first and reference the token.
 
    Direction: near-monochrome. A neutral ink ramp plus ONE accent hue.
-   Hierarchy comes from type size, weight and whitespace — not from colour.
+   Hierarchy comes from type size, weight and whitespace - not from colour.
    ========================================================================== */
 
 :root {
   /* --- 01 COLOUR ------------------------------------------------------- */
 
-  /* Ink ramp — text and marks */
+  /* Ink ramp - text and marks */
   --ink-900: #111418; /* headings, primary text */
   --ink-700: #3d434c; /* body text */
   --ink-500: #6b7280; /* meta, captions, bylines */
@@ -27,7 +27,7 @@
   --surface: #ffffff; /* page ground */
   --surface-2: #f7f8f9; /* alternating bands, card fill */
   --surface-3: #eef0f2; /* input wells, skeletons */
-  --surface-inverse: #111418; /* footer — flat, no gradient */
+  --surface-inverse: #111418; /* footer - flat, no gradient */
   --surface-inverse-2: #1c2027; /* raised block on inverse ground */
 
   /* The one accent */

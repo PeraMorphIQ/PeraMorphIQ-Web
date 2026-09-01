@@ -8,7 +8,7 @@ import { projectCount } from './projects.js';
 import { publicationCount } from './publications.js';
 import { peopleCount } from './people.js';
 
-/** Research areas — the entry point a visiting researcher looks for first. */
+/** Research areas - the entry point a visiting researcher looks for first. */
 export function loadResearchAreas(selector) {
   return withContainer(selector, async (container) => {
     const areas = await getData('researchAreas');

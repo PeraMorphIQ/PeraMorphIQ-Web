@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PeraMorphIQ — Base: reset, typography, layout primitives
+   PeraMorphIQ - Base: reset, typography, layout primitives
    Depends on tokens.css. No raw colour values in this file.
    ========================================================================== */
 
@@ -12,7 +12,7 @@
 }
 
 html {
-  /* 1rem = 10px — every rem in this codebase assumes this. */
+  /* 1rem = 10px - every rem in this codebase assumes this. */
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
@@ -231,7 +231,7 @@ pre {
   padding-block: var(--space-7);
 }
 
-/* Alternating band — the only "background colour" device in the system. */
+/* Alternating band - the only "background colour" device in the system. */
 .section--alt {
   background-color: var(--surface-2);
 }

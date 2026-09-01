@@ -1,7 +1,7 @@
 # Design system
 
 The site is deliberately **near-monochrome**: a neutral ink ramp plus one
-accent. Hierarchy comes from type size, weight and whitespace — not from colour.
+accent. Hierarchy comes from type size, weight and whitespace - not from colour.
 Reference points are university lab sites that read as credible research output,
 not product marketing pages.
 
@@ -49,9 +49,9 @@ That is **one hue**. There is no secondary accent, no teal, no status colours.
 
 Two families:
 
-- **Inter** — everything. Headings use `--tracking-tight`; body uses
+- **Inter** - everything. Headings use `--tracking-tight`; body uses
   `--leading-normal` (1.65).
-- **Orbitron** — the wordmark only, via `.wordmark`. Never in body copy, and
+- **Orbitron** - the wordmark only, via `.wordmark`. Never in body copy, and
   never applied through an inline `style` attribute.
 
 `html { font-size: 62.5% }`, so **1 rem = 10px**. Every rem in the codebase
@@ -69,11 +69,11 @@ paragraphs at 116rem are unreadable and were a real problem on the old site.
 
 - Space scale: `--space-1` … `--space-11` (0.4rem → 12.8rem).
 - **One section rhythm**: `--section-y`. Use `.section`, `.section--lg` or
-  `.section--tight` — never a bespoke `padding: 9.6rem 0`.
+  `.section--tight` - never a bespoke `padding: 9.6rem 0`.
 - **One radius**: `--radius: 4px`. (`--radius-pill` exists only for chips and
   the status dot.)
 - **Two shadows only**: `--shadow-sm` for raised cards, `--shadow-md` for
-  overlays. Cards are **border-led** — they use `--rule` and darken it on hover
+  overlays. Cards are **border-led** - they use `--rule` and darken it on hover
   rather than casting a large shadow.
 
 ---
@@ -93,17 +93,17 @@ every component inherits the behaviour without its own media query.
 
 Defined in [`assets/css/components.css`](../assets/css/components.css).
 
-- **Buttons** — `.btn` with `--primary` (solid accent), `--secondary` (outlined)
+- **Buttons** - `.btn` with `--primary` (solid accent), `--secondary` (outlined)
   and `--link`. Plus `--sm`. These replaced six unrelated button classes; do not
   add a seventh.
-- **Card** — `.card` / `.card__media` / `.card__body` / `.card__title` /
+- **Card** - `.card` / `.card__media` / `.card__body` / `.card__title` /
   `.card__text` / `.card__footer`. Use `.stretched-link` on the title anchor to
   make the whole card clickable while keeping one correctly-labelled focus stop.
   `.card__media` displays images with `object-fit: contain` because covers here
   are architecture diagrams; add `.card__media--photo` for real photographs.
-- **Badge / tag / chip** — `.badge` (outlined status), `.tag` (topic),
+- **Badge / tag / chip** - `.badge` (outlined status), `.tag` (topic),
   `.chip` (interactive filter, uses `aria-pressed`).
-- **Person** — `.person` with a greyscale portrait that colourises on hover.
+- **Person** - `.person` with a greyscale portrait that colourises on hover.
 
 ---
 
@@ -116,7 +116,7 @@ assets/
   js/modules/   data, projects, publications, people, people-api, news, home
   img/   partners, placeholder, title
 data/    projects, publications, news, people, research-areas  (+ img/)
-tools/   add-project.html — authoring form and data validator
+tools/   add-project.html - authoring form and data validator
 docs/    DESIGN.md
 ```
 
@@ -139,7 +139,7 @@ the nav drawer), `62` (~992px).
 
 ## Guardrail
 
-CI-free, but run this before committing — it should return nothing:
+CI-free, but run this before committing - it should return nothing:
 
 ```bash
 grep -rInE "#[0-9a-fA-F]{3,8}\b|rgba?\(" --include=*.css --include=*.html --include=*.js . \

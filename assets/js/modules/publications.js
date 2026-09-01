@@ -18,7 +18,7 @@ const TYPE_LABEL = {
  * Reduce a DOI to its bare form.
  *
  * The old renderer built `href="https://doi.org/${doi}"` unconditionally, but
- * two of three entries stored a full URL — producing
+ * two of three entries stored a full URL - producing
  * `https://doi.org/https://dx.doi.org/10.2139/...` and a dead link. Normalising
  * here means the data file can hold either form safely.
  */
@@ -298,7 +298,7 @@ export function loadPublicationIndex(selector) {
       });
     }
 
-    // "Download all as BibTeX" — generated client-side, no server needed.
+    // "Download all as BibTeX" - generated client-side, no server needed.
     const exportBtn = document.querySelector('[data-pub-export]');
     if (exportBtn) {
       exportBtn.addEventListener('click', () => {
@@ -313,6 +313,58 @@ export function loadPublicationIndex(selector) {
         URL.revokeObjectURL(url);
       });
     }
+  });
+}
+
+/**
+ * The most recent publication, rendered as a full-width feature.
+ * Gives the home page a focal point rather than a uniform list.
+ */
+export function loadFeaturedPublication(selector) {
+  return withContainer(selector, async (container) => {
+    const [pub] = (await getData('publications')).slice().sort(byDateDesc);
+    if (!pub) {
+      container.closest('.highlight')?.setAttribute('hidden', '');
+      return;
+    }
+
+    const doi = normalizeDoi(pub.doi);
+    const titleLink = pub.url
+      ? `<a href="${attr(pub.url)}" target="_blank" rel="noopener">${esc(pub.title)}</a>`
+      : esc(pub.title);
+
+    container.innerHTML = `
+      <div class="highlight__grid">
+        <div>
+          <p class="highlight__eyebrow">Latest publication</p>
+          <h2 class="highlight__title">${titleLink}</h2>
+          <p class="highlight__authors">${authorList(pub.authors)}</p>
+          <p class="highlight__venue">${venueLine(pub)}</p>
+          <div class="highlight__badges">
+            <span class="badge">${esc(TYPE_LABEL[pub.type] || 'Publication')}</span>
+            ${
+              pub.openAccess
+                ? `<span class="badge badge--accent">Open access${pub.license ? ` &middot; ${esc(pub.license)}` : ''}</span>`
+                : ''
+            }
+          </div>
+        </div>
+        <div class="highlight__actions">
+          ${
+            pub.url
+              ? `<a class="btn btn--primary" href="${attr(pub.url)}" target="_blank" rel="noopener">Read the paper</a>`
+              : ''
+          }
+          ${
+            doi
+              ? `<a class="btn btn--secondary" href="https://doi.org/${attr(doi)}" target="_blank" rel="noopener">DOI</a>`
+              : ''
+          }
+          <button type="button" class="btn btn--secondary" data-cite="${attr(pub.id || pub.title)}">Cite</button>
+        </div>
+      </div>`;
+
+    wireCite(container, [pub]);
   });
 }
 

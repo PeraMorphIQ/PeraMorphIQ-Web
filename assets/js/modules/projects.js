@@ -20,8 +20,8 @@ function coverFor(project) {
 function yearLabel(project) {
   const { startYear, endYear } = project;
   if (!startYear) return '';
-  if (!endYear) return `${startYear}–present`;
-  return startYear === endYear ? String(startYear) : `${startYear}–${endYear}`;
+  if (!endYear) return `${startYear}-present`;
+  return startYear === endYear ? String(startYear) : `${startYear}-${endYear}`;
 }
 
 function statusBadge(project) {
@@ -295,7 +295,7 @@ export function loadProjectDetail(selector) {
   return withContainer(selector, async (root) => {
     const slug = new URLSearchParams(window.location.search).get('id');
 
-    // project.html with no ?id is the old listing URL — send it to the index
+    // project.html with no ?id is the old listing URL - send it to the index
     // rather than showing a "not found" page.
     if (!slug) {
       window.location.replace(asset('projects.html'));
