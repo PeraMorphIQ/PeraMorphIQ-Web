@@ -33,6 +33,7 @@ const CONTACT_EMAIL = 'peramorphiq@eng.pdn.ac.lk';
 const CONTACT_PHONE_DISPLAY = '+94 71 849 5506';
 const CONTACT_PHONE_HREF = '+94718495506';
 const GITHUB_URL = 'https://github.com/PeraMorphIQ';
+const LINKEDIN_URL = 'https://www.linkedin.com/company/peramorphiq/';
 const ESCAL_URL = 'https://escal.ce.pdn.ac.lk/';
 // No public PeraCom site is known; leave empty and the mark renders unlinked.
 const PERACOM_URL = '';
@@ -129,6 +130,7 @@ function footerHTML() {
               <li>Department of Computer Engineering,<br />University of Peradeniya,<br />Peradeniya 20400, Sri Lanka</li>
               <li><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li>
               <li><a href="tel:${CONTACT_PHONE_HREF}">${CONTACT_PHONE_DISPLAY}</a></li>
+              <li><a href="${LINKEDIN_URL}" rel="noopener">LinkedIn</a></li>
               <li><a href="${GITHUB_URL}" rel="noopener">GitHub</a></li>
             </ul>
           </div>

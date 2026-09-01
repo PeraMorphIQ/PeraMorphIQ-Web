@@ -332,12 +332,14 @@
 
         const cover = project.image
           ? asset(project.image)
-          : asset('assets/img/placeholder/project.svg');
+          : asset('assets/img/placeholder/logo-mark.png');
         const active = project.status === 'active';
 
         preview.innerHTML = `
           <article class="card">
-            <div class="card__media"><img src="${cover}" alt="" /></div>
+            <div class="card__media${project.image ? '' : ' card__media--placeholder'}">
+              <img src="${cover}" alt="" />
+            </div>
             <div class="card__body">
               <div class="card__meta">
                 <span class="badge${active ? ' badge--active' : ''}">

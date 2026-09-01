@@ -288,6 +288,24 @@
   padding: 0;
 }
 
+/* Projects without a cover show the group mark instead: centred, at its own
+   size, at full opacity. Sized to about a third of the media box so it reads
+   as an identity mark rather than a stretched image. */
+.card__media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+}
+
+.card__media--placeholder img {
+  width: auto;
+  height: 38%;
+  max-width: 60%;
+  padding: 0;
+  object-fit: contain;
+}
+
 .card__body {
   display: flex;
   flex-direction: column;

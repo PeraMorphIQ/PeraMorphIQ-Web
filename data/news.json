@@ -28,6 +28,48 @@
       ]
     },
     {
+      "_id": "news3",
+      "title": "Review paper published in the Journal of Systems Architecture",
+      "date": "2026-07-01",
+      "Author": "PeraMorphIQ Neuromorphic Research Group",
+      "image": "",
+      "brief": "Our review of neuromorphic architectures for edge-oriented spiking neural networks is published in the Journal of Systems Architecture (Elsevier, Q1), and is freely available under open access.",
+      "fullContent": "A review paper from the PeraMorphIQ Neuromorphic Research Group has been published in the Journal of Systems Architecture (JSA), a Q1 Elsevier journal with an impact factor of 5.3 and a CiteScore of 9.1.\n\"Neuromorphic architectures for edge-oriented spiking neural networks: A review\" appears in Volume 177, August 2026, as article 103869. The article is open access under a Creative Commons licence.\nThe paper presents a comprehensive review of neuromorphic ASIC and FPGA architectures for edge-oriented spiking neural network (SNN) acceleration. It highlights the mismatch between existing hardware and the demands of small-scale, resource-constrained, real-time edge workloads; surveys neuron models, coding schemes, learning methods and on-chip communication strategies; and argues for System-on-Chip based neuromorphic platforms as a route to practical, real-time and energy-efficient edge applications.\nAuthors: Kanishka Gunawardana, Sanka Peeris, Kavishka Rambukwella, Prof. Roshan G. Ragel (supervisor) and Dr. Isuru Nawinne (supervisor).\nCongratulations to the team, and thank you to everyone who supported this work.",
+      "links": [
+        {
+          "label": "Read the paper (open access)",
+          "href": "https://www.sciencedirect.com/science/article/pii/S1383762126001876"
+        },
+        {
+          "label": "DOI: 10.1016/j.sysarc.2026.103869",
+          "href": "https://doi.org/10.1016/j.sysarc.2026.103869"
+        },
+        {
+          "label": "Announcement on LinkedIn",
+          "href": "https://www.linkedin.com/feed/update/urn:li:activity:7478069648953966593"
+        }
+      ]
+    },
+    {
+      "_id": "news4",
+      "title": "Open-source release: PeraMorphIQ SRAM Compiler",
+      "date": "2026-02-07",
+      "Author": "PeraMorphIQ Neuromorphic Research Group",
+      "image": "",
+      "brief": "A streamlined, automated workflow for generating custom SRAM macros, built on the OpenRAM framework and released publicly for the open-source hardware community.",
+      "fullContent": "We have publicly released the PeraMorphIQ SRAM Compiler, a streamlined and automated workflow for generating custom SRAM macros, built upon the OpenRAM framework.\nIn developing neuromorphic accelerators and RISC-V prototypes at PeraMorphIQ we needed to create SRAM blocks easily and in a highly configurable way, integrating cleanly with modern EDA environments. This release bridges the gap between open-source research tools and industrial design requirements.\nBuilding on the foundational work of the VLSIDA group, our implementation focuses on stability, usability and modern tool compatibility: it resolves critical circular import dependencies and compatibility issues with current Python environments; adds native support for vertical (address division) and horizontal (bit-slicing) banking through a simplified configuration; includes automated post-processing scripts that generate .db (Design Compiler) and NDM (IC Compiler II) libraries; and organises GDS, LEF, Verilog and Liberty outputs automatically for immediate interoperability with place-and-route flows.\nThe tool is designed to lower the barrier to entry for researchers and students designing custom silicon in the FreePDK45, Sky130 and GF180 technology nodes.\nWe invite the open-source hardware community to explore the repository, star the project and contribute to its development.\nAcknowledgement: this work is a derivative of the OpenRAM project by VLSIDA (UCSC/OSU). We thank the original authors for their contribution to the field.",
+      "links": [
+        {
+          "label": "Repository on GitHub",
+          "href": "https://github.com/PeraMorphIQ/PeraMorphIQ-SRAM-Compiler"
+        },
+        {
+          "label": "Announcement on LinkedIn",
+          "href": "https://www.linkedin.com/feed/update/urn:li:activity:7425979692593319936"
+        }
+      ]
+    },
+    {
       "_id": "news1",
       "image": "./data/img/news/news1/Main.jpg",
       "backgroundImg": "./data/img/news/news1/img3.jpg",

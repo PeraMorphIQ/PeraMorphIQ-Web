@@ -13,7 +13,7 @@ import { fetchTeamMembers, fetchSupervisors } from './people-api.js';
 import { personCardHTML } from './person.js';
 import { wireLightbox } from './lightbox.js';
 
-const PLACEHOLDER = 'assets/img/placeholder/project.svg';
+const PLACEHOLDER = 'assets/img/placeholder/logo-mark.png';
 
 function coverFor(project) {
   return asset(project.image || PLACEHOLDER);
@@ -43,8 +43,9 @@ function cardHTML(project) {
 
   return `
     <article class="card reveal-item">
-      <div class="card__media">
-        <img src="${attr(coverFor(project))}" alt="" loading="lazy" decoding="async" />
+      <div class="card__media${project.image ? '' : ' card__media--placeholder'}">
+        <img src="${attr(coverFor(project))}" alt="" loading="lazy" decoding="async"
+             onerror="this.onerror=null;this.src='${attr(asset(PLACEHOLDER))}';this.parentElement.classList.add('card__media--placeholder')" />
       </div>
       <div class="card__body">
         <div class="card__meta">

@@ -18,7 +18,7 @@
         "Edge Computing",
         "Spiking Neural Networks"
       ],
-      "image": "",
+      "image": "data/img/project/snap-v-accelerator/soc-architecture.png",
       "links": {
         "paper": "https://arxiv.org/abs/2603.11939"
       },
@@ -59,6 +59,12 @@
             "Cerebra-H: a Network-on-Chip based accelerator that scales across parallel processing nodes",
             "A RISC-V management core handling configuration, orchestration and I/O",
             "Distributed local memory at each processing node, avoiding the memory-processor bottleneck"
+          ],
+          "images": [
+            {
+              "src": "data/img/project/snap-v-accelerator/soc-architecture.png",
+              "caption": "The SNAP-V SoC: a general-purpose MainCore and a SpikeCore RISC-V processor coupled over RoCC to the Cerebra-H neuron-cluster accelerator, with TileLink-UH and TileLink-UL fabrics carrying memory and peripheral traffic."
+            }
           ]
         },
         {

@@ -26,7 +26,11 @@ export async function getData(name) {
   if (!cache.has(name)) {
     cache.set(
       name,
-      fetch(asset(SOURCES[name]))
+      // GitHub Pages serves these with `Cache-Control: max-age=600`, so a
+      // returning visitor can see up to ten minutes of stale content after a
+      // publish. `no-cache` forces a conditional request instead: the browser
+      // still gets a cheap 304 when nothing changed, but never shows old data.
+      fetch(asset(SOURCES[name]), { cache: 'no-cache' })
         .then((res) => {
           if (!res.ok) throw new Error(`${SOURCES[name]}: HTTP ${res.status}`);
           return res.json();

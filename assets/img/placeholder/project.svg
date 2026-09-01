@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="No project image available">
-  <rect width="640" height="360" fill="#eef0f2"/>
-  <g stroke="#cfd4d9" stroke-width="2" fill="none">
-    <circle cx="200" cy="120" r="16"/><circle cx="320" cy="180" r="16"/>
-    <circle cx="200" cy="240" r="16"/><circle cx="440" cy="120" r="16"/>
-    <circle cx="440" cy="240" r="16"/>
-    <path d="M216 120h88M216 240h88M336 180h88M336 172l88-44M336 188l88 44"/>
-  </g>
-</svg>
