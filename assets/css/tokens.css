@@ -44,6 +44,9 @@
   /* Modal / lightbox scrims */
   --scrim: rgb(17 20 24 / 0.5);
   --scrim-strong: rgb(17 20 24 / 0.92);
+  --scrim-hero: rgb(17 20 24 / 0.45);
+  /* Masks care only about alpha; this keeps the no-raw-colour rule intact. */
+  --mask-opaque: #000;
 
   /* Focus */
   --focus-ring: var(--accent);

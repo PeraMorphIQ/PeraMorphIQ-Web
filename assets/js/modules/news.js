@@ -11,7 +11,7 @@ import {
   renderState,
   withContainer
 } from './data.js';
-import { wireLightbox } from './projects.js';
+import { wireLightbox } from './lightbox.js';
 
 const PLACEHOLDER = 'assets/img/placeholder/news.svg';
 
@@ -76,6 +76,42 @@ export function loadNews(selector, { limit = 3, variant = 'cards' } = {}) {
       .map(variant === 'list' ? rowHTML : cardHTML)
       .join('');
   });
+}
+
+/**
+ * Slide decks, reports and off-site coverage attached to a news item.
+ * `attachments` are files in this repo; `links` point elsewhere.
+ */
+function resourcesHTML(item) {
+  const attachments = item.attachments || [];
+  const links = item.links || [];
+  if (!attachments.length && !links.length) return '';
+
+  const rows = [
+    ...attachments.map(
+      (a) => `
+        <li>
+          <a href="${attr(asset(a.href))}" download>
+            ${esc(a.label)}
+          </a>
+          ${a.meta ? `<span class="resource__meta">${esc(a.meta)}</span>` : ''}
+        </li>`
+    ),
+    ...links.map(
+      (l) => `
+        <li>
+          <a href="${attr(l.href)}" target="_blank" rel="noopener">
+            ${esc(l.label)}
+          </a>
+        </li>`
+    )
+  ];
+
+  return `
+    <section class="resources">
+      <h2 class="resources__title">Resources</h2>
+      <ul class="resources__list">${rows.join('')}</ul>
+    </section>`;
 }
 
 /** Render one article from ?id=<newsId>. */
@@ -153,6 +189,8 @@ export function loadArticle(selector) {
                  </div>`
               : ''
           }
+
+          ${resourcesHTML(item)}
 
           <p style="margin-top:var(--space-8)">
             <a class="link-forward" href="${attr(asset('news.html'))}">All news</a>

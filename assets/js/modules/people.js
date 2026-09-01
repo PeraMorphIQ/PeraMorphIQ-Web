@@ -2,61 +2,19 @@
  * People: supervisors, graduate, undergraduate and alumni researchers.
  *
  * The old loader repeated an identical card template four times; here one
- * `personHTML` serves every group.
+ * shared `personCardHTML` (see person.js) serves every group.
  */
 
-import { asset } from '../layout.js';
 import { getData, esc, attr, withContainer } from './data.js';
 import { fetchTeamMembers, fetchSupervisors } from './people-api.js';
+import { personCardHTML } from './person.js';
 
-const AVATAR = 'assets/img/placeholder/avatar.svg';
-
-// The people.json key is misspelled "Undergraduate Researchs". Mapping it here
-// keeps the display label correct without a risky data migration.
 const GROUPS = [
   { key: 'supervisors', label: 'Supervisors', staff: true },
   { key: 'Graduate Researchers', label: 'Graduate researchers' },
   { key: 'Undergraduate Researchs', label: 'Undergraduate researchers' },
   { key: 'Alumni Researchers', label: 'Alumni' }
 ];
-
-const LINK_LABELS = {
-  linkedin: 'LinkedIn',
-  github: 'GitHub',
-  website: 'Website',
-  researchgate: 'ResearchGate',
-  cv: 'CV'
-};
-
-function personHTML(person) {
-  const photo = person.image || asset(AVATAR);
-  const links = Object.entries(person.urls || {})
-    .filter(([key, url]) => url && LINK_LABELS[key])
-    .slice(0, 3)
-    .map(
-      ([key, url]) =>
-        `<a href="${attr(url)}" target="_blank" rel="noopener">${esc(LINK_LABELS[key])}</a>`
-    );
-
-  if (person.profile_page) {
-    links.unshift(
-      `<a href="${attr(person.profile_page)}" target="_blank" rel="noopener">Profile</a>`
-    );
-  }
-
-  return `
-    <li class="person reveal-item">
-      <img class="person__photo" src="${attr(photo)}" alt="${attr(person.name)}"
-           loading="lazy" decoding="async"
-           onerror="this.onerror=null;this.src='${attr(asset(AVATAR))}'" />
-      <div>
-        <p class="person__name">${esc(person.name)}</p>
-        ${person.position ? `<p class="person__role">${esc(person.position)}</p>` : ''}
-        ${person.current_affiliation ? `<p class="person__meta">${esc(person.current_affiliation)}</p>` : ''}
-      </div>
-      ${links.length ? `<div class="person__links">${links.join('')}</div>` : ''}
-    </li>`;
-}
 
 /**
  * Render every people group into `selector`.
@@ -98,7 +56,7 @@ export function loadPeople(selector, { only = null, limit = null } = {}) {
           : await fetchTeamMembers(members);
 
         list.innerHTML = people.length
-          ? people.map(personHTML).join('')
+          ? people.map((m) => personCardHTML(m)).join('')
           : '<li class="muted">To be announced.</li>';
       })
     );

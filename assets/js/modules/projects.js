@@ -10,6 +10,8 @@
 import { asset } from '../layout.js';
 import { getData, esc, attr, renderState, withContainer } from './data.js';
 import { fetchTeamMembers, fetchSupervisors } from './people-api.js';
+import { personCardHTML } from './person.js';
+import { wireLightbox } from './lightbox.js';
 
 const PLACEHOLDER = 'assets/img/placeholder/project.svg';
 
@@ -218,26 +220,6 @@ function sectionHTML(section) {
     </section>`;
 }
 
-function personLinks(person) {
-  if (!person.profile_page) return '';
-  return `<a href="${attr(person.profile_page)}" target="_blank" rel="noopener">Profile</a>`;
-}
-
-function personHTML(person) {
-  const photo = person.image || asset('assets/img/placeholder/avatar.svg');
-  return `
-    <li class="person">
-      <img class="person__photo" src="${attr(photo)}" alt=""
-           loading="lazy" onerror="this.src='${attr(asset('assets/img/placeholder/avatar.svg'))}'" />
-      <div>
-        <p class="person__name">${esc(person.name)}</p>
-        ${person.position ? `<p class="person__role">${esc(person.position)}</p>` : ''}
-        ${person.current_affiliation ? `<p class="person__meta">${esc(person.current_affiliation)}</p>` : ''}
-      </div>
-      <div class="person__links">${personLinks(person)}</div>
-    </li>`;
-}
-
 const LINK_LABELS = {
   github: 'GitHub repository',
   paper: 'Related publication',
@@ -392,42 +374,12 @@ async function hydratePeople(project, root) {
 
   if (teamEl) {
     teamEl.innerHTML = team.length
-      ? team.map(personHTML).join('')
+      ? team.map((m) => personCardHTML(m)).join('')
       : '<li class="muted">Team details to be announced.</li>';
   }
   if (supEl) {
-    supEl.innerHTML = supervisors.map(personHTML).join('');
+    supEl.innerHTML = supervisors.map((m) => personCardHTML(m)).join('');
   }
-}
-
-/** Click any figure or gallery image to open it full-size. */
-export function wireLightbox(root) {
-  root.addEventListener('click', (e) => {
-    const img = e.target.closest('.figure img, .gallery img');
-    if (!img) return;
-
-    const box = document.createElement('div');
-    box.className = 'lightbox';
-    box.innerHTML = `
-      <button type="button" class="lightbox__close" aria-label="Close">&times;</button>
-      <img src="${attr(img.src)}" alt="${attr(img.alt)}" />
-      ${img.alt ? `<p class="lightbox__caption">${esc(img.alt)}</p>` : ''}`;
-
-    const close = () => {
-      box.remove();
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-    };
-    const onKey = (ev) => ev.key === 'Escape' && close();
-
-    box.addEventListener('click', (ev) => {
-      if (ev.target === box || ev.target.closest('.lightbox__close')) close();
-    });
-    document.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    document.body.append(box);
-    box.querySelector('.lightbox__close').focus();
-  });
 }
 
 /** Project count, for the home-page statistics. */

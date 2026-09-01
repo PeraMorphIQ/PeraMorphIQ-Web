@@ -1,9 +1,36 @@
 {
   "data": [
     {
+      "_id": "news2",
+      "title": "PeraMorphIQ introduced to the new intake at the E24 Induction Programme",
+      "date": "2026-09-01",
+      "Author": "PeraMorphIQ Neuromorphic Research Group",
+      "image": "data/img/news/news2/cover.jpg",
+      "brief": "\"Projects at PeraCom\", organised by the Department of Computer Engineering, gave our newest undergraduates a first look at the research shaping the department, including the neuromorphic hardware work of PeraMorphIQ.",
+      "fullContent": "As part of the E24 student induction programme, the Department of Computer Engineering ran \"Projects at PeraCom\", a session giving the newest intake of undergraduates an early look at the research and projects under way across the department.\nPeraMorphIQ presented alongside the other department project groups. We introduced the research group and its work on neuromorphic architectures for spiking neural networks: configurable accelerator design, RISC-V System-on-Chip and Network-on-Chip integration, and FPGA prototyping aimed at energy-efficient inference at the edge.\nThe session gave students the chance to talk directly with the researchers about what the group builds, how final year and graduate projects run within it, and how to get involved.\nHere's to exploring possibilities, creating impact, and beginning an inspiring engineering journey.",
+      "images": [
+        "data/img/news/news2/audience.jpg",
+        "data/img/news/news2/presenting.jpg",
+        "data/img/news/news2/discussion.jpg"
+      ],
+      "attachments": [
+        {
+          "label": "Introduction slides (PDF)",
+          "href": "data/img/news/news2/peramorphiq-e24-introduction.pdf",
+          "meta": "PDF, 5.2 MB"
+        }
+      ],
+      "links": [
+        {
+          "label": "Event post on Facebook",
+          "href": "https://www.facebook.com/100064540338429/posts/1405131788314819/"
+        }
+      ]
+    },
+    {
       "_id": "news1",
       "image": "./data/img/news/news1/Main.jpg",
-      "backgroundImg":"./data/img/news/news1/img3.jpg",
+      "backgroundImg": "./data/img/news/news1/img3.jpg",
       "images": [
         "./data/img/news/news1/Main.jpg",
         "./data/img/news/news1/img1.jpg",
@@ -16,9 +43,8 @@
       "title": "PeraMorphIQ Unveiled at the Faculty of Engineering 75th Anniversary Exhibition",
       "date": "2025-09-25",
       "brief": "The Department of Computer Engineering at the University of Peradeniya introduced PeraMorphIQ, a new neuromorphic research initiative, during the 75th Anniversary Exhibition, marking the department’s first public showcase of brain-inspired computing research",
-      "Author" : "PeraMorphIQ Neuromorphic Research Group",
+      "Author": "PeraMorphIQ Neuromorphic Research Group",
       "fullContent": " As part of the 75th Anniversary Exhibition of the Faculty of Engineering, the Department of Computer Engineering proudly presented its latest advancements in computer architecture, embedded systems, and FPGA-based prototypes. The exhibition highlighted the department’s strong expertise in hardware design and real-time computing, while also unveiling an exciting new frontier for our research community: neuromorphic computing. Through the Embedded Systems and Computer Architecture Lab (ESCAL), our teams demonstrated how we are advancing beyond traditional architectures toward cognitive and brain-inspired systems that integrate intelligence, adaptability, and energy efficiency.\n The event also marked the official introduction of PeraMorphIQ, the department’s dedicated neuromorphic research group. This initiative represents a milestone in the department’s history as the first public showcase of neuromorphic computing. PeraMorphIQ aims to design energy-efficient, brain-inspired architectures, explore Spiking Neural Networks (SNNs) as next-generation AI models, and pioneer on-chip learning and memory-optimized systems. The exhibition served as both a celebration of past achievements and a vision for the future, as the department continues to expand collaborations, strengthen its research ecosystem, and position ESCAL and PeraMorphIQ as hubs for cutting-edge computer architecture and neuromorphic innovation."
-
     }
   ]
 }

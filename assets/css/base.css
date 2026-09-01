@@ -193,6 +193,44 @@ pre {
   transform: translateY(0);
 }
 
+/* --- Touch targets -------------------------------------------------------- */
+
+/* WCAG 2.2 SC 2.5.8 asks for a 24x24 minimum. Several standalone action links
+   (DOI / Cite, Profile / LinkedIn, breadcrumbs, footer columns) sit at 17-20px
+   on their own line, which is fiddly on a phone. Only touch pointers get the
+   extra height, so desktop density is unchanged. */
+@media (pointer: coarse) {
+  .pub__actions a,
+  .pub__actions button,
+  .person__links a,
+  .breadcrumb a,
+  .footer-col a,
+  .site-footer__bottom a,
+  .site-footer__brand a,
+  .info-block__value a,
+  .resources__list a,
+  .link-forward,
+  .aside-block a,
+  .card__footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+
+  /* Short labels ("DOI", "Cite", "CV") clear 24px in height but not in width. */
+  .pub__actions a,
+  .pub__actions button,
+  .person__links a {
+    justify-content: center;
+    min-width: 24px;
+  }
+
+  .filter-group__label + .cluster .chip,
+  .chip {
+    min-height: 36px;
+  }
+}
+
 /* --- Layout primitives --------------------------------------------------- */
 
 .container {
