@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Research projects | PeraMorphIQ</title>
+    <meta name="description" content="Neuromorphic computing research projects at PeraMorphIQ - accelerator design, spiking neural networks, RISC-V systems-on-chip and edge AI hardware." />
+    <link rel="canonical" href="https://peramorphiq.ce.pdn.ac.lk/projects.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PeraMorphIQ" />
+    <meta property="og:title" content="Research projects | PeraMorphIQ" />
+    <meta property="og:description" content="Neuromorphic computing research projects at PeraMorphIQ - accelerator design, spiking neural networks, RISC-V systems-on-chip and edge AI hardware." />
+    <meta property="og:url" content="https://peramorphiq.ce.pdn.ac.lk/projects.html" />
+    <meta property="og:image" content="https://peramorphiq.ce.pdn.ac.lk/assets/img/title/image3.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="./assets/img/title/image3.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+
+  <body data-page="research">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-layout="header"></div>
+
+    <main id="main">
+      <section class="page-head">
+        <div class="container">
+          <h1 class="page-head__title">Research projects</h1>
+          <p class="page-head__lead">
+            Our work on brain-inspired computing, from accelerator
+            microarchitecture and Network-on-Chip design through to FPGA
+            prototypes and silicon energy analysis.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="filter-bar">
+            <div class="filter-group">
+              <span class="filter-group__label" id="status-label">Status</span>
+              <div class="cluster" role="group" aria-labelledby="status-label">
+                <button type="button" class="chip" data-status="all" aria-pressed="true">All</button>
+                <button type="button" class="chip" data-status="active" aria-pressed="false">Active</button>
+                <button type="button" class="chip" data-status="completed" aria-pressed="false">Completed</button>
+              </div>
+            </div>
+
+            <div class="search">
+              <label class="visually-hidden" for="project-search">Search projects</label>
+              <input class="search__input" id="project-search" type="search"
+                     placeholder="Search projects&hellip;" data-project-search />
+            </div>
+
+            <p class="result-count filter-bar__spacer" data-project-count aria-live="polite"></p>
+          </div>
+
+          <div class="filter-group" style="margin-bottom: var(--space-7)">
+            <span class="filter-group__label" id="topic-label">Topic</span>
+            <div class="cluster" role="group" aria-labelledby="topic-label" data-topic-filters></div>
+          </div>
+
+          <div class="grid grid--3" data-project-index></div>
+        </div>
+      </section>
+    </main>
+
+    <div data-layout="footer"></div>
+
+    <script type="module" src="./assets/js/layout.js"></script>
+    <script type="module" src="./assets/js/reveal.js"></script>
+    <script type="module">
+      import { loadProjectIndex } from './assets/js/modules/projects.js';
+      loadProjectIndex('[data-project-index]');
+    </script>
+  </body>
+</html>

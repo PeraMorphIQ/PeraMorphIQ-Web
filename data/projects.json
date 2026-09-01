@@ -1,0 +1,466 @@
+{
+  "$schema": "./_templates/project.example.json",
+  "data": [
+    {
+      "slug": "snap-v-accelerator",
+      "title": "Configurable Neuromorphic Accelerator for Embedded Applications",
+      "status": "active",
+      "startYear": 2025,
+      "endYear": null,
+      "cohort": "E20 Final Year Project",
+      "featured": true,
+      "summary": "A configurable neuromorphic accelerator for small-scale embedded applications, with an end-to-end path from software model to silicon inside a complete System-on-Chip.",
+      "topics": [
+        "Neuromorphic Computing",
+        "Accelerator Design",
+        "Embedded Systems",
+        "RISC-V"
+      ],
+      "image": "",
+      "links": {},
+      "team": [
+        { "eNumber": "E/20/279" },
+        { "eNumber": "E/20/385" },
+        { "eNumber": "E/20/280" }
+      ],
+      "supervisors": [
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" },
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" }
+      ],
+      "sections": [
+        {
+          "heading": "Overview",
+          "body": [
+            "This project focuses on developing a configurable neuromorphic accelerator tailored for small-scale, embedded applications. The goal is to establish an end-to-end workflow from software modelling to hardware implementation, enabling real-time, energy-efficient neuromorphic computation within a complete System-on-Chip (SoC) platform.",
+            "Rather than scaling up towards the very large neuromorphic systems that dominate the field, the design deliberately targets the small-network regime where most embedded and edge workloads actually sit — and where large-scale architectures waste both area and power."
+          ]
+        },
+        {
+          "heading": "Objectives",
+          "list": [
+            "Define a configurable accelerator microarchitecture parameterised by neuron count, fan-in and memory organisation",
+            "Establish a software-to-hardware workflow so a trained network can be mapped onto the accelerator without manual rewriting",
+            "Integrate the accelerator into a full SoC alongside a general-purpose management core",
+            "Validate real-time behaviour and energy efficiency against a software reference implementation"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "on-chip-learning-snn",
+      "title": "On-Chip Learning for Spiking Neural Networks",
+      "status": "active",
+      "startYear": 2025,
+      "endYear": null,
+      "cohort": "E20 Final Year Project",
+      "featured": true,
+      "summary": "Bringing adaptation into the hardware itself — online and offline learning mechanisms implemented directly on neuromorphic silicon.",
+      "topics": [
+        "Spiking Neural Networks",
+        "On-Chip Learning",
+        "Hardware Learning",
+        "Neuromorphic Computing"
+      ],
+      "image": "",
+      "links": {},
+      "team": [{ "eNumber": "E/20/439" }, { "eNumber": "E/20/346" }],
+      "supervisors": [
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" },
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" }
+      ],
+      "sections": [
+        {
+          "heading": "Overview",
+          "body": [
+            "This project explores enabling learning directly within neuromorphic hardware by implementing both online and offline learning mechanisms. The research focuses on hardware-based SNN learning algorithms and accelerator optimizations to bring adaptive intelligence closer to the chip.",
+            "Inference-only accelerators must be retrained off-device and reprogrammed. Moving the weight-update path into hardware removes that round trip, which matters for deployments that have to adapt to a drifting environment without a link back to a host machine."
+          ]
+        },
+        {
+          "heading": "Research questions",
+          "list": [
+            "Which learning rules retain accuracy once quantised to a hardware-realisable weight representation?",
+            "What is the area and energy cost of an on-chip update path relative to inference-only silicon?",
+            "How should local synaptic state be organised so updates do not serialise on memory access?"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "memory-power-optimization",
+      "title": "Memory and Power Optimization in Neuromorphic Accelerators",
+      "status": "active",
+      "startYear": 2025,
+      "endYear": null,
+      "cohort": "E20 Final Year Project",
+      "featured": true,
+      "summary": "Attacking the dominant bottleneck in neuromorphic hardware: distributed memory inefficiency and the energy cost of moving synaptic state.",
+      "topics": [
+        "Power Optimization",
+        "Memory Architecture",
+        "Neuromorphic Computing",
+        "Edge Computing"
+      ],
+      "image": "",
+      "links": {},
+      "team": [
+        { "eNumber": "E/20/024" },
+        { "eNumber": "E/20/242" },
+        { "eNumber": "E/20/034" }
+      ],
+      "supervisors": [
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" },
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" }
+      ],
+      "sections": [
+        {
+          "heading": "Overview",
+          "body": [
+            "This project investigates memory and power optimization techniques for neuromorphic accelerators, addressing one of the key bottlenecks in modern neuromorphic hardware — distributed memory inefficiency and energy constraints.",
+            "In practice, a large share of the energy in a neuromorphic accelerator is spent not on computing neuron updates but on fetching and writing back synaptic state. The work targets that traffic directly, through memory organisation and access scheduling rather than through changes to the neuron model."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "e18-neuromorphic-noc",
+      "title": "Neuromorphic NoC Architecture for Spiking Neural Networks",
+      "status": "completed",
+      "startYear": 2022,
+      "endYear": 2023,
+      "cohort": "E18 Final Year Project",
+      "featured": true,
+      "summary": "A RISC-V Network-on-Chip with custom accelerator hardware, supporting up to 1,024 neurons on an FPGA with dedicated FIFO buffers for stable, low-power operation.",
+      "topics": [
+        "Network-on-Chip",
+        "RISC-V",
+        "FPGA",
+        "Hardware Acceleration",
+        "Spiking Neural Networks",
+        "Edge Computing"
+      ],
+      "image": "data/img/project/e18-neuromorphic-noc/architecture.png",
+      "links": {
+        "github": "https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs"
+      },
+      "team": [
+        { "eNumber": "E/18/379", "name": "Thamish Wanduragala" },
+        { "eNumber": "E/18/147", "name": "Saadia Jameel" }
+      ],
+      "supervisors": [
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" },
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" }
+      ],
+      "sections": [
+        {
+          "heading": "Abstract",
+          "body": [
+            "The present works of AI show interest in trying to replicate some aspect of brain function. This interest stems from the fact that the brain remains functionally superior to any machine built to date despite consuming power equivalent to that of a compact fluorescent light bulb.",
+            "Spiking Neural Network (SNN), a type of artificial neural network, draws inspiration from the brain and uses spikes as the basis for communication in an event-driven manner. Spiking hardware, or neuromorphic hardware, is used to implement spike-based algorithms to realise their efficiency in computing and their ability to do so with low power, compared to non-spiking hardware.",
+            "Our research presents the design of a scalable and configurable Network-on-Chip (NoC) based on the RISC-V instruction set architecture (ISA) which allows for hardware-level processing of spiking neural networks, and the implementation of the design on an FPGA. RISC-V was chosen as the base ISA since it is not only highly practical and popular, but also completely open source and amenable to custom extensions.",
+            "The main goal of this research is to optimise the RISC-V processing node network for low power by integrating custom accelerator hardware units."
+          ]
+        },
+        {
+          "heading": "Related work",
+          "body": [
+            "Spiking neural networks fall in the category of artificial neural networks, and represent a newer variant considered to be a third-generation neural network. They resemble the activities of the brain more closely by incorporating time, transmitting spikes as events throughout the network. When a synapse receives an action potential from one of its pre-synaptic neurons, it transmits the spike to its post-synaptic neurons, updating the membrane potential according to the synaptic weight and other neuron parameters.",
+            "Intel's Loihi adopts a variation of the CUBA leaky-integrate-and-fire model, featuring a manycore mesh of 128 neuromorphic cores connected by an asynchronous NoC that transports all communication as packetized messages. Each core implements 1,024 spiking neural units sharing configuration and state across ten architectural memories.",
+            "The OpenSpike project and related ASIC work demonstrate application-specific implementations of the leaky integrate-and-fire model with time-multiplexed accelerator designs. SpiNNaker, by contrast, focuses on scale — simulating aggregates of up to a billion neurons in real time using nodes of 18 ARM968 cores each with 128 MB of off-die SDRAM."
+          ]
+        },
+        {
+          "heading": "Methodology",
+          "body": [
+            "The proposed design consists of RISC-V processing nodes specialised to perform the operations required to implement spiking networks. The nodes are interconnected using a network interface attached to each processing node, with a routing framework negotiating communication between them. Each processing node is responsible for managing one or more logical neurons, and the interconnectivity enables communication between logical neurons that span multiple nodes. The architecture adopts an event-driven messaging mechanism to emulate the activity of spiking neurons.",
+            "The motivation for using a RISC-V processing node network lies in the ability to maintain configurability and programmability at the hardware level. This flexibility is leveraged to support various spiking neuron model architectures."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e18-neuromorphic-noc/architecture.png",
+              "caption": "Overall architecture of the neuromorphic NoC."
+            },
+            {
+              "src": "data/img/project/e18-neuromorphic-noc/single-neuron.png",
+              "caption": "Single neuron implementation within a processing node."
+            }
+          ]
+        },
+        {
+          "heading": "Experiment setup and implementation",
+          "body": [
+            "Once the architecture was completed and verified in simulation, it was implemented on an FPGA device — specifically the Altera DE2-115. A small-scale SNN was then tested on the device to confirm the implementation.",
+            "The number of neurons the design can simulate was restricted to 1,024, chosen to support that count efficiently in both power and time. An SNN with 994 neurons was successfully simulated on the design for MNIST classification.",
+            "An architectural experiment was conducted to quantify the benefit of using multiple FIFO buffers at the output side of the neuron interconnect. The objective was to observe the difference in operating frequency between a single shared FIFO buffer and dedicated FIFO buffers from the neuron interconnect to the neurons, which established the right balance between resource usage and time efficiency."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e18-neuromorphic-noc/small-snn.png",
+              "caption": "Small-scale SNN mapped onto the FPGA."
+            },
+            {
+              "src": "data/img/project/e18-neuromorphic-noc/fifo-circuit.png",
+              "caption": "FIFO buffer circuit at the neuron interconnect output."
+            }
+          ]
+        },
+        {
+          "heading": "Results and analysis",
+          "body": [
+            "The operating frequency declines sharply as the number of neurons increases when a single FIFO buffer is placed at the output of the network interconnect leading to the accumulator units. With dedicated FIFO buffers for each accumulator unit, the frequency remains relatively stable, showing only minor variation. This stability is attributed to the absence of bottlenecks as the system scales."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e18-neuromorphic-noc/fifo.png",
+              "caption": "Operating frequency against neuron count, single versus dedicated FIFO buffers."
+            }
+          ]
+        },
+        {
+          "heading": "Conclusion",
+          "body": [
+            "While there are designs that facilitate large-scale architectures, there is a scarcity of designs that fully exploit programming flexibility. By targeting small-scale SNNs, this design introduces considerable flexibility through the combination of a general-purpose RISC-V processor and a custom accelerator. Although it does not match the scale of large architectures, it is optimised for applications that rely on small-scale SNNs, prioritising performance and low power consumption."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "e17-neuromorphic-noc",
+      "title": "RV32IMF Neuromorphic Network-on-Chip with Neuron Banks",
+      "status": "completed",
+      "startYear": 2021,
+      "endYear": 2023,
+      "cohort": "E17 Final Year Project",
+      "featured": false,
+      "summary": "Customised RV32IMF RISC-V cores, a 2D mesh NoC and dedicated neuron-bank hardware, with event-driven spike communication via custom ISA extensions and AXI interfaces.",
+      "topics": [
+        "Network-on-Chip",
+        "RISC-V",
+        "FPGA",
+        "Hardware Acceleration",
+        "Spiking Neural Networks"
+      ],
+      "image": "data/img/project/e17-neuromorphic-noc/noc-overview.png",
+      "links": {
+        "github": "https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs",
+        "paper": "https://doi.org/10.1109/ICIIS58898.2023.10253607"
+      },
+      "team": [
+        { "eNumber": "E/17/018", "name": "Balasuriya I.S." },
+        { "eNumber": "E/17/154", "name": "Karunanayake A.I." },
+        { "eNumber": "E/17/286", "name": "Rathnayaka R.M.T.N.K." }
+      ],
+      "supervisors": [
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" },
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" },
+        {
+          "email": "mahanamaw@eng.pdn.ac.lk",
+          "name": "Dr. Mahanama Wickramasinghe"
+        },
+        { "email": "isurud@ee.pdn.ac.lk", "name": "Dr. Isuru Dasanayake" }
+      ],
+      "sections": [
+        {
+          "heading": "Abstract",
+          "body": [
+            "Neuromorphic engineering endeavours to emulate the intricate functioning of the human brain through very large-scale integrated (VLSI) circuits. These architectures employ artificial neurons and synapses to replicate the characteristics of the brain, including its exceptional parallelism, rapid processing and energy efficiency, achieved by virtue of a densely interconnected neural network and its event-driven nature.",
+            "This work presents a Network-on-Chip (NoC) architecture based on the RISC-V instruction set architecture which allows for hardware-level processing of spiking neural networks, implemented and evaluated on an FPGA. RISC-V was chosen as the base ISA since it is highly practical and popular, completely open source, and amenable to custom extensions.",
+            "The design consists of customised RISC-V processing nodes interconnected using a network interface attached to each node, together with a routing framework to negotiate communication between nodes. Each processing node manages one or more neurons, and the architecture adopts an event-driven messaging mechanism to emulate neuron activity.",
+            "The primary objective is to demonstrate how a general-purpose ISA such as RISC-V can be augmented to perform a highly specialised task — the simulation of spiking neural networks in a scalable and configurable manner — whilst maintaining adherence to the original specifications of the ISA."
+          ]
+        },
+        {
+          "heading": "Related work",
+          "body": [
+            "SpiNNaker, developed at the University of Manchester, utilises a network of 57,600 nodes each consisting of 18 ARM968 cores, and serves as the neuromorphic platform for the Human Brain Project. It uses a globally asynchronous locally synchronous routing mechanism for energy-efficient inter-node communication. While it boasts high performance and parallelism, it is an extremely expensive, large-scale project requiring 100 kW of power and an air-conditioned environment.",
+            "DYNAP (Dynamic Neuromorphic Asynchronous Processor) is a processor architecture with heterogeneous memory structures for minimising memory utilisation, focusing on the interconnect between processor nodes and proposing a hierarchical routing mechanism for efficient event-based communication.",
+            "The ODIN coprocessor targets SNN workloads in IoT applications through a reconfigurable neuromorphic coprocessor interfacing with a RISC-V SoC over SPI, allowing the RISC-V core to configure and offload SNN tasks. POETS is a customisable hardware platform for event-driven parallel programming, including a hyperthreaded RISC-V core named Tinsel designed to reduce latency.",
+            "Although numerous neuromorphic architectures exist, there is a lack of designs that exploit the programming flexibility and platform maturity of existing architectures. A neuromorphic architecture based on RISC-V, offering greater flexibility, yields a valuable compromise."
+          ]
+        },
+        {
+          "heading": "Methodology",
+          "body": [
+            "The project proceeds by building a RISC-V core and adding custom hardware to handle SNN-related calculations, all implemented as a Network-on-Chip architecture. Verification is performed in both software and hardware, followed by simulation of an SNN on the designed architecture and evaluation of its performance."
+          ],
+          "list": [
+            "Build the RISC-V core",
+            "Add custom hardware for spike calculation",
+            "Implement the Network-on-Chip",
+            "Verify in software and hardware",
+            "Simulate a spiking neural network",
+            "Evaluate performance"
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/method.png",
+              "caption": "Project methodology."
+            }
+          ]
+        },
+        {
+          "heading": "The core",
+          "body": [
+            "The core is an RV32IMF implementation built to specification, handling the integer, multiplication and floating-point operations needed for SNN simulation. An interrupt mechanism handles communication with the network interface connected to the core, and additional ISA extensions cover NoC operations and spike calculations."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/core.png",
+              "caption": "RV32IMF core architecture."
+            }
+          ]
+        },
+        {
+          "heading": "The Network-on-Chip",
+          "body": [
+            "The NoC is a 2D mesh architecture where each core connects to a router through a local port.",
+            "The network interface is the primary means for a core to connect to the network. It includes an AXI4-slave protocol for better latency and bandwidth handling, making it a more general-purpose interface. Access from the core uses the custom instructions SWNET and LWNET, where LWNET is used exclusively by the interrupt service routine, triggered when the read buffer rises above a threshold.",
+            "For packet processing, flit handling converts packets from the core into flits and flits from the network into packets. This module is followed by an asynchronous FIFO buffer to handle data pass-through between two clock domains.",
+            "The input module to a router contains the input router that decides routing per flit, plus virtual channel buffers that provide deadlock freedom and resolve head-of-line blocking; a round-robin arbiter chooses the channel used for flit input. The output module similarly holds a set of virtual channels acting as a flow-control mechanism. The router itself is a large crossbar switch connecting each input module to each output module, with control signals generated from the collected input-module arbiter selections."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-overview.png",
+              "caption": "Core-to-router connection in the 2D mesh NoC."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-network-interface.png",
+              "caption": "Network interface architecture."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-packet-processing.png",
+              "caption": "Packet processing and flit handling."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-input-module.png",
+              "caption": "Router input module with virtual channel buffers."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-output-module.png",
+              "caption": "Router output module."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-router.png",
+              "caption": "Router architecture."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/noc-router-crossbar.png",
+              "caption": "Router crossbar switch."
+            }
+          ]
+        },
+        {
+          "heading": "Custom hardware — neuron banks",
+          "body": [
+            "The neuron banks are specialised custom hardware designed to handle neuron update calculations away from CPU mediation. At the start of operation, neuron configuration parameters are set by the CPU. Spike calculation inputs are taken into an input buffer together with a random number generated at that instant, and these values are used in the neuron update calculation.",
+            "In the final architecture, the NoC is responsible for initialisation and spike calculation, while the neuron bank section performs continuous neuron updates and the neuron reset after a spike. Each core is allocated a section of the neuron banks for its own use, which defines the neuron-to-CPU mapping."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/bank.png",
+              "caption": "Neuron bank architecture."
+            },
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/arch.png",
+              "caption": "Final system architecture."
+            }
+          ]
+        },
+        {
+          "heading": "Experiments",
+          "body": [
+            "Experiments were simulated on FPGA hardware across three configurations — a single core, a two-core NoC, and a two-core NoC with neuron banks — measuring the clock cycles taken to execute one second of simulation at 1 ms timesteps. The test network was a four-neuron fully connected network with weights.",
+            "Experiment I used a single core for the simulation of all neurons. Experiment II used two cores connected through the NoC, with the four neurons divided two per core. Experiment III used the same two cores but offloaded the neuron update calculation to the neuron bank, leaving only spike calculation and initialisation to the CPUs."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/neurons.png",
+              "caption": "Four-neuron fully connected test network."
+            }
+          ]
+        },
+        {
+          "heading": "Results and analysis",
+          "body": [
+            "The experimental results demonstrate the effectiveness of the proposed neuromorphic NoC architecture for SNN simulation. Performance improvements were observed with the multi-core NoC configuration and, more markedly, with the addition of custom neuron banks."
+          ],
+          "images": [
+            {
+              "src": "data/img/project/e17-neuromorphic-noc/results.png",
+              "caption": "Experimental results across the three configurations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "e16-neuromorphic-architecture",
+      "title": "Neuromorphic Architecture with Parallel RISC-V Processing Elements",
+      "status": "completed",
+      "startYear": 2020,
+      "endYear": 2021,
+      "cohort": "E16 Final Year Project",
+      "featured": false,
+      "summary": "Parallel RISC-V processing elements modelling spiking neurons individually or virtually grouped, with encoder and decoder modules for benchmarking on classical machine learning tasks.",
+      "topics": [
+        "RISC-V",
+        "Spiking Neural Networks",
+        "Hardware Acceleration",
+        "Parallel Processing",
+        "Neuromorphic Computing"
+      ],
+      "image": "",
+      "links": {
+        "github": "https://github.com/cepdnaclk/e16-4yp-Neuromorphic-Architecture"
+      },
+      "team": [
+        { "eNumber": "E/16/088", "name": "Dissanayake D M T H" },
+        { "eNumber": "E/16/276", "name": "Perera G K B H" },
+        { "eNumber": "E/16/366", "name": "Thilarakathna W M D U" }
+      ],
+      "supervisors": [
+        { "email": "isurunawinne@eng.pdn.ac.lk", "name": "Dr. Isuru Nawinne" },
+        { "email": "roshanr@eng.pdn.ac.lk", "name": "Prof. Roshan G. Ragel" },
+        {
+          "email": "mahanamaw@eng.pdn.ac.lk",
+          "name": "Dr. Mahanama Wickramasinghe"
+        },
+        { "email": "isurud@ee.pdn.ac.lk", "name": "Dr. D.M.I.S. Dasanayake" }
+      ],
+      "sections": [
+        {
+          "heading": "Abstract",
+          "body": [
+            "Neuromorphic architectures are hardware architectures that use biologically inspired neural functions as the basis of operation. Information processing based on spiking neuron architectures has attracted considerable attention in recent years due to its low power consumption compared to traditional artificial neural networks.",
+            "In the first stage of this project, parallel multiple processing elements based on the RISC-V architecture are implemented to represent biological neurons. A single neuron can be implemented as a single processor with local memory access; alternatively, since the spike time of biological neurons is on the order of milliseconds, multiple neurons can be virtualised onto a single processor.",
+            "At the second stage, encoders and decoders are designed to benchmark the architecture by solving classical machine learning problems."
+          ]
+        },
+        {
+          "heading": "Technical approach",
+          "body": [
+            "Given that biological neurons operate with spike times in the millisecond range, the architecture supports virtualisation where multiple neurons are efficiently managed by a single processor. This optimises resource utilisation while maintaining the temporal characteristics essential to neuromorphic computation.",
+            "Each processing element is designed with local memory access, ensuring low-latency data retrieval and storage. This distributed memory approach aligns with the decentralised nature of biological neural networks and contributes to the overall energy efficiency of the system.",
+            "The architecture is specifically optimised for spiking neural networks, which process information through discrete spike events rather than continuous signals. This event-driven model leads to significant power savings, especially where neural activity is sparse."
+          ]
+        },
+        {
+          "heading": "Research goals",
+          "list": [
+            "Develop efficient parallel processing elements based on the RISC-V architecture",
+            "Implement neuron virtualisation techniques for optimal resource utilisation",
+            "Create encoders and decoders for machine learning applications",
+            "Benchmark the architecture against classical machine learning problems",
+            "Demonstrate significant power savings compared to traditional neural networks"
+          ]
+        },
+        {
+          "heading": "Applications",
+          "body": [
+            "The neuromorphic architecture developed in this project has potential applications across several domains: low-power neural processing for IoT devices at the edge; real-time decision making with minimal energy consumption in autonomous systems; efficient processing of visual and auditory signals; neural signal processing for brain-computer interfaces; and adaptive behaviour and learning in robotics."
+          ]
+        }
+      ]
+    }
+  ]
+}

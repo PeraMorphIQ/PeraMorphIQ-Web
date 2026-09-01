@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "title": "Neuromorphic accelerators",
+      "description": "Configurable accelerator microarchitectures for spiking networks, designed for the small-scale regime where embedded and edge workloads actually sit.",
+      "topic": "Neuromorphic Computing"
+    },
+    {
+      "title": "Spiking neural networks & on-chip learning",
+      "description": "Hardware-realisable learning rules and the weight-update paths that let a deployed device adapt without a round trip to a host machine.",
+      "topic": "Spiking Neural Networks"
+    },
+    {
+      "title": "RISC-V SoC & Network-on-Chip",
+      "description": "Custom ISA extensions, network interfaces and 2D-mesh interconnect that turn a general-purpose open ISA into a spiking-network substrate.",
+      "topic": "RISC-V"
+    },
+    {
+      "title": "Edge AI hardware",
+      "description": "Memory organisation, power optimisation and FPGA-to-ASIC paths that bring real-time inference within the energy budget of an edge device.",
+      "topic": "Edge Computing"
+    }
+  ]
+}

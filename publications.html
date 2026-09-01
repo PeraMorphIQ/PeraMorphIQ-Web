@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Publications | PeraMorphIQ</title>
+    <meta name="description" content="Peer-reviewed articles, conference papers and preprints from the PeraMorphIQ neuromorphic research group, University of Peradeniya." />
+    <link rel="canonical" href="https://peramorphiq.ce.pdn.ac.lk/publications.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PeraMorphIQ" />
+    <meta property="og:title" content="Publications | PeraMorphIQ" />
+    <meta property="og:description" content="Peer-reviewed articles, conference papers and preprints from the PeraMorphIQ neuromorphic research group, University of Peradeniya." />
+    <meta property="og:url" content="https://peramorphiq.ce.pdn.ac.lk/publications.html" />
+    <meta property="og:image" content="https://peramorphiq.ce.pdn.ac.lk/assets/img/title/image3.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="./assets/img/title/image3.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+
+  <body data-page="publications">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-layout="header"></div>
+
+    <main id="main">
+      <section class="page-head">
+        <div class="container">
+          <h1 class="page-head__title">Publications</h1>
+          <p class="page-head__lead">
+            Journal articles, conference papers and preprints from the group.
+            Names in bold are PeraMorphIQ members.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="filter-bar">
+            <div class="filter-group">
+              <span class="filter-group__label" id="type-label">Type</span>
+              <div class="cluster" role="group" aria-labelledby="type-label">
+                <button type="button" class="chip" data-pub-filter="all" aria-pressed="true">All</button>
+                <button type="button" class="chip" data-pub-filter="journal" aria-pressed="false">Journal</button>
+                <button type="button" class="chip" data-pub-filter="conference" aria-pressed="false">Conference</button>
+                <button type="button" class="chip" data-pub-filter="preprint" aria-pressed="false">Preprint</button>
+              </div>
+            </div>
+
+            <div class="search">
+              <label class="visually-hidden" for="pub-search">Search publications</label>
+              <input class="search__input" id="pub-search" type="search"
+                     placeholder="Search title or author&hellip;" data-pub-search />
+            </div>
+
+            <div class="filter-bar__spacer cluster">
+              <p class="result-count" data-pub-count aria-live="polite"></p>
+              <button type="button" class="btn btn--secondary btn--sm" data-pub-export>
+                Download BibTeX
+              </button>
+            </div>
+          </div>
+
+          <div data-publication-index></div>
+        </div>
+      </section>
+    </main>
+
+    <div data-layout="footer"></div>
+
+    <script type="module" src="./assets/js/layout.js"></script>
+    <script type="module" src="./assets/js/reveal.js"></script>
+    <script type="module">
+      import { loadPublicationIndex } from './assets/js/modules/publications.js';
+      loadPublicationIndex('[data-publication-index]');
+    </script>
+  </body>
+</html>

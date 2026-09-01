@@ -1,0 +1,136 @@
+/* ==========================================================================
+   PeraMorphIQ — Design Tokens
+   --------------------------------------------------------------------------
+   THE SINGLE SOURCE OF TRUTH FOR THE VISUAL SYSTEM.
+
+   Rule: no raw hex / rgb / hsl value may appear anywhere else in this
+   codebase. If you need a colour, add it here first and reference the token.
+
+   Direction: near-monochrome. A neutral ink ramp plus ONE accent hue.
+   Hierarchy comes from type size, weight and whitespace — not from colour.
+   ========================================================================== */
+
+:root {
+  /* --- 01 COLOUR ------------------------------------------------------- */
+
+  /* Ink ramp — text and marks */
+  --ink-900: #111418; /* headings, primary text */
+  --ink-700: #3d434c; /* body text */
+  --ink-500: #6b7280; /* meta, captions, bylines */
+  --ink-300: #9ca3af; /* disabled, subtle marks */
+
+  /* Structure */
+  --rule: #e5e7eb; /* hairline borders and dividers */
+  --rule-strong: #d1d5db; /* hover / emphasised borders */
+
+  /* Surfaces */
+  --surface: #ffffff; /* page ground */
+  --surface-2: #f7f8f9; /* alternating bands, card fill */
+  --surface-3: #eef0f2; /* input wells, skeletons */
+  --surface-inverse: #111418; /* footer — flat, no gradient */
+  --surface-inverse-2: #1c2027; /* raised block on inverse ground */
+
+  /* The one accent */
+  --accent: #1e4f8f;
+  --accent-hover: #163c6e;
+  --accent-weak: #eef2f8; /* accent-tinted ground, selected chip only */
+  --accent-on-inverse: #93b4dd; /* accent legible on --surface-inverse */
+
+  /* Text on inverse ground */
+  --ink-inverse: #f3f4f6;
+  --ink-inverse-muted: #9aa2ad;
+  --rule-inverse: #2c323b;
+
+  /* Modal / lightbox scrims */
+  --scrim: rgb(17 20 24 / 0.5);
+  --scrim-strong: rgb(17 20 24 / 0.92);
+
+  /* Focus */
+  --focus-ring: var(--accent);
+
+  /* --- 02 TYPOGRAPHY --------------------------------------------------- */
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  --font-wordmark: "Orbitron", var(--font-sans);
+
+  /* NOTE: html{font-size:62.5%} is set in base.css, so 1rem = 10px.
+     Every rem below (and throughout the codebase) assumes that. */
+  --text-xs: 1.2rem;
+  --text-sm: 1.4rem;
+  --text-base: 1.6rem;
+  --text-md: 1.8rem;
+  --text-lg: 2.1rem;
+  --text-xl: 2.6rem;
+  --text-2xl: 3.2rem;
+  --text-3xl: 4rem;
+  --text-4xl: 5rem;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.65;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+
+  /* Optimal reading measure for prose */
+  --measure: 72ch;
+
+  /* --- 03 SPACE -------------------------------------------------------- */
+
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2.4rem;
+  --space-6: 3.2rem;
+  --space-7: 4.8rem;
+  --space-8: 6.4rem;
+  --space-9: 8rem;
+  --space-10: 9.6rem;
+  --space-11: 12.8rem;
+
+  /* One section rhythm value, used everywhere */
+  --section-y: var(--space-9);
+  --section-y-lg: var(--space-11);
+
+  /* --- 04 SHAPE, DEPTH, MOTION ----------------------------------------- */
+
+  --radius: 4px; /* one radius, flat and squared-off */
+  --radius-pill: 999px;
+  --border: 1px solid var(--rule);
+
+  /* Two shadows at most. Cards lean on borders, not drop shadows. */
+  --shadow-sm: 0 1px 2px rgb(17 20 24 / 0.05);
+  --shadow-md: 0 8px 28px rgb(17 20 24 / 0.12);
+
+  --transition: 160ms ease;
+  --transition-slow: 320ms ease;
+
+  /* --- 05 LAYOUT ------------------------------------------------------- */
+
+  --container: 116rem;
+  --container-narrow: 78rem;
+  --header-h: 6.4rem;
+
+  --z-header: 100;
+  --z-drawer: 200;
+  --z-overlay: 300;
+}
+
+/* Respect the reader's motion preference at the token level, so every
+   component that uses --transition is covered without extra rules. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0ms;
+    --transition-slow: 0ms;
+  }
+}

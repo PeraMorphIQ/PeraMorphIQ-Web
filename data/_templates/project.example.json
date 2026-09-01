@@ -1,0 +1,29 @@
+{
+  "slug": "example-project",
+  "title": "Example Project Title",
+  "summary": "One or two sentences shown on the project card.",
+  "status": "active",
+  "startYear": 2026,
+  "endYear": null,
+  "cohort": "E21 Final Year Project",
+  "featured": false,
+  "topics": ["Neuromorphic Computing", "RISC-V"],
+  "image": "data/img/project/example-project/cover.png",
+  "links": { "github": "", "paper": "", "demo": "" },
+  "team": [{ "eNumber": "E/21/001" }],
+  "supervisors": [{ "email": "isurunawinne@eng.pdn.ac.lk" }],
+  "sections": [
+    { "heading": "Overview", "body": ["First paragraph.", "Second paragraph."] },
+    { "heading": "Objectives", "list": ["Objective one", "Objective two"] },
+    {
+      "heading": "Results",
+      "body": ["Prose describing the results."],
+      "images": [
+        {
+          "src": "data/img/project/example-project/figure-1.png",
+          "caption": "Caption shown beneath the figure."
+        }
+      ]
+    }
+  ]
+}

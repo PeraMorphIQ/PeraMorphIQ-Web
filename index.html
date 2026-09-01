@@ -3,404 +3,251 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap"
-      rel="stylesheet"
+
+    <title>PeraMorphIQ — Neuromorphic Research Group, University of Peradeniya</title>
+    <meta
+      name="description"
+      content="PeraMorphIQ is a neuromorphic computing research group at the Department of Computer Engineering, University of Peradeniya, building brain-inspired hardware for energy-efficient intelligence at the edge."
     />
+    <link rel="canonical" href="https://peramorphiq.ce.pdn.ac.lk/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PeraMorphIQ" />
+    <meta property="og:title" content="PeraMorphIQ — Neuromorphic Research Group" />
+    <meta
+      property="og:description"
+      content="Brain-inspired hardware for energy-efficient intelligence at the edge. Department of Computer Engineering, University of Peradeniya."
+    />
+    <meta property="og:url" content="https://peramorphiq.ce.pdn.ac.lk/" />
+    <meta property="og:image" content="https://peramorphiq.ce.pdn.ac.lk/assets/img/title/image3.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="./assets/img/title/image3.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link href="css/hero.css" rel="stylesheet" />
-    <link href="css/general.css" rel="stylesheet"/>
-    <link href="css/query.css" rel="stylesheet"/>
-    <link rel="icon" type="image/svg+xml" href="./img/title/image3.png" sizes="any"/>
-    <title>PeraMorphIQ</title>
+
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ResearchOrganization",
+        "name": "PeraMorphIQ Neuromorphic Research Group",
+        "url": "https://peramorphiq.ce.pdn.ac.lk/",
+        "email": "peramorphiq@eng.pdn.ac.lk",
+        "parentOrganization": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Peradeniya",
+          "url": "https://www.pdn.ac.lk/"
+        },
+        "department": {
+          "@type": "Organization",
+          "name": "Department of Computer Engineering",
+          "url": "https://www.ce.pdn.ac.lk/"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Department of Computer Engineering, University of Peradeniya",
+          "addressLocality": "Peradeniya",
+          "postalCode": "20400",
+          "addressCountry": "LK"
+        },
+        "knowsAbout": [
+          "Neuromorphic computing",
+          "Spiking neural networks",
+          "RISC-V",
+          "Network-on-Chip",
+          "Edge AI hardware"
+        ]
+      }
+    </script>
   </head>
-  <body>
-    <div class="landing-page">
-      <header class="header">
-        <a href="#" style="display: flex; align-items:center; gap: 0.8rem; text-decoration: none;">
-          <!-- Commented out logo for now -->
-          <img src="./img/title/image3.png" alt="" class="escal" style="height:4rem;"/>
-          <span style="font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 700; color:#7e95adff;" class="logoName">PeraMorphIQ</span>
-        </a>
-        <button class="btn-mobile-nav" type="button" aria-label="Toggle menu">
-          <span class="hamburger-line line1"></span>
-          <span class="hamburger-line line2"></span>
-          <span class="hamburger-line line3"></span>
-        </button>
 
-        <nav class="main-nav">
-          <ul class="main-nav-list">
-            <li>
-              <a class="main-nav-link" href="#about">About</a>
-            </li>
-            <li>
-              <a class="main-nav-link" href="#news">News</a>
-            </li>
-            <li>
-              <a class="main-nav-link" href="#publications">Publications</a>
-            </li>
-            <!-- <li>
-              <a class="main-nav-link" href="#blogs">Blogs</a>
-            </li> -->
-            <li>
-              <a class="main-nav-link nav-cta" href="#projects">Projects</a>
-            </li>
-            <li>
-              <a class="main-nav-link nav-cta" href="#supervisors">People</a>
-            </li>
-            <li><a class="main-nav-link nav-cta" href="contactUs.html">Contact</a></li>
-          </ul>
-          <span class="nav-indicator"></span>
-        </nav>
-      </header>
+  <body data-page="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-layout="header"></div>
 
-      <!-- Section of Hero -->
-      <section class="section-hero">
-        <div class="hero">
-          <div class="hero-text-box">
-            <h1 class="hero-main--header">
-              <span class="hero-brand-name">PeraMorphIQ</span>
-              <span class="hero-subtitle">Neuromorphic Research Group</span>
-              <span class="hero-location">
-                <span class="typewriter-text" data-text="at University of Peradeniya"></span>
-              </span>
-            </h1>
-
-            <p class="hero-description">
-              Pioneering the future of intelligent computing through cutting-edge neuromorphic research. We design brain-inspired architectures, develop energy-efficient hardware solutions, and create adaptive neural networks that revolutionize how machines think and learn.
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero__inner">
+            <p class="hero__eyebrow">
+              Department of Computer Engineering &middot; University of Peradeniya
             </p>
-
-            <!-- Partnership Logos Section -->
-            <div class="hero-partners">
-              <div class="partners-container">
-                <div class="partner-logo">
-                  <img src="./img/partners/logo-2.png" alt="ESCAL Lab" class="logo-img" />
-                </div>
-                <div class="partner-logo">
-                  <img src="./img/partners/peracomlogo.png" alt="Computer Engineering" class="logo-img" />
-                </div>
-                <div class="partner-logo" style="display: flex; align-items: center; gap: 0.5rem;">
-                  <img src="./img/partners/peramorphiq.png" alt="PeraMorphIQ" style="height:5rem" class="logo-img"/>
-                  <img src="./img/partners/pera_11.png" alt="PeraMorphIQ" class="logo-img"/>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-btn">
-              <a href="#about" class="hero-learn-btn btn--scroll-to"
-                ><span>Exploring more</span
-                ><img
-                  src="./img/icons/arrow_icon.svg"
-                  class="explore-more-icon"
-              /></a>
-              <a href="contactUs.html" class="hero-learn-btn">Contact Us</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-    </div>
-    <main>
-      <!-- section of About -->
-      <section class="section-about page" id="about">
-        <div class="container about-text-box">
-          <h2 class="subheading">Pioneering Neuromorphic Intelligence</h2>
-
-          <p class="about-description">
-            <strong>PeraMorphIQ Neuromorphic Research Group</strong> stands at the forefront of brain-inspired computing innovation at the Department of Computer Engineering, University of Peradeniya. We are dedicated to revolutionizing computational paradigms through comprehensive research spanning architecture design, algorithmic development, and system implementation.
-            <br><br>
-            Our interdisciplinary team conducts end-to-end development—from advanced ASIC implementations and sophisticated FPGA prototypes to cutting-edge simulation frameworks and groundbreaking algorithmic exploration. We specialize in developing configurable neuromorphic accelerators featuring on-chip learning capabilities, advanced memory optimization techniques, and real-time processing solutions.
-            <br><br>
-            By seamlessly bridging neuroscience, artificial intelligence, and embedded systems, we create intelligent computing platforms that embody the remarkable adaptability and energy efficiency of the human brain, paving the way for the next generation of cognitive computing systems.
-          </p>
-
-          <div class="about-stats grid grid--4--cols">
-            <div class="stat">
-              <img src="img/about/brain.svg" class="about-icon" />
-              <p class="about-stats-number">7+</p>
-              <p class="icon-desc">Active Research Projects</p>
-            </div>
-
-            <div class="stat">
-              <img src="img/about/people.svg" class="about-icon" />
-              <p class="about-stats-number">20+</p>
-              <p class="icon-desc">Research Team Members</p>
-            </div>
-
-            <div class="stat">
-              <img src="img/about/publish.svg" class="about-icon" />
-              <p class="about-stats-number">3+</p>
-              <p class="icon-desc">Scientific Publications</p>
-            </div>
-
-            <div class="stat">
-              <img src="img/about/circuit.svg" class="about-icon" />
-              <p class="about-stats-number">3+</p>
-              <p class="icon-desc">Hardware Prototypes</p>
+            <h1 class="hero__title">
+              Brain-inspired hardware for energy-efficient intelligence at the edge.
+            </h1>
+            <p class="hero__lead">
+              PeraMorphIQ designs neuromorphic architectures for spiking neural
+              networks — from accelerator microarchitecture and RISC-V
+              System-on-Chip integration through to FPGA prototypes and silicon
+              energy analysis.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="./projects.html">Explore our research</a>
+              <a class="btn btn--secondary" href="./publications.html">Publications</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section of News -->
-      <section class="section-news page" id="news">
+      <!-- Research areas -->
+      <section class="section section--alt" id="research-areas">
         <div class="container">
-          <h2 class="subheading">
-            Latest News & Updates
-            <a href="./news.html" class="link-tags"
-              ><img src="./img/icons/link.svg" class="link-icons" alt="Open News" width="48" height="48"/></a>
-          </h2>
-        </div>
-
-        <div class="container main-news" id="news-container">
-          <!-- News will be loaded dynamically -->
-        </div>
-
-        <div class="view-more-news">
-          <a href="./news.html" class="view-more-btn" target="_blank"
-            >View on news <span>&rarr;</span></a
-          >
+          <div class="section-head">
+            <p class="section-head__eyebrow">What we work on</p>
+            <h2 class="section-head__title">Research areas</h2>
+            <p class="section-head__lead">
+              Four connected threads, from the neuron model up to a deployable
+              system-on-chip.
+            </p>
+          </div>
+          <div class="grid grid--4" data-research-areas></div>
         </div>
       </section>
 
-      <!-- Section Of publications -->
-      <section class="section-publications page" id="publications">
+      <!-- At a glance -->
+      <section class="section section--tight">
         <div class="container">
-          <h2 class="subheading">
-            Publications
-            <a href="./publication.html" class="link-tags"
-              ><img src="./img/icons/link.svg" class="link-icons" alt="Open Publications" width="48" height="48"/></a>
-          </h2>
-        </div>
-
-        <div class="container main-publications" id="publication-container">
-          <!-- Publication will be loaded dynamically  -->
+          <div class="stats" data-stats></div>
         </div>
       </section>
 
-      <!-- Section of Blogs -->
-      <section class="section-blogs page" id="blogs" style="display:none;">
+      <!-- Featured projects -->
+      <section class="section" id="projects">
         <div class="container">
-          <h2 class="subheading">
-            Research Insights & Analysis
-            <a href="./blogs.html" class="link-tags"
-              ><img src="./img/icons/link.svg" class="link-icons" alt="Open Blogs" width="48" height="48"/></a>
-          </h2>
-        </div>
-
-        <div class="container blog-grid" id="blog-container">
-          <!-- Blogs will be loaded dynamically -->
+          <div class="section-head section-head--row">
+            <div>
+              <p class="section-head__eyebrow">Research</p>
+              <h2 class="section-head__title">Featured projects</h2>
+            </div>
+            <a class="link-forward" href="./projects.html">All research projects</a>
+          </div>
+          <div class="grid grid--3" data-featured-projects></div>
         </div>
       </section>
 
-      <!-- Section of Projects -->
-      <section class="section-projects page" id="projects">
+      <!-- Publications -->
+      <section class="section section--alt" id="publications">
         <div class="container">
-          <h2 class="subheading">
-            Innovative Research Projects
-            <a href="./project.html" class="link-tags"
-              ><img src="./img/icons/link.svg" class="link-icons" alt="Open Projects" width="48" height="48"/></a>
-          </h2>
-        </div>
-
-        <div class="container grid grid grid--3--cols" id="project-container">
-          <!-- Projects will be loaded dynamically -->
+          <div class="section-head section-head--row">
+            <div>
+              <p class="section-head__eyebrow">Output</p>
+              <h2 class="section-head__title">Selected publications</h2>
+            </div>
+            <a class="link-forward" href="./publications.html">All publications</a>
+          </div>
+          <div data-publications></div>
         </div>
       </section>
 
-      <!-- Section of People -->
-      <section class="section-supervisors page" id="supervisors">
+      <!-- News -->
+      <section class="section" id="news">
         <div class="container">
-          <h2 class="subheading">
-            Meet Our Research Team
-            <a href="./people.html" class="link-tags"
-              ><img src="./img/icons/link.svg" class="link-icons" alt="Open People" width="48" height="48"/></a>
-          </h2>
+          <div class="section-head section-head--row">
+            <div>
+              <p class="section-head__eyebrow">Updates</p>
+              <h2 class="section-head__title">Latest news</h2>
+            </div>
+            <a class="link-forward" href="./news.html">All news</a>
+          </div>
+          <div class="grid grid--3" data-news></div>
         </div>
+      </section>
 
-        <!--supervisors-->
-        <section class="contributors-group" style="margin-bottom: 4.8rem;">
-          <div class="container">
-            <h3 class="inherheader">Supervisors</h3>
-            <div class="main-contributors grid grid--5--cols" id="supervisors-container">
-              <!-- Superviors will be loaded dynamically -->
-            </div>
+      <!-- About -->
+      <section class="section section--alt" id="about">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-head__eyebrow">About the group</p>
+            <h2 class="section-head__title">Who we are</h2>
           </div>
-        </section>
+          <div class="prose">
+            <p>
+              PeraMorphIQ is a neuromorphic computing research group at the
+              Department of Computer Engineering, University of Peradeniya. We
+              work on brain-inspired computing across the full stack —
+              architecture design, algorithmic development and system
+              implementation.
+            </p>
+            <p>
+              Our work runs end to end, from simulation frameworks and
+              algorithmic exploration through FPGA prototypes to ASIC
+              implementation. We build configurable neuromorphic accelerators
+              with on-chip learning, memory and power optimisation, and
+              real-time processing suited to embedded deployment.
+            </p>
+            <p>
+              By bridging neuroscience, machine learning and embedded systems,
+              we aim at computing platforms that borrow the adaptability and
+              energy efficiency of biological neural systems — and are small
+              enough to actually deploy.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!---team members-->
-        <section class="contributors-group team-member-card">
-          <div class="container" style="margin-bottom: 4.8rem;">
-            <h3 class="inherheader">Graduate Researchers</h3>
-            <div
-              class="main-contributors grid grid--5--cols"
-              id="graduate-container"
-            >
-              <!-- Graduate researchers will be loaded dynamically -->
+      <!-- People -->
+      <section class="section" id="people">
+        <div class="container">
+          <div class="section-head section-head--row">
+            <div>
+              <p class="section-head__eyebrow">The group</p>
+              <h2 class="section-head__title">People</h2>
+            </div>
+            <a class="link-forward" href="./people.html">Meet the full team</a>
+          </div>
+          <div data-people-preview></div>
+        </div>
+      </section>
+
+      <!-- Closing CTA -->
+      <section class="cta">
+        <div class="container">
+          <div class="cta__inner">
+            <div>
+              <h2 class="cta__title">Work with us</h2>
+              <p class="cta__text">
+                We supervise final-year and graduate projects, and we welcome
+                collaboration with research groups and industry partners working
+                on neuromorphic and edge AI hardware.
+              </p>
+            </div>
+            <div class="cluster">
+              <a class="btn btn--primary" href="./contact.html">Get in touch</a>
+              <a class="btn btn--secondary" href="https://github.com/PeraMorphIQ" rel="noopener">GitHub</a>
             </div>
           </div>
-          
-          <div class="container" style="margin-bottom: 4.8rem;">
-            <h3 class="inherheader">Undergraduate Researchers</h3>
-            <div
-              class="main-contributors grid grid--5--cols"
-              id="team-container"
-            >
-              <!-- Undergraduate researchers will be loaded dynamically -->
-            </div>
-          </div>
-          
-          <div class="container" style="margin-bottom: 4.8rem;">
-            <h3 class="inherheader">Alumni Researchers</h3>
-            <div
-              class="main-contributors grid grid--5--cols"
-              id="alumni-container"
-            >
-              <!-- Alumni researchers will be loaded dynamically -->
-            </div>
-          </div>
-        </section>
-        
+        </div>
       </section>
     </main>
 
-    <!-- Section of footer -->
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-1">
-          <a href="#" class="footer-logo" style="display: flex; align-items:center;">
-            <img src="./img/title/image3.png" alt="" class="escal" />
-            <img src="./img/partners/pera_11.png" alt="" style="height: 6rem;">
-          </a>
+    <div data-layout="footer"></div>
 
-          <p class="footer-desc">
-            Advancing the frontiers of neuromorphic computing through
-            innovative research and collaboration
-          </p>
-
-          <ul class="social-links" style="display:none;">
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
-              ></a>
-            </li>
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
-              ></a>
-            </li>
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
-              ></a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="address-col">
-          <p class="footer-heading">Get In Touch</p>
-          <address class="contacts">
-            <p class="address">
-              <img src="./img/footer/location.png" alt="location" class="contact-icon"/>
-              Department of Computer Engineering, Univeristy of Peradeniya, Sri Lanka.
-            </p>
-            <p>
-              <img src="./img/footer/phone-call.png" alt="location" class="contact-icon"/>
-              <a class="footer-link" href="tel:415-201-6370">+94 71 849 5506</a><br />
-              <img src="./img/footer/mail.png" alt="location" class="contact-icon"/>
-              <a class="footer-link" href="mailto:hello@omnifood.com"
-                >peramorphiq@eng.pdn.ac.lk</a
-              >
-            </p>
-          </address>
-        </div>
-
-        <nav class="nav-col">
-          <p class="footer-heading">Quick Links</p>
-          <ul class="footer-nav">
-            <li><a class="footer-link" href="#news">News</a></li>
-            <li><a class="footer-link" href="#publications">Publication</a></li>
-            <li><a class="footer-link" href="#blogs">Blog</a></li>
-            <li><a class="footer-link" href="#projects">Projects</a></li>
-            <li><a class="footer-link" href="#supervisors">People</a></li>
-          </ul>
-        </nav>
-
-        <nav class="nav-col">
-          <p class="footer-heading">Other Websites</p>
-          <ul class="footer-nav">
-            <li>
-              <a
-                class="footer-link"
-                href="https://escal.ce.pdn.ac.lk"
-                target="_blank"
-                >ESCAL</a
-              >
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.ce.pdn.ac.lk"
-                target="_blank"
-                >Peracom</a
-              >
-            </li>
-          </ul>
-        </nav>
-
-        <nav class="nav-col">
-          <p class="footer-heading">Rearch Area</p>
-          <ul class="footer-nav">
-            <li><a class="footer-link">Hardware Accelerators</a></li>
-            <li>
-              <a class="footer-link">On-Chip learning</a>
-            </li>
-            <li>
-              <a class="footer-link">Embedded Al</a>
-            </li>
-            <li><a class="footer-link">Low Power Design</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer-line">
-        <p class="copyright">
-          Copyright &copy;PeraMorphIQ Neuromorphic Research Group. All rights reserved.
-        </p>
-      </div>
-    </footer>
-
-  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-  <script src="./js/nav.js"></script>
-  <script src="./js/typewriter.js"></script>
-  <script type="module" src="./js/reveal.js"></script>
-  <script type="module" src="./js/neuroAPI.js"></script>
+    <script type="module" src="./assets/js/layout.js"></script>
+    <script type="module" src="./assets/js/reveal.js"></script>
     <script type="module">
-      document.addEventListener("DOMContentLoaded", function () {
-        try {
-          window.NEURO_API.loadNews("#news-container");
-          window.NEURO_API.loadPublications("#publication-container");
-          window.NEURO_API.loadBlogs("#blog-container");
-          window.NEURO_API.loadProjects("#project-container");
-          window.NEURO_API.loadPeoples(
-            "#team-container",
-            "#supervisors-container",
-            "#graduate-container",
-            "#alumni-container"
-          );
-        } catch (e) {
-          console.error("Failed to initialize API loaders", e);
-        }
-      });
+      import { loadResearchAreas, loadStats } from './assets/js/modules/home.js';
+      import { loadProjects } from './assets/js/modules/projects.js';
+      import { loadPublications } from './assets/js/modules/publications.js';
+      import { loadNews } from './assets/js/modules/news.js';
+      import { loadPeople } from './assets/js/modules/people.js';
+
+      loadResearchAreas('[data-research-areas]');
+      loadStats('[data-stats]');
+      loadProjects('[data-featured-projects]', { limit: 3, featured: true });
+      loadPublications('[data-publications]', 3);
+      loadNews('[data-news]', { limit: 3 });
+      loadPeople('[data-people-preview]', { only: ['supervisors'] });
     </script>
   </body>
 </html>

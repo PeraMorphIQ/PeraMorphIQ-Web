@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>News | PeraMorphIQ</title>
-    <meta name="description" content="News and updates from the PeraMorphIQ neuromorphic research group at the University of Peradeniya." />
+    <meta name="description" content="A news article from the PeraMorphIQ neuromorphic research group." />
     <link rel="canonical" href="https://peramorphiq.ce.pdn.ac.lk/news.html" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PeraMorphIQ" />
     <meta property="og:title" content="News | PeraMorphIQ" />
-    <meta property="og:description" content="News and updates from the PeraMorphIQ neuromorphic research group at the University of Peradeniya." />
+    <meta property="og:description" content="A news article from the PeraMorphIQ neuromorphic research group." />
     <meta property="og:url" content="https://peramorphiq.ce.pdn.ac.lk/news.html" />
     <meta property="og:image" content="https://peramorphiq.ce.pdn.ac.lk/assets/img/title/image3.png" />
     <meta name="twitter:card" content="summary" />
+    <meta name="robots" content="noindex" />
 
     <link rel="icon" href="./assets/img/title/image3.png" />
 
@@ -36,20 +37,7 @@
     <div data-layout="header"></div>
 
     <main id="main">
-      <section class="page-head">
-        <div class="container">
-          <h1 class="page-head__title">News</h1>
-          <p class="page-head__lead">
-            Announcements, milestones and activity from the group.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="grid grid--3" data-news-index></div>
-        </div>
-      </section>
+      <div data-article></div>
     </main>
 
     <div data-layout="footer"></div>
@@ -57,8 +45,8 @@
     <script type="module" src="./assets/js/layout.js"></script>
     <script type="module" src="./assets/js/reveal.js"></script>
     <script type="module">
-      import { loadNews } from './assets/js/modules/news.js';
-      loadNews('[data-news-index]', { limit: null });
+      import { loadArticle } from './assets/js/modules/news.js';
+      loadArticle('[data-article]');
     </script>
   </body>
 </html>

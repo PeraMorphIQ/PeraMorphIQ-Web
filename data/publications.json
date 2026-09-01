@@ -1,0 +1,70 @@
+{
+  "$schema": "./_templates/publication.example.json",
+  "data": [
+    {
+      "id": "gunawardana2026review",
+      "title": "Neuromorphic architectures for edge-oriented spiking neural networks: A review",
+      "authors": [
+        { "name": "Kanishka Gunawardana", "group": true },
+        { "name": "Sanka Peeris", "group": true },
+        { "name": "Kavishka Rambukwella", "group": true },
+        { "name": "Roshan Ragel", "group": true },
+        { "name": "Isuru Nawinne", "group": true }
+      ],
+      "type": "journal",
+      "venue": "Journal of Systems Architecture",
+      "venueShort": "JSA",
+      "volume": "177",
+      "articleNumber": "103869",
+      "year": 2026,
+      "month": 8,
+      "doi": "10.1016/j.sysarc.2026.103869",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1383762126001876",
+      "openAccess": true,
+      "license": "CC BY 4.0",
+      "abstract": "A review of neuromorphic hardware architectures for spiking neural networks targeted at edge deployment, covering neuron models, memory organisation, interconnect strategies and the design trade-offs that govern energy efficiency at small scale."
+    },
+    {
+      "id": "gunawardana2026snapv",
+      "title": "SNAP-V: A RISC-V SoC with Configurable Neuromorphic Acceleration for Small-Scale Spiking Neural Networks",
+      "authors": [
+        { "name": "Kanishka Gunawardana", "group": true },
+        { "name": "Sanka Peeris", "group": true },
+        { "name": "Kavishka Rambukwella", "group": true },
+        { "name": "Thamish Wanduragala", "group": true },
+        { "name": "Saadia Jameel", "group": true },
+        { "name": "Roshan Ragel", "group": true },
+        { "name": "Isuru Nawinne", "group": true }
+      ],
+      "type": "preprint",
+      "venue": "arXiv",
+      "venueShort": "arXiv",
+      "year": 2026,
+      "month": 3,
+      "doi": "10.48550/arXiv.2603.11939",
+      "url": "https://arxiv.org/abs/2603.11939",
+      "arxiv": "2603.11939",
+      "openAccess": true,
+      "abstract": "Spiking Neural Networks (SNNs) have gained significant attention in edge computing due to their low power consumption and computational efficiency. However, existing implementations either use conventional System on Chip (SoC) architectures that suffer from memory-processor bottlenecks, or large-scale neuromorphic hardware that is inefficient and wasteful for small-scale SNN applications. This work presents SNAP-V, a RISC-V-based neuromorphic SoC with two accelerator variants: Cerebra-S (bus-based) and Cerebra-H (Network-on-Chip (NoC)-based) which are optimized for small-scale SNN inference, integrating a RISC-V core for management tasks, with both accelerators featuring parallel processing nodes and distributed memory. Experimental results show close agreement between software and hardware inference, with an average accuracy deviation of 2.62% across multiple network configurations, and an average synaptic energy of 1.05 pJ per synaptic operation (SOP) in 45 nm CMOS technology. These results show that the proposed solution enables accurate, energy-efficient SNN inference suitable for real-time edge applications."
+    },
+    {
+      "id": "thilakarathna2023rv32imf",
+      "title": "RV32IMF Five-Stage Pipeline Implementation with Interrupt and Random Number Generation Units",
+      "authors": [
+        { "name": "Dinindu Thilakarathna", "group": true },
+        { "name": "Heshan Dissanayake", "group": true },
+        { "name": "Roshan Ragel", "group": true },
+        { "name": "Isuru Dasanayake" },
+        { "name": "Mahanama Wickramasinghe" }
+      ],
+      "type": "conference",
+      "venue": "2023 IEEE 17th International Conference on Industrial and Information Systems (ICIIS)",
+      "venueShort": "ICIIS 2023",
+      "year": 2023,
+      "month": 8,
+      "doi": "10.1109/ICIIS58898.2023.10253607",
+      "url": "https://doi.org/10.1109/ICIIS58898.2023.10253607",
+      "openAccess": false
+    }
+  ]
+}

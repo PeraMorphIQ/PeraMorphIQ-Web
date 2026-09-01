@@ -1,0 +1,23 @@
+{
+  "id": "surname2026keyword",
+  "title": "Paper title as published",
+  "authors": [
+    { "name": "Group Member", "group": true },
+    { "name": "External Collaborator" }
+  ],
+  "type": "journal",
+  "venue": "Journal of Systems Architecture",
+  "venueShort": "JSA",
+  "volume": "177",
+  "articleNumber": "103869",
+  "year": 2026,
+  "month": 8,
+  "doi": "10.1016/j.sysarc.2026.103869",
+  "url": "https://www.sciencedirect.com/science/article/pii/S1383762126001876",
+  "arxiv": "",
+  "pdf": "",
+  "code": "",
+  "openAccess": true,
+  "license": "CC BY 4.0",
+  "abstract": "Optional abstract text."
+}

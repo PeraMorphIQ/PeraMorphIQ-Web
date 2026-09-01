@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a project | PeraMorphIQ</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="../assets/img/title/image3.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../assets/css/tokens.css" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/pages.css" />
+  </head>
+
+  <body data-page="">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-layout="header"></div>
+
+    <main id="main">
+      <section class="page-head">
+        <div class="container">
+          <h1 class="page-head__title">Add a project</h1>
+          <p class="page-head__lead">
+            Fill this in, copy the JSON, and paste it into the
+            <code>data</code> array in <code>data/projects.json</code>. No HTML
+            to write — the card and the full detail page are generated from this
+            entry.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cluster" style="margin-bottom: var(--space-6)">
+            <button type="button" class="chip" data-tab="form" aria-pressed="true">Add a project</button>
+            <button type="button" class="chip" data-tab="validate" aria-pressed="false">Validate data files</button>
+          </div>
+
+          <!-- ---------------------------------------------------- FORM -->
+          <div data-panel="form">
+            <div class="tool-layout">
+              <form class="stack" id="project-form" autocomplete="off">
+                <div class="field">
+                  <label class="field__label" for="title">Title</label>
+                  <input type="text" id="title" data-key="title" required />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="slug">Slug</label>
+                  <input type="text" id="slug" data-key="slug" required />
+                  <span class="field__hint">
+                    URL identifier, lowercase and hyphenated. Auto-filled from the
+                    title; must be unique.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="summary">Summary</label>
+                  <textarea id="summary" data-key="summary" rows="3" required></textarea>
+                  <span class="field__hint">One or two sentences. Shown on the card.</span>
+                </div>
+
+                <div class="contact-form__row">
+                  <div class="field">
+                    <label class="field__label" for="status">Status</label>
+                    <select id="status" data-key="status">
+                      <option value="active">Active</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="cohort">Cohort</label>
+                    <input type="text" id="cohort" data-key="cohort" placeholder="E20 Final Year Project" />
+                  </div>
+                </div>
+
+                <div class="contact-form__row">
+                  <div class="field">
+                    <label class="field__label" for="startYear">Start year</label>
+                    <input type="number" id="startYear" data-key="startYear" min="2000" max="2100" />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="endYear">End year</label>
+                    <input type="number" id="endYear" data-key="endYear" min="2000" max="2100" />
+                    <span class="field__hint">Leave blank if ongoing.</span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="topics">Topics</label>
+                  <input type="text" id="topics" data-key="topics" placeholder="Neuromorphic Computing, RISC-V, FPGA" />
+                  <span class="field__hint">Comma-separated. These drive the topic filters.</span>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="image">Cover image</label>
+                  <input type="text" id="image" data-key="image" placeholder="data/img/project/my-slug/cover.jpg" />
+                  <span class="field__hint">
+                    Path from the repository root, 16:9. Leave blank for the default placeholder.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label class="field__label">
+                    <input type="checkbox" id="featured" data-key="featured" style="width:auto;margin-right:var(--space-2)" />
+                    Feature on the home page
+                  </label>
+                </div>
+
+                <div class="contact-form__row">
+                  <div class="field">
+                    <label class="field__label" for="github">GitHub URL</label>
+                    <input type="url" id="github" data-link="github" />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="paper">Related paper URL</label>
+                    <input type="url" id="paper" data-link="paper" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="team">Team e-numbers</label>
+                  <input type="text" id="team" data-key="team" placeholder="E/20/279, E/20/385" />
+                  <span class="field__hint">
+                    Comma-separated. Names and photos are fetched from the CE directory automatically.
+                  </span>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="supervisors">Supervisors</label>
+                  <input type="text" id="supervisors" data-key="supervisors"
+                         placeholder="isurunawinne@eng.pdn.ac.lk, roshanr@eng.pdn.ac.lk" />
+                  <span class="field__hint">Comma-separated department email addresses.</span>
+                </div>
+
+                <div>
+                  <div class="repeater__head" style="margin-bottom: var(--space-3)">
+                    <h2 style="font-size: var(--text-md)">Content sections</h2>
+                    <button type="button" class="btn btn--secondary btn--sm" data-add-section>
+                      Add section
+                    </button>
+                  </div>
+                  <div data-sections></div>
+                </div>
+              </form>
+
+              <div class="tool-output">
+                <div class="repeater__head" style="margin-bottom: var(--space-3)">
+                  <h2 style="font-size: var(--text-md)">JSON entry</h2>
+                  <div class="cluster">
+                    <button type="button" class="btn btn--primary btn--sm" data-copy>Copy JSON</button>
+                  </div>
+                </div>
+                <pre><code data-output>{}</code></pre>
+
+                <p class="muted" style="font-size: var(--text-xs); margin-top: var(--space-3)">
+                  Paste this object into the <code>data</code> array in
+                  <code>data/projects.json</code>, then commit. New projects go
+                  at the top of the array.
+                </p>
+
+                <h2 style="font-size: var(--text-md); margin: var(--space-6) 0 var(--space-3)">
+                  Card preview
+                </h2>
+                <div data-preview></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ------------------------------------------------ VALIDATE -->
+          <div data-panel="validate" hidden>
+            <p class="muted" style="margin-bottom: var(--space-5)">
+              Checks the live data files for missing required fields, duplicate
+              slugs, malformed DOIs and images that fail to load.
+            </p>
+            <button type="button" class="btn btn--primary" data-run-validate>Run checks</button>
+            <div data-validate-output style="margin-top: var(--space-6)"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-layout="footer"></div>
+
+    <script type="module" src="../assets/js/layout.js"></script>
+    <script type="module">
+      import { asset } from '../assets/js/layout.js';
+      import { normalizeDoi } from '../assets/js/modules/publications.js';
+
+      /* ---------------------------------------------------------- tabs */
+      document.querySelectorAll('[data-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-tab]').forEach((b) =>
+            b.setAttribute('aria-pressed', String(b === btn))
+          );
+          document.querySelectorAll('[data-panel]').forEach((p) => {
+            p.hidden = p.dataset.panel !== btn.dataset.tab;
+          });
+        });
+      });
+
+      /* ------------------------------------------------------ builder */
+      const form = document.getElementById('project-form');
+      const out = document.querySelector('[data-output]');
+      const preview = document.querySelector('[data-preview]');
+      const sectionsHost = document.querySelector('[data-sections]');
+
+      const slugify = (s) =>
+        s.toLowerCase().trim()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+
+      const csv = (v) =>
+        String(v || '').split(',').map((s) => s.trim()).filter(Boolean);
+
+      // Keep the slug in step with the title until it is edited by hand.
+      let slugTouched = false;
+      document.getElementById('slug').addEventListener('input', () => (slugTouched = true));
+      document.getElementById('title').addEventListener('input', (e) => {
+        if (!slugTouched) document.getElementById('slug').value = slugify(e.target.value);
+        build();
+      });
+
+      let sectionId = 0;
+      function addSection() {
+        const id = ++sectionId;
+        const el = document.createElement('div');
+        el.className = 'repeater__item';
+        el.innerHTML = `
+          <div class="repeater__head">
+            <strong>Section ${id}</strong>
+            <button type="button" class="btn btn--link btn--sm" data-remove>Remove</button>
+          </div>
+          <div class="field">
+            <label class="field__label">Heading</label>
+            <input type="text" data-section="heading" placeholder="Overview" />
+          </div>
+          <div class="field">
+            <label class="field__label">Paragraphs</label>
+            <textarea data-section="body" rows="5"
+              placeholder="One paragraph per line."></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label">Bullet list</label>
+            <textarea data-section="list" rows="3"
+              placeholder="One bullet per line. Optional."></textarea>
+          </div>
+          <div class="field">
+            <label class="field__label">Images</label>
+            <textarea data-section="images" rows="3"
+              placeholder="One per line: data/img/project/my-slug/fig1.png | Caption text"></textarea>
+          </div>`;
+        el.querySelector('[data-remove]').addEventListener('click', () => {
+          el.remove();
+          build();
+        });
+        sectionsHost.append(el);
+        build();
+      }
+
+      document.querySelector('[data-add-section]').addEventListener('click', addSection);
+
+      function collect() {
+        const get = (k) => form.querySelector(`[data-key="${k}"]`);
+        const val = (k) => get(k)?.value.trim() || '';
+
+        const project = {
+          slug: val('slug') || 'new-project',
+          title: val('title') || 'Untitled project',
+          status: val('status') || 'active',
+          startYear: val('startYear') ? Number(val('startYear')) : null,
+          endYear: val('endYear') ? Number(val('endYear')) : null,
+          cohort: val('cohort'),
+          featured: get('featured').checked,
+          summary: val('summary'),
+          topics: csv(val('topics')),
+          image: val('image'),
+          links: {},
+          team: csv(val('team')).map((eNumber) => ({ eNumber })),
+          supervisors: csv(val('supervisors')).map((email) => ({ email })),
+          sections: []
+        };
+
+        form.querySelectorAll('[data-link]').forEach((input) => {
+          if (input.value.trim()) project.links[input.dataset.link] = input.value.trim();
+        });
+
+        sectionsHost.querySelectorAll('.repeater__item').forEach((item) => {
+          const f = (k) => item.querySelector(`[data-section="${k}"]`).value;
+          const lines = (v) => v.split('\n').map((s) => s.trim()).filter(Boolean);
+
+          const section = { heading: f('heading').trim() || 'Section' };
+          const body = lines(f('body'));
+          const list = lines(f('list'));
+          const images = lines(f('images')).map((line) => {
+            const [src, caption] = line.split('|').map((s) => s.trim());
+            return caption ? { src, caption } : { src };
+          });
+
+          if (body.length) section.body = body;
+          if (list.length) section.list = list;
+          if (images.length) section.images = images;
+          project.sections.push(section);
+        });
+
+        // Drop empty keys so the pasted entry stays tidy.
+        Object.keys(project).forEach((k) => {
+          const v = project[k];
+          const empty =
+            v === '' || v === null ||
+            (Array.isArray(v) && !v.length) ||
+            (v && typeof v === 'object' && !Array.isArray(v) && !Object.keys(v).length);
+          if (empty && k !== 'endYear') delete project[k];
+        });
+
+        return project;
+      }
+
+      function build() {
+        const project = collect();
+        out.textContent = JSON.stringify(project, null, 2);
+
+        const cover = project.image
+          ? asset(project.image)
+          : asset('assets/img/placeholder/project.svg');
+        const active = project.status === 'active';
+
+        preview.innerHTML = `
+          <article class="card">
+            <div class="card__media"><img src="${cover}" alt="" /></div>
+            <div class="card__body">
+              <div class="card__meta">
+                <span class="badge${active ? ' badge--active' : ''}">
+                  <span class="badge__dot"></span>${active ? 'Active' : 'Completed'}
+                </span>
+                ${project.cohort ? `<span>${project.cohort}</span>` : ''}
+              </div>
+              <h3 class="card__title">${project.title || 'Untitled project'}</h3>
+              <p class="card__text">${project.summary || 'No summary yet.'}</p>
+              <div class="card__footer">
+                <div class="tag-list">
+                  ${(project.topics || []).slice(0, 3).map((t) => `<span class="tag">${t}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </article>`;
+      }
+
+      form.addEventListener('input', build);
+
+      document.querySelector('[data-copy]').addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        try {
+          await navigator.clipboard.writeText(out.textContent);
+          btn.textContent = 'Copied';
+        } catch {
+          btn.textContent = 'Select and copy';
+        }
+        setTimeout(() => (btn.textContent = 'Copy JSON'), 2000);
+      });
+
+      addSection();
+      build();
+
+      /* ----------------------------------------------------- validator */
+      const checkImage = (src) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = asset(src);
+        });
+
+      document.querySelector('[data-run-validate]').addEventListener('click', async () => {
+        const host = document.querySelector('[data-validate-output]');
+        host.innerHTML = '<p class="muted">Running…</p>';
+        const issues = [];
+
+        const [projects, publications] = await Promise.all([
+          fetch(asset('data/projects.json')).then((r) => r.json()).then((j) => j.data || j),
+          fetch(asset('data/publications.json')).then((r) => r.json()).then((j) => j.data || j)
+        ]);
+
+        const seen = new Set();
+        for (const p of projects) {
+          const where = p.slug || p.title || '(unnamed)';
+          if (!p.slug) issues.push(['projects', where, 'missing "slug"']);
+          if (!p.title) issues.push(['projects', where, 'missing "title"']);
+          if (!p.summary) issues.push(['projects', where, 'missing "summary"']);
+          if (p.status && !['active', 'completed'].includes(p.status))
+            issues.push(['projects', where, `status "${p.status}" is not active/completed`]);
+          if (seen.has(p.slug)) issues.push(['projects', where, 'duplicate slug']);
+          seen.add(p.slug);
+
+          const images = [p.image, ...(p.sections || []).flatMap((s) => (s.images || []).map((i) => i.src))]
+            .filter(Boolean);
+          for (const src of images) {
+            if (!(await checkImage(src))) issues.push(['projects', where, `image not found: ${src}`]);
+          }
+        }
+
+        for (const pub of publications) {
+          const where = pub.id || pub.title || '(unnamed)';
+          if (!pub.title) issues.push(['publications', where, 'missing "title"']);
+          if (!pub.year) issues.push(['publications', where, 'missing "year"']);
+          if (!pub.type) issues.push(['publications', where, 'missing "type"']);
+          if (!(pub.authors || []).length) issues.push(['publications', where, 'no authors']);
+          if (pub.doi && !/^10\.\d{4,9}\/\S+$/.test(normalizeDoi(pub.doi)))
+            issues.push(['publications', where, `DOI does not look valid: ${pub.doi}`]);
+        }
+
+        host.innerHTML = issues.length
+          ? issues
+              .map(
+                ([file, where, msg]) => `
+                <div class="validate-row">
+                  <span class="validate-row__badge">${file}</span>
+                  <span><strong>${where}</strong> — ${msg}</span>
+                </div>`
+              )
+              .join('')
+          : `<div class="state"><p class="state__title">All checks passed</p>
+             <p>${projects.length} projects and ${publications.length} publications look well-formed.</p></div>`;
+      });
+    </script>
+  </body>
+</html>

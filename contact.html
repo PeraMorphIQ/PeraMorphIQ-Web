@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact | PeraMorphIQ</title>
+    <meta
+      name="description"
+      content="Contact the PeraMorphIQ neuromorphic research group at the Department of Computer Engineering, University of Peradeniya."
+    />
+    <link rel="canonical" href="https://peramorphiq.ce.pdn.ac.lk/contact.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PeraMorphIQ" />
+    <meta property="og:title" content="Contact | PeraMorphIQ" />
+    <meta
+      property="og:description"
+      content="Get in touch with the PeraMorphIQ neuromorphic research group."
+    />
+    <meta property="og:url" content="https://peramorphiq.ce.pdn.ac.lk/contact.html" />
+    <meta property="og:image" content="https://peramorphiq.ce.pdn.ac.lk/assets/img/title/image3.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="./assets/img/title/image3.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  </head>
+
+  <body data-page="contact">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-layout="header"></div>
+
+    <main id="main">
+      <section class="page-head">
+        <div class="container">
+          <h1 class="page-head__title">Contact</h1>
+          <p class="page-head__lead">
+            Whether you are a prospective student, a researcher looking to
+            collaborate, or an industry partner working on neuromorphic and edge
+            AI hardware — we would like to hear from you.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="contact-layout">
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="contact-form__row">
+                <div class="field">
+                  <label class="field__label" for="user_name">Name</label>
+                  <input type="text" id="user_name" name="user_name" required autocomplete="name" />
+                </div>
+                <div class="field">
+                  <label class="field__label" for="user_email">Email</label>
+                  <input type="email" id="user_email" name="user_email" required autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="contact-form__row">
+                <div class="field">
+                  <label class="field__label" for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" required />
+                </div>
+                <div class="field">
+                  <label class="field__label" for="organization">Organisation</label>
+                  <input type="text" id="organization" name="organization" autocomplete="organization" />
+                  <span class="field__hint">Optional</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="message">Message</label>
+                <textarea id="message" name="message" rows="7" required></textarea>
+              </div>
+
+              <div class="cluster">
+                <button type="submit" class="btn btn--primary" data-submit>Send message</button>
+                <p class="form-status" data-status hidden role="status"></p>
+              </div>
+            </form>
+
+            <aside>
+              <div class="info-block">
+                <p class="info-block__label">Address</p>
+                <p class="info-block__value">
+                  Department of Computer Engineering<br />
+                  Faculty of Engineering<br />
+                  University of Peradeniya<br />
+                  Peradeniya 20400, Sri Lanka
+                </p>
+              </div>
+
+              <div class="info-block">
+                <p class="info-block__label">Email</p>
+                <p class="info-block__value">
+                  <a href="mailto:peramorphiq@eng.pdn.ac.lk">peramorphiq@eng.pdn.ac.lk</a>
+                </p>
+              </div>
+
+              <div class="info-block">
+                <p class="info-block__label">Phone</p>
+                <p class="info-block__value">
+                  <a href="tel:+94718495506">+94 71 849 5506</a>
+                </p>
+              </div>
+
+              <div class="info-block">
+                <p class="info-block__label">Code &amp; projects</p>
+                <p class="info-block__value">
+                  <a href="https://github.com/PeraMorphIQ" rel="noopener">github.com/PeraMorphIQ</a>
+                </p>
+              </div>
+
+              <div class="info-block">
+                <p class="info-block__label">Prospective students</p>
+                <p class="info-block__value">
+                  We supervise final-year and graduate projects each intake. See
+                  our <a href="./projects.html">current research</a> before
+                  getting in touch, and mention which area interests you.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-layout="footer"></div>
+
+    <script type="module" src="./assets/js/layout.js"></script>
+    <script type="module" src="./assets/js/reveal.js"></script>
+    <script>
+      // EmailJS public keys are designed to be exposed client-side.
+      const EMAILJS = {
+        publicKey: 'wCAPr3UyMoGUKj12M',
+        serviceId: 'service_77hfq86',
+        templateId: 'template_esgiqpo'
+      };
+
+      window.addEventListener('load', () => {
+        const form = document.getElementById('contact-form');
+        const status = form.querySelector('[data-status]');
+        const submit = form.querySelector('[data-submit]');
+
+        const say = (message, state) => {
+          status.textContent = message;
+          status.dataset.state = state;
+          status.hidden = false;
+        };
+
+        if (typeof emailjs === 'undefined') {
+          say('The contact form is unavailable right now — please email us directly.', 'error');
+          submit.disabled = true;
+          return;
+        }
+
+        emailjs.init({ publicKey: EMAILJS.publicKey });
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          submit.disabled = true;
+          submit.textContent = 'Sending…';
+          say('Sending your message…', 'pending');
+
+          try {
+            await emailjs.sendForm(EMAILJS.serviceId, EMAILJS.templateId, form);
+            form.reset();
+            say('Thank you — your message has been sent. We will reply by email.', 'ok');
+          } catch (err) {
+            console.error(err);
+            say('Could not send the message. Please email peramorphiq@eng.pdn.ac.lk directly.', 'error');
+          } finally {
+            submit.disabled = false;
+            submit.textContent = 'Send message';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
