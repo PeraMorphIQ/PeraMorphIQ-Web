@@ -30,6 +30,11 @@
   --surface-inverse: #111418; /* footer - flat, no gradient */
   --surface-inverse-2: #1c2027; /* raised block on inverse ground */
 
+  /* Project status. The only colours in the system that carry meaning:
+     green for work in progress, blue for work that is finished. */
+  --status-active: #1a7f45;
+  --status-complete: #1e4f8f;
+
   /* The one accent */
   --accent: #1e4f8f;
   --accent-hover: #163c6e;

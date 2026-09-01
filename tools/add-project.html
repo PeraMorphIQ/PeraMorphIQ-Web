@@ -342,7 +342,7 @@
             </div>
             <div class="card__body">
               <div class="card__meta">
-                <span class="badge${active ? ' badge--active' : ''}">
+                <span class="badge badge--${active ? 'active' : 'completed'}">
                   <span class="badge__dot"></span>${active ? 'Active' : 'Completed'}
                 </span>
                 ${project.cohort ? `<span>${project.cohort}</span>` : ''}

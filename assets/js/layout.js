@@ -36,7 +36,7 @@ const GITHUB_URL = 'https://github.com/PeraMorphIQ';
 const LINKEDIN_URL = 'https://www.linkedin.com/company/peramorphiq/';
 const ESCAL_URL = 'https://escal.ce.pdn.ac.lk/';
 // No public PeraCom site is known; leave empty and the mark renders unlinked.
-const PERACOM_URL = '';
+const PERACOM_URL = 'https://www.ce.pdn.ac.lk/';
 const DEPT_URL = 'https://www.ce.pdn.ac.lk/';
 
 function headerHTML(active) {
@@ -60,12 +60,14 @@ function headerHTML(active) {
             <li>
               <a href="${ESCAL_URL}" rel="noopener"
                  title="ESCAL - Embedded Systems and Computer Architecture Laboratory">
-                <img src="${asset('assets/img/partners/logo-2.png')}"
+                <img src="${asset('assets/img/partners/logo-escal-dark.png')}"
                      alt="ESCAL - Embedded Systems and Computer Architecture Laboratory" />
               </a>
             </li>
-            <li title="PeraCom">
-              <img src="${asset('assets/img/partners/peracomlogo.png')}" alt="PeraCom" />
+            <li>
+              <a href="${PERACOM_URL}" rel="noopener" title="PeraCom">
+                <img src="${asset('assets/img/partners/peracomlogo.png')}" alt="PeraCom" />
+              </a>
             </li>
           </ul>
         </div>

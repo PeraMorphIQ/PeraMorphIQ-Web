@@ -102,18 +102,22 @@
               <p class="hero__affiliation-label">Part of</p>
               <ul class="org-list">
                 <li>
-                  <img src="./assets/img/partners/logo-2.png" alt="" width="110" height="32" />
-                  <span class="org-list__text">
-                    <span class="org-list__name">ESCAL</span>
-                    <span class="org-list__full">Embedded Systems and Computer<br />Architecture Laboratory</span>
-                  </span>
+                  <a class="org-list__link" href="https://escal.ce.pdn.ac.lk/" rel="noopener">
+                    <img src="./assets/img/partners/logo-escal-light.png" alt="" width="110" height="31" />
+                    <span class="org-list__text">
+                      <span class="org-list__name">ESCAL</span>
+                      <span class="org-list__full">Embedded Systems and Computer<br />Architecture Laboratory</span>
+                    </span>
+                  </a>
                 </li>
                 <li>
-                  <img src="./assets/img/partners/peracomlogo.png" alt="" width="74" height="32" />
-                  <span class="org-list__text">
-                    <span class="org-list__name">PeraCom</span>
-                    <span class="org-list__full">University of Peradeniya</span>
-                  </span>
+                  <a class="org-list__link" href="https://www.ce.pdn.ac.lk/" rel="noopener">
+                    <img src="./assets/img/partners/peracomlogo.png" alt="" width="74" height="32" />
+                    <span class="org-list__text">
+                      <span class="org-list__name">PeraCom</span>
+                      <span class="org-list__full">University of Peradeniya</span>
+                    </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -274,14 +278,28 @@
       import { loadNews } from './assets/js/modules/news.js';
       import { loadPeople } from './assets/js/modules/people.js';
 
-      loadResearchAreas('[data-research-areas]');
-      loadStats('[data-stats]');
-      loadProjects('[data-featured-projects]', { limit: 3, featured: true });
-      loadFeaturedPublication('[data-featured-publication]');
-      loadPublications('[data-publications]', 3);
-      loadNews('[data-news]', { limit: 3, variant: 'list' });
-      loadPeople('[data-people-preview]', {
-        only: ['supervisors', 'Graduate Researchers']
+      // Several sections above #about are rendered from JSON, so the page grows
+      // after the browser has already jumped to the hash. Arriving from another
+      // page at index.html#about therefore lands short of the section. Re-anchor
+      // once the content that changes the layout has rendered.
+      Promise.allSettled([
+        loadResearchAreas('[data-research-areas]'),
+        loadStats('[data-stats]'),
+        loadProjects('[data-featured-projects]', { limit: 3, featured: true }),
+        loadFeaturedPublication('[data-featured-publication]'),
+        loadPublications('[data-publications]', 3),
+        loadNews('[data-news]', { limit: 3, variant: 'list' }),
+        loadPeople('[data-people-preview]', {
+          only: ['supervisors', 'Graduate Researchers']
+        })
+      ]).then(() => {
+        const id = window.location.hash.slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target) return;
+        requestAnimationFrame(() =>
+          target.scrollIntoView({ block: 'start', behavior: 'auto' })
+        );
       });
     </script>
   </body>

@@ -118,10 +118,15 @@
 }
 
 .badge--active .badge__dot {
-  background-color: var(--accent);
+  background-color: var(--status-active);
 }
 
-.badge--active {
+.badge--completed .badge__dot {
+  background-color: var(--status-complete);
+}
+
+.badge--active,
+.badge--completed {
   color: var(--ink-900);
   border-color: var(--ink-300);
 }
@@ -420,18 +425,17 @@
   gap: var(--space-4);
 }
 
-/* The supplied marks have mixed polarity (ESCAL is white on transparent), so
-   they are flattened to one ink tone - the same treatment as the footer strip. */
+/* Shown in their own colours at full strength. The ESCAL artwork is white, so
+   the header uses a dark-ink variant of it rather than a CSS filter; the hero
+   uses the white original against the dark ground. */
 .parent-orgs img {
   height: 2.2rem;
   width: auto;
-  filter: brightness(0);
-  opacity: 0.5;
   transition: opacity var(--transition);
 }
 
 .parent-orgs a:hover img {
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 /* Below the drawer breakpoint the header only has room for the group's own

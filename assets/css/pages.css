@@ -181,8 +181,19 @@
 
 .org-list li {
   display: flex;
+}
+
+.org-list__link {
+  display: flex;
   align-items: center;
   gap: var(--space-4);
+  color: inherit;
+  transition: opacity var(--transition);
+}
+
+.org-list__link:hover {
+  color: inherit;
+  opacity: 0.75;
 }
 
 .org-list__text {
@@ -222,6 +233,18 @@
 @media (max-width: 46em) {
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Two columns means the third tile also begins a row, so it needs the same
+     flush-left treatment as the first. Without this the lower row sits
+     indented by the divider's padding. */
+  .hero-stats .stat:nth-child(2n + 1) {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .hero-stats .stat:nth-child(n + 3) {
+    border-top: 1px solid var(--rule-inverse);
   }
 }
 

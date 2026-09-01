@@ -28,7 +28,7 @@ function yearLabel(project) {
 
 function statusBadge(project) {
   const active = project.status === 'active';
-  return `<span class="badge${active ? ' badge--active' : ''}">
+  return `<span class="badge badge--${active ? 'active' : 'completed'}">
       <span class="badge__dot"></span>${active ? 'Active' : 'Completed'}
     </span>`;
 }
