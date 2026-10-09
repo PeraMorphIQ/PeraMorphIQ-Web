@@ -1,3 +1,10 @@
+// The CE staff API returns the staff category as the designation
+// ("Professors", "Senior Lecturers"), so singularize it for one person.
+function singularizeDesignation(designation) {
+    if (!designation) return designation;
+    return designation.replace(/(?<!s)s$/, '');
+}
+
 export async function fetchSupervisors(allSupervisors = []) {
     return Promise.all(
         allSupervisors.map(async (supervisor) => {
@@ -13,7 +20,7 @@ export async function fetchSupervisors(allSupervisors = []) {
                 return {
                     image: json.profile_image,
                     name: supervisor.name,
-                    position: json.designation,
+                    position: singularizeDesignation(json.designation),
                     email: supervisor.email,
                     urls: json.urls || {},
                     profile_page:supervisor.profile_page

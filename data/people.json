@@ -3,26 +3,32 @@
     {
       "Graduate Researchers": [
         { "eNumber": "E/19/129", "current": "TA @ UOP"},
-        { "eNumber": "E/19/275", "current": "TA @ UOP"},
+        { "eNumber": "E/19/275", "current": "Research Engineer"},
         { "eNumber": "E/19/309", "current": "Software Engineer"},
-        { "eNumber": "E/18/379", "current": "PhD Student @ UMD"},
-        { "eNumber": "E/18/147", "current": "PhD Student @ JHU"}
+        { "eNumber": "E/20/034"},
+        { "eNumber": "E/20/385"},
+        { "eNumber": "E/20/439"},
+        { "eNumber": "E/20/346"},
+        { "eNumber": "E/20/419"}
       ],
 
       "Undergraduate Researchs":[
         { "eNumber": "E/20/279"},
-        { "eNumber": "E/20/385"},
         { "eNumber": "E/20/280"},
-        { "eNumber": "E/20/439"},
-        { "eNumber": "E/20/346"},
         { "eNumber": "E/20/024"},
         { "eNumber": "E/20/242"},
-        { "eNumber": "E/20/034"},
-        { "eNumber": "E/20/419"}
+        { "eNumber": "E/21/220"},
+        { "eNumber": "E/21/148"},
+        { "eNumber": "E/21/188"},
+        { "eNumber": "E/21/335"},
+        { "eNumber": "E/21/395"},
+        { "eNumber": "E/21/412"}
 
       ],
 
       "Alumni Researchers":[
+        { "eNumber": "E/18/379","current": "PhD Student @ UMD"},
+        { "eNumber": "E/18/147","current": "PhD Student @ JHU"},
         { "eNumber": "E/17/018","current": "Engineer @ ARM"},
         { "eNumber": "E/17/154","current": "PhD Student @ UMD"},
         { "eNumber": "E/16/088","current": "PhD Student @ USYD"},
