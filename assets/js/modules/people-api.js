@@ -27,6 +27,15 @@ function parseENumber(eNumber) {
   };
 }
 
+/**
+ * The staff API reports the directory CATEGORY as the designation
+ * ("Professors", "Senior Lecturers"), which reads wrong on one person's card.
+ */
+function singularizeDesignation(designation) {
+  if (!designation) return designation;
+  return designation.replace(/(?<!s)s$/, '');
+}
+
 function studentProfileURL(eNumber) {
   const parsed = parseENumber(eNumber);
   return parsed
@@ -118,7 +127,7 @@ export async function fetchSupervisors(supervisors = []) {
         return {
           ...fallback,
           image: json.profile_image || '',
-          position: json.designation || fallback.position,
+          position: singularizeDesignation(json.designation) || fallback.position,
           urls: json.urls || {}
         };
       } catch (err) {
